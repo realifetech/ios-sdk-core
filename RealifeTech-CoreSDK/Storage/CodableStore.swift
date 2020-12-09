@@ -8,23 +8,22 @@
 
 import Foundation
 
-// TODO: Rename Storage protocols to Storeable and Sotrage to Store.
-protocol CodableStorageProtocol {
+protocol Storeable {
     func fetchAll<T: Decodable>() throws -> [T]
     func fetch<T: Decodable>(for key: String) throws -> T
     func save<T: Encodable>(_ value: T, for key: String) throws
     func delete(key: String)
 }
 
-class CodableStorage: CodableStorageProtocol {
+class CodableStore: Storeable {
 
-    private let storage: Storage
+    private let storage: DataStorage
     private let decoder: JSONDecoder
     private let encoder: JSONEncoder
     private let storagePrefix: String
 
     init(
-        storage: Storage,
+        storage: DataStorage,
         decoder: JSONDecoder = .init(),
         encoder: JSONEncoder = .init(),
         storagePrefix: String

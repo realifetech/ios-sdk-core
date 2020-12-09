@@ -7,7 +7,7 @@ project 'RealifeTech-CoreSDK'
 pod 'SwiftLint'
 pod 'RxSwift', '~> 5.1.1'
 pod 'RxCocoa', '~> 5.1.1'
-pod 'Apollo', '~> 0.38.3'
+pod 'Apollo', '~> 0.30.0'
 pod 'Apollo/SQLite'
 
 target 'RealifeTech-CoreSDK' do

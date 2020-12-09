@@ -15,10 +15,10 @@ class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
     private var locked: Bool = false
     private var queue: [T] = []
 
-    private let storage: CodableStorageProtocol
+    private let storage: Storeable
 
-    init(name: String, storage: CodableStorageProtocol? = nil) {
-        self.storage = storage ?? CodableStorage(
+    init(name: String, storage: Storeable? = nil) {
+        self.storage = storage ?? CodableStore(
             storage: DiskStorage(path: URL(fileURLWithPath: NSTemporaryDirectory())),
             storagePrefix: name)
         guard let storedQueue: [T] = try? self.storage.fetchAll() else { return }

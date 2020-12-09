@@ -67,9 +67,9 @@ final class CodableStorageTests: XCTestCase {
         })
     }
 
-    private static func makeSut() -> CodableStorage {
+    private static func makeSut() -> CodableStore {
         let path = URL(fileURLWithPath: NSTemporaryDirectory())
-        let sut = CodableStorage(storage: DiskStorage(path: path),
+        let sut = CodableStore(storage: DiskStorage(path: path),
                                  storagePrefix: "test")
         return sut
     }

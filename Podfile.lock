@@ -1,8 +1,8 @@
 PODS:
-  - Apollo (0.38.3):
-    - Apollo/Core (= 0.38.3)
-  - Apollo/Core (0.38.3)
-  - Apollo/SQLite (0.38.3):
+  - Apollo (0.30.0):
+    - Apollo/Core (= 0.30.0)
+  - Apollo/Core (0.30.0)
+  - Apollo/SQLite (0.30.0):
     - Apollo/Core
     - SQLite.swift (~> 0.12.2)
   - RxCocoa (5.1.1):
@@ -19,7 +19,7 @@ PODS:
   - SwiftLint (0.41.0)
 
 DEPENDENCIES:
-  - Apollo (~> 0.38.3)
+  - Apollo (~> 0.30.0)
   - Apollo/SQLite
   - RxCocoa (~> 5.1.1)
   - RxSwift (~> 5.1.1)
@@ -37,7 +37,7 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Apollo: b5c2427ff42bd23c4db399df1a60c8db34bda53c
+  Apollo: c10bf1a4c7db5237be1056ace16347cd1cdcb863
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
@@ -45,6 +45,6 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
 
-PODFILE CHECKSUM: 5fce038a42f93c61a8ccb2c9b306a78319f16140
+PODFILE CHECKSUM: a82038ec73b98a7c40dedf211bf274825459ab46
 
 COCOAPODS: 1.8.4

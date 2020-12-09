@@ -7,6 +7,6 @@
 //
 
 import XCTest
-@testable import RealifeTech
+@testable import RealifeTech_CoreSDK
 
-class GraphQLTests: XCTestCase {}
+final class GraphQLTests: XCTestCase {}

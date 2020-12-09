@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,12 +32,8 @@
 		961E2D082580E35400547451 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C982580E34800547451 /* DeviceToken.swift */; };
 		961E2D092580E35400547451 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C992580E34800547451 /* Device.swift */; };
 		961E2D0A2580E35400547451 /* DeviceRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C9A2580E34800547451 /* DeviceRequester.swift */; };
-		961E2D0B2580E35400547451 /* GraphQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C9D2580E34A00547451 /* GraphQLTests.swift */; };
 		961E2D0C2580E35400547451 /* GraphNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C9E2580E34A00547451 /* GraphNetwork.swift */; };
 		961E2D0D2580E35400547451 /* GraphNetworkCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C9F2580E34A00547451 /* GraphNetworkCachePolicy.swift */; };
-		961E2D0E2580E35400547451 /* putAnalyticEvent.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 961E2CA12580E34A00547451 /* putAnalyticEvent.graphql */; };
-		961E2D0F2580E35400547451 /* getWidgetsByScreenType.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 961E2CA22580E34A00547451 /* getWidgetsByScreenType.graphql */; };
-		961E2D102580E35400547451 /* fetchBelongsToAudienceWithExternalId.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 961E2CA32580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql */; };
 		961E2D112580E35400547451 /* GraphQLDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CA42580E34A00547451 /* GraphQLDispatcher.swift */; };
 		961E2D122580E35400547451 /* fetchBelongsToAudienceWithExternalId.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CA62580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql.swift */; };
 		961E2D132580E35400547451 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CA72580E34A00547451 /* Types.graphql.swift */; };
@@ -45,7 +41,7 @@
 		961E2D152580E35400547451 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 961E2CA92580E34A00547451 /* schema.json */; };
 		961E2D172580E35400547451 /* ReadOnlyCurrentValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CAD2580E34D00547451 /* ReadOnlyCurrentValue.swift */; };
 		961E2D182580E35400547451 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CAF2580E34F00547451 /* Storage.swift */; };
-		961E2D192580E35400547451 /* CodableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB02580E34F00547451 /* CodableStorage.swift */; };
+		961E2D192580E35400547451 /* CodableStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB02580E34F00547451 /* CodableStore.swift */; };
 		961E2D1A2580E35400547451 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB12580E34F00547451 /* UserDefaultStorage.swift */; };
 		961E2D1B2580E35400547451 /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB22580E34F00547451 /* DiskStorage.swift */; };
 		961E2D1E2580E35400547451 /* QueueProviding+AnyQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB72580E34F00547451 /* QueueProviding+AnyQueue.swift */; };
@@ -104,6 +100,8 @@
 		961E2DBF2580EDCB00547451 /* DeviceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C932580E34800547451 /* DeviceTokenTests.swift */; };
 		961E2DC42580EDD200547451 /* CodableStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB42580E34F00547451 /* CodableStorageTests.swift */; };
 		961E2DC72580EDD500547451 /* DiskStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB52580E34F00547451 /* DiskStorageTests.swift */; };
+		96BB1AFC2580FE7600D19B7F /* GraphQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C9D2580E34A00547451 /* GraphQLTests.swift */; };
+		96FD1D3E258101760099EE4A /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD1D3D258101760099EE4A /* Date+Formatted.swift */; };
 		E6629D46D40D7FE7A1D5AD67 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5442736BFC18FEA93785A4 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,9 +158,6 @@
 		961E2C9D2580E34A00547451 /* GraphQLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLTests.swift; sourceTree = "<group>"; };
 		961E2C9E2580E34A00547451 /* GraphNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphNetwork.swift; sourceTree = "<group>"; };
 		961E2C9F2580E34A00547451 /* GraphNetworkCachePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphNetworkCachePolicy.swift; sourceTree = "<group>"; };
-		961E2CA12580E34A00547451 /* putAnalyticEvent.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = putAnalyticEvent.graphql; sourceTree = "<group>"; };
-		961E2CA22580E34A00547451 /* getWidgetsByScreenType.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = getWidgetsByScreenType.graphql; sourceTree = "<group>"; };
-		961E2CA32580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fetchBelongsToAudienceWithExternalId.graphql; sourceTree = "<group>"; };
 		961E2CA42580E34A00547451 /* GraphQLDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLDispatcher.swift; sourceTree = "<group>"; };
 		961E2CA62580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fetchBelongsToAudienceWithExternalId.graphql.swift; sourceTree = "<group>"; };
 		961E2CA72580E34A00547451 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
@@ -171,7 +166,7 @@
 		961E2CAC2580E34D00547451 /* ReadOnlyCurrentValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadOnlyCurrentValueTests.swift; sourceTree = "<group>"; };
 		961E2CAD2580E34D00547451 /* ReadOnlyCurrentValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadOnlyCurrentValue.swift; sourceTree = "<group>"; };
 		961E2CAF2580E34F00547451 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		961E2CB02580E34F00547451 /* CodableStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
+		961E2CB02580E34F00547451 /* CodableStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableStore.swift; sourceTree = "<group>"; };
 		961E2CB12580E34F00547451 /* UserDefaultStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultStorage.swift; sourceTree = "<group>"; };
 		961E2CB22580E34F00547451 /* DiskStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
 		961E2CB42580E34F00547451 /* CodableStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableStorageTests.swift; sourceTree = "<group>"; };
@@ -218,6 +213,7 @@
 		961E2CE72580E35400547451 /* OAuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthRepository.swift; sourceTree = "<group>"; };
 		961E2CE82580E35400547451 /* RequestHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHeader.swift; sourceTree = "<group>"; };
 		961E2CE92580E35400547451 /* APIRootURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRootURL.swift; sourceTree = "<group>"; };
+		96FD1D3D258101760099EE4A /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
 		99781D05D91E227F8773F800 /* Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig"; path = "Target Support Files/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		9BBF3D0790B67608224EE84B /* Pods-RealifeTech-CoreSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealifeTech-CoreSDK.release.xcconfig"; path = "Target Support Files/Pods-RealifeTech-CoreSDK/Pods-RealifeTech-CoreSDK.release.xcconfig"; sourceTree = "<group>"; };
 		B316B9161FBD27DC54794A9D /* Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.debug.xcconfig"; path = "Target Support Files/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -254,7 +250,6 @@
 				B316B9161FBD27DC54794A9D /* Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.debug.xcconfig */,
 				99781D05D91E227F8773F800 /* Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -309,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				961E2C722580E34300547451 /* AnalyticEvent.swift */,
+				96FD1D3D258101760099EE4A /* Date+Formatted.swift */,
 				961E2C712580E34300547451 /* LogEventSending.swift */,
 				961E2C732580E34300547451 /* Tests */,
 			);
@@ -438,13 +434,12 @@
 		961E2C9B2580E34A00547451 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				961E2C9C2580E34A00547451 /* Tests */,
+				961E2CA52580E34A00547451 /* API */,
 				961E2C9E2580E34A00547451 /* GraphNetwork.swift */,
 				961E2C9F2580E34A00547451 /* GraphNetworkCachePolicy.swift */,
-				961E2CA02580E34A00547451 /* GraphQLFiles */,
 				961E2CA42580E34A00547451 /* GraphQLDispatcher.swift */,
-				961E2CA52580E34A00547451 /* API */,
 				961E2CA92580E34A00547451 /* schema.json */,
+				961E2C9C2580E34A00547451 /* Tests */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -455,16 +450,6 @@
 				961E2C9D2580E34A00547451 /* GraphQLTests.swift */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		961E2CA02580E34A00547451 /* GraphQLFiles */ = {
-			isa = PBXGroup;
-			children = (
-				961E2CA12580E34A00547451 /* putAnalyticEvent.graphql */,
-				961E2CA22580E34A00547451 /* getWidgetsByScreenType.graphql */,
-				961E2CA32580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql */,
-			);
-			path = GraphQLFiles;
 			sourceTree = "<group>";
 		};
 		961E2CA52580E34A00547451 /* API */ = {
@@ -481,7 +466,6 @@
 			isa = PBXGroup;
 			children = (
 				961E2CAD2580E34D00547451 /* ReadOnlyCurrentValue.swift */,
-				961E2C9B2580E34A00547451 /* GraphQL */,
 				961E2CAB2580E34D00547451 /* Tests */,
 			);
 			path = CombineHelpers;
@@ -498,7 +482,7 @@
 		961E2CAE2580E34F00547451 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				961E2CB02580E34F00547451 /* CodableStorage.swift */,
+				961E2CB02580E34F00547451 /* CodableStore.swift */,
 				961E2CB22580E34F00547451 /* DiskStorage.swift */,
 				961E2CAF2580E34F00547451 /* Storage.swift */,
 				961E2CB12580E34F00547451 /* UserDefaultStorage.swift */,
@@ -650,6 +634,7 @@
 				961E2C752580E34500547451 /* APILayer */,
 				961E2CC62580E35400547451 /* APIV3Utilities */,
 				961E2CAA2580E34D00547451 /* CombineHelpers */,
+				961E2C9B2580E34A00547451 /* GraphQL */,
 				961E2C702580E34300547451 /* Logging */,
 				961E2C6A2580E34000547451 /* UIDeviceHelper */,
 				961E2CBD2580E35100547451 /* ReachabilityChecker */,
@@ -685,6 +670,7 @@
 				961E2C482580E31B00547451 /* Sources */,
 				961E2C492580E31B00547451 /* Frameworks */,
 				961E2C4A2580E31B00547451 /* Resources */,
+				96BB1B032580FEEF00D19B7F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -758,9 +744,6 @@
 			files = (
 				961E2CF82580E35400547451 /* APILayer.strings in Resources */,
 				961E2D152580E35400547451 /* schema.json in Resources */,
-				961E2D0F2580E35400547451 /* getWidgetsByScreenType.graphql in Resources */,
-				961E2D102580E35400547451 /* fetchBelongsToAudienceWithExternalId.graphql in Resources */,
-				961E2D0E2580E35400547451 /* putAnalyticEvent.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +773,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		96BB1B032580FEEF00D19B7F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		E9D97CAE360A20C86112AFBD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -865,16 +865,16 @@
 				961E2D2A2580E35400547451 /* BluetoothManagerWrapper.swift in Sources */,
 				961E2D452580E35400547451 /* OAuthRepository.swift in Sources */,
 				961E2CF52580E35400547451 /* APIError.swift in Sources */,
-				961E2D0B2580E35400547451 /* GraphQLTests.swift in Sources */,
 				961E2D282580E35400547451 /* ReachabilityChecking.swift in Sources */,
 				961E2D1B2580E35400547451 /* DiskStorage.swift in Sources */,
 				961E2D3F2580E35400547451 /* OAuthRefreshOrWaitActionGenerator.swift in Sources */,
+				96FD1D3E258101760099EE4A /* Date+Formatted.swift in Sources */,
 				961E2D202580E35400547451 /* QueueAction.swift in Sources */,
 				961E2CF42580E35400547451 /* RemoteDiskCacheDataProviding.swift in Sources */,
 				961E2D092580E35400547451 /* Device.swift in Sources */,
 				961E2D2E2580E35400547451 /* JSONContentTypeHeaderRequestInserting.swift in Sources */,
 				961E2CF12580E35400547451 /* DiskCacheCodableInterface.swift in Sources */,
-				961E2D192580E35400547451 /* CodableStorage.swift in Sources */,
+				961E2D192580E35400547451 /* CodableStore.swift in Sources */,
 				961E2D292580E35400547451 /* ReachabilityFactory.swift in Sources */,
 				961E2D402580E35400547451 /* AuthorisationStore.swift in Sources */,
 				961E2D2B2580E35400547451 /* DefaultV3DiskCacheStrategyProviding.swift in Sources */,
@@ -919,6 +919,7 @@
 				961E2D6C2580ED4700547451 /* RequestTimeLoggerTests.swift in Sources */,
 				961E2DBF2580EDCB00547451 /* DeviceTokenTests.swift in Sources */,
 				961E2DA12580EDA500547451 /* LoggingTests.swift in Sources */,
+				96BB1AFC2580FE7600D19B7F /* GraphQLTests.swift in Sources */,
 				961E2DBA2580EDC700547451 /* DeviceTests.swift in Sources */,
 				961E2DAB2580EDB500547451 /* BluetoothManagerWrapperTests.swift in Sources */,
 				961E2DA62580EDAC00547451 /* UIDeviceHelperTests.swift in Sources */,
@@ -1146,7 +1147,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BL7QL4ZK6J;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "RealifeTech-CoreSDK/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1166,7 +1167,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BL7QL4ZK6J;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "RealifeTech-CoreSDK/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

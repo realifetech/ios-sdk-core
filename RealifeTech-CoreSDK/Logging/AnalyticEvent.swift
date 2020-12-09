@@ -8,16 +8,6 @@
 
 import Foundation
 
-// TODO: Move this to a more suitable location
-extension Date {
-
-    var rltFormatted: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
-        return formatter.string(from: self)
-    }
-}
-
 public struct AnalyticEvent: Codable {
 
     public var storedName: String?
