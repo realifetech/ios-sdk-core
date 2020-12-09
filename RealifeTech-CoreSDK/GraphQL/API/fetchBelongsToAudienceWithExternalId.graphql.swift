@@ -4,8 +4,8 @@
 import Apollo
 import Foundation
 
-/// Apollo namespace
-public extension Apollo {
+/// ApolloType namespace
+public extension ApolloType {
   final class BelongsToAudienceWithExternalIdQuery: GraphQLQuery {
     /// The raw GraphQL definition of this operation.
     public let operationDefinition: String =

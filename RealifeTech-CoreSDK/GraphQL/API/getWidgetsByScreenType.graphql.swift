@@ -4,14 +4,14 @@
 import Apollo
 import Foundation
 
-/// Apollo namespace
-public extension Apollo {
+/// ApolloType namespace
+public extension ApolloType {
   final class GetWidgetsByScreenTypeQuery: GraphQLQuery {
     /// The raw GraphQL definition of this operation.
     public let operationDefinition: String =
       """
-      query getWidgetsByScreenType {
-        getWidgetsByScreenType(type: ScreenType, pageSize: Int, page: Int) {
+      query getWidgetsByScreenType($type: ScreenType!, $pageSize: Int!, $page: Int = 1) {
+        getWidgetsByScreenType(type: $type, pageSize: $pageSize, page: $page) {
           __typename
           edges {
             __typename
@@ -52,7 +52,18 @@ public extension Apollo {
 
     public let operationName: String = "getWidgetsByScreenType"
 
-    public init() {
+    public var type: ScreenType
+    public var pageSize: Int
+    public var page: Int?
+
+    public init(type: ScreenType, pageSize: Int, page: Int? = nil) {
+      self.type = type
+      self.pageSize = pageSize
+      self.page = page
+    }
+
+    public var variables: GraphQLMap? {
+      return ["type": type, "pageSize": pageSize, "page": page]
     }
 
     public struct Data: GraphQLSelectionSet {
@@ -60,7 +71,7 @@ public extension Apollo {
 
       public static var selections: [GraphQLSelection] {
         return [
-          GraphQLField("getWidgetsByScreenType", arguments: ["type": "ScreenType", "pageSize": "Int", "page": "Int"], type: .object(GetWidgetsByScreenType.selections)),
+          GraphQLField("getWidgetsByScreenType", arguments: ["type": GraphQLVariable("type"), "pageSize": GraphQLVariable("pageSize"), "page": GraphQLVariable("page")], type: .object(GetWidgetsByScreenType.selections)),
         ]
       }
 

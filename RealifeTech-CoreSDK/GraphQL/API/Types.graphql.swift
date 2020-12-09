@@ -4,8 +4,73 @@
 import Apollo
 import Foundation
 
-/// Apollo namespace
-public enum Apollo {
+/// ApolloType namespace
+public enum ApolloType {
+  public enum ScreenType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case discover
+    case shop
+    case events
+    case wallet
+    case booking
+    case lineup
+    case generic
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "discover": self = .discover
+        case "shop": self = .shop
+        case "events": self = .events
+        case "wallet": self = .wallet
+        case "booking": self = .booking
+        case "lineup": self = .lineup
+        case "generic": self = .generic
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .discover: return "discover"
+        case .shop: return "shop"
+        case .events: return "events"
+        case .wallet: return "wallet"
+        case .booking: return "booking"
+        case .lineup: return "lineup"
+        case .generic: return "generic"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: ScreenType, rhs: ScreenType) -> Bool {
+      switch (lhs, rhs) {
+        case (.discover, .discover): return true
+        case (.shop, .shop): return true
+        case (.events, .events): return true
+        case (.wallet, .wallet): return true
+        case (.booking, .booking): return true
+        case (.lineup, .lineup): return true
+        case (.generic, .generic): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [ScreenType] {
+      return [
+        .discover,
+        .shop,
+        .events,
+        .wallet,
+        .booking,
+        .lineup,
+        .generic,
+      ]
+    }
+  }
+
   public enum StyleType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
     public typealias RawValue = String
     case pager

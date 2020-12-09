@@ -1,5 +1,5 @@
-query getWidgetsByScreenType {
-  getWidgetsByScreenType(type: ScreenType, pageSize: Int, page: Int) {
+query getWidgetsByScreenType($type: ScreenType!, $pageSize: Int!, $page: Int = 1) {
+  getWidgetsByScreenType(type: $type, pageSize: $pageSize, page: $page) {
     edges {
       id
       style {
