@@ -6,6 +6,286 @@ import Foundation
 
 /// Apollo namespace
 public enum Apollo {
+  public enum StyleType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case pager
+    case carousel
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "PAGER": self = .pager
+        case "CAROUSEL": self = .carousel
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .pager: return "PAGER"
+        case .carousel: return "CAROUSEL"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: StyleType, rhs: StyleType) -> Bool {
+      switch (lhs, rhs) {
+        case (.pager, .pager): return true
+        case (.carousel, .carousel): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [StyleType] {
+      return [
+        .pager,
+        .carousel,
+      ]
+    }
+  }
+
+  public enum StyleSize: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case small
+    case medium
+    case large
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "SMALL": self = .small
+        case "MEDIUM": self = .medium
+        case "LARGE": self = .large
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .small: return "SMALL"
+        case .medium: return "MEDIUM"
+        case .large: return "LARGE"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: StyleSize, rhs: StyleSize) -> Bool {
+      switch (lhs, rhs) {
+        case (.small, .small): return true
+        case (.medium, .medium): return true
+        case (.large, .large): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [StyleSize] {
+      return [
+        .small,
+        .medium,
+        .large,
+      ]
+    }
+  }
+
+  public enum WidgetType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case product
+    case button
+    case banner
+    case event
+    case fixture
+    case countdownClock
+    case galleryCoverImage
+    case news
+    case ticket
+    case fulfilmentPoint
+    case socialPost
+    case fulfilmentPointCategorySelector
+    case eventSelector
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "Product": self = .product
+        case "Button": self = .button
+        case "Banner": self = .banner
+        case "Event": self = .event
+        case "Fixture": self = .fixture
+        case "CountdownClock": self = .countdownClock
+        case "GalleryCoverImage": self = .galleryCoverImage
+        case "News": self = .news
+        case "Ticket": self = .ticket
+        case "FulfilmentPoint": self = .fulfilmentPoint
+        case "SocialPost": self = .socialPost
+        case "FulfilmentPointCategorySelector": self = .fulfilmentPointCategorySelector
+        case "EventSelector": self = .eventSelector
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .product: return "Product"
+        case .button: return "Button"
+        case .banner: return "Banner"
+        case .event: return "Event"
+        case .fixture: return "Fixture"
+        case .countdownClock: return "CountdownClock"
+        case .galleryCoverImage: return "GalleryCoverImage"
+        case .news: return "News"
+        case .ticket: return "Ticket"
+        case .fulfilmentPoint: return "FulfilmentPoint"
+        case .socialPost: return "SocialPost"
+        case .fulfilmentPointCategorySelector: return "FulfilmentPointCategorySelector"
+        case .eventSelector: return "EventSelector"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: WidgetType, rhs: WidgetType) -> Bool {
+      switch (lhs, rhs) {
+        case (.product, .product): return true
+        case (.button, .button): return true
+        case (.banner, .banner): return true
+        case (.event, .event): return true
+        case (.fixture, .fixture): return true
+        case (.countdownClock, .countdownClock): return true
+        case (.galleryCoverImage, .galleryCoverImage): return true
+        case (.news, .news): return true
+        case (.ticket, .ticket): return true
+        case (.fulfilmentPoint, .fulfilmentPoint): return true
+        case (.socialPost, .socialPost): return true
+        case (.fulfilmentPointCategorySelector, .fulfilmentPointCategorySelector): return true
+        case (.eventSelector, .eventSelector): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [WidgetType] {
+      return [
+        .product,
+        .button,
+        .banner,
+        .event,
+        .fixture,
+        .countdownClock,
+        .galleryCoverImage,
+        .news,
+        .ticket,
+        .fulfilmentPoint,
+        .socialPost,
+        .fulfilmentPointCategorySelector,
+        .eventSelector,
+      ]
+    }
+  }
+
+  public enum WidgetFetchType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case featured
+    case feed
+    case `static`
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "featured": self = .featured
+        case "feed": self = .feed
+        case "static": self = .static
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .featured: return "featured"
+        case .feed: return "feed"
+        case .static: return "static"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: WidgetFetchType, rhs: WidgetFetchType) -> Bool {
+      switch (lhs, rhs) {
+        case (.featured, .featured): return true
+        case (.feed, .feed): return true
+        case (.static, .static): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [WidgetFetchType] {
+      return [
+        .featured,
+        .feed,
+        .static,
+      ]
+    }
+  }
+
+  public enum Language: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case en
+    case fr
+    case nr
+    case de
+    case sv
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "en": self = .en
+        case "fr": self = .fr
+        case "nr": self = .nr
+        case "de": self = .de
+        case "sv": self = .sv
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .en: return "en"
+        case .fr: return "fr"
+        case .nr: return "nr"
+        case .de: return "de"
+        case .sv: return "sv"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: Language, rhs: Language) -> Bool {
+      switch (lhs, rhs) {
+        case (.en, .en): return true
+        case (.fr, .fr): return true
+        case (.nr, .nr): return true
+        case (.de, .de): return true
+        case (.sv, .sv): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [Language] {
+      return [
+        .en,
+        .fr,
+        .nr,
+        .de,
+        .sv,
+      ]
+    }
+  }
+
   public struct AnalyticEvent: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
 

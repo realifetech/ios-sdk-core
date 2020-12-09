@@ -1,5 +1,5 @@
 query getWidgetsByScreenType {
-  getWidgetsByScreenType(type: ScreenType!, pageSize: Int!, page: Int = 1) {
+  getWidgetsByScreenType(type: ScreenType, pageSize: Int, page: Int) {
     edges {
       id
       style {
@@ -20,7 +20,7 @@ query getWidgetsByScreenType {
           key
           value
         }
-                translations {
+        translations {
           language
           title
         }

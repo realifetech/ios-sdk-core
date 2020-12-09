@@ -38,7 +38,6 @@
 		961E2D122580E35400547451 /* fetchBelongsToAudienceWithExternalId.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CA62580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql.swift */; };
 		961E2D132580E35400547451 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CA72580E34A00547451 /* Types.graphql.swift */; };
 		961E2D142580E35400547451 /* putAnalyticEvent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CA82580E34A00547451 /* putAnalyticEvent.graphql.swift */; };
-		961E2D152580E35400547451 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 961E2CA92580E34A00547451 /* schema.json */; };
 		961E2D172580E35400547451 /* ReadOnlyCurrentValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CAD2580E34D00547451 /* ReadOnlyCurrentValue.swift */; };
 		961E2D182580E35400547451 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CAF2580E34F00547451 /* Storage.swift */; };
 		961E2D192580E35400547451 /* CodableStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB02580E34F00547451 /* CodableStore.swift */; };
@@ -100,6 +99,8 @@
 		961E2DBF2580EDCB00547451 /* DeviceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C932580E34800547451 /* DeviceTokenTests.swift */; };
 		961E2DC42580EDD200547451 /* CodableStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB42580E34F00547451 /* CodableStorageTests.swift */; };
 		961E2DC72580EDD500547451 /* DiskStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB52580E34F00547451 /* DiskStorageTests.swift */; };
+		9655A40B2581086B006C46CF /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 9655A40A2581086B006C46CF /* schema.json */; };
+		9655A413258108EE006C46CF /* getWidgetsByScreenType.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9655A412258108EE006C46CF /* getWidgetsByScreenType.graphql.swift */; };
 		96BB1AFC2580FE7600D19B7F /* GraphQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C9D2580E34A00547451 /* GraphQLTests.swift */; };
 		96FD1D3E258101760099EE4A /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD1D3D258101760099EE4A /* Date+Formatted.swift */; };
 		E6629D46D40D7FE7A1D5AD67 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5442736BFC18FEA93785A4 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework */; };
@@ -162,7 +163,6 @@
 		961E2CA62580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fetchBelongsToAudienceWithExternalId.graphql.swift; sourceTree = "<group>"; };
 		961E2CA72580E34A00547451 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
 		961E2CA82580E34A00547451 /* putAnalyticEvent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = putAnalyticEvent.graphql.swift; sourceTree = "<group>"; };
-		961E2CA92580E34A00547451 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		961E2CAC2580E34D00547451 /* ReadOnlyCurrentValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadOnlyCurrentValueTests.swift; sourceTree = "<group>"; };
 		961E2CAD2580E34D00547451 /* ReadOnlyCurrentValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadOnlyCurrentValue.swift; sourceTree = "<group>"; };
 		961E2CAF2580E34F00547451 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -213,6 +213,8 @@
 		961E2CE72580E35400547451 /* OAuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthRepository.swift; sourceTree = "<group>"; };
 		961E2CE82580E35400547451 /* RequestHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHeader.swift; sourceTree = "<group>"; };
 		961E2CE92580E35400547451 /* APIRootURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRootURL.swift; sourceTree = "<group>"; };
+		9655A40A2581086B006C46CF /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		9655A412258108EE006C46CF /* getWidgetsByScreenType.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getWidgetsByScreenType.graphql.swift; sourceTree = "<group>"; };
 		96FD1D3D258101760099EE4A /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
 		99781D05D91E227F8773F800 /* Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig"; path = "Target Support Files/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		9BBF3D0790B67608224EE84B /* Pods-RealifeTech-CoreSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealifeTech-CoreSDK.release.xcconfig"; path = "Target Support Files/Pods-RealifeTech-CoreSDK/Pods-RealifeTech-CoreSDK.release.xcconfig"; sourceTree = "<group>"; };
@@ -438,7 +440,7 @@
 				961E2C9E2580E34A00547451 /* GraphNetwork.swift */,
 				961E2C9F2580E34A00547451 /* GraphNetworkCachePolicy.swift */,
 				961E2CA42580E34A00547451 /* GraphQLDispatcher.swift */,
-				961E2CA92580E34A00547451 /* schema.json */,
+				9655A40A2581086B006C46CF /* schema.json */,
 				961E2C9C2580E34A00547451 /* Tests */,
 			);
 			path = GraphQL;
@@ -456,8 +458,9 @@
 			isa = PBXGroup;
 			children = (
 				961E2CA62580E34A00547451 /* fetchBelongsToAudienceWithExternalId.graphql.swift */,
-				961E2CA72580E34A00547451 /* Types.graphql.swift */,
+				9655A412258108EE006C46CF /* getWidgetsByScreenType.graphql.swift */,
 				961E2CA82580E34A00547451 /* putAnalyticEvent.graphql.swift */,
+				961E2CA72580E34A00547451 /* Types.graphql.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 			buildConfigurationList = 961E2C602580E31B00547451 /* Build configuration list for PBXNativeTarget "RealifeTech-CoreSDK" */;
 			buildPhases = (
 				E9D97CAE360A20C86112AFBD /* [CP] Check Pods Manifest.lock */,
+				96FD1D56258104E90099EE4A /* Generate Apollo GraphQL API */,
 				961E2C472580E31B00547451 /* Headers */,
 				961E2C482580E31B00547451 /* Sources */,
 				961E2C492580E31B00547451 /* Frameworks */,
@@ -742,8 +746,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9655A40B2581086B006C46CF /* schema.json in Resources */,
 				961E2CF82580E35400547451 /* APILayer.strings in Resources */,
-				961E2D152580E35400547451 /* schema.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +794,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		96FD1D56258104E90099EE4A /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\nGRAPHQL_PATH=\"${SRCROOT}/RealifeTech-CoreSDK/GraphQL\"\ncd \"${SRCROOT}/RealifeTech-CoreSDK/GraphQL\"\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://staging-graphql-eu.realifetech.com\" --header=\"Authorization: Bearer NGZjZjViZDE2YTk5MjU1YzJlMzk3MDYxYzhmZjc4MzBlMDQxYzg2MjYwMTNmYTAwY2IyMzI4NzlkNWI3YzEzNw\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --namespace=\"Apollo\" --includes=${GRAPHQL_PATH}/GraphQLFiles/*.graphql --localSchemaFile=\"${GRAPHQL_PATH}/schema.json\" API/\n\n";
 		};
 		E9D97CAE360A20C86112AFBD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -890,6 +912,7 @@
 				961E2D032580E35400547451 /* RequestDispatcher.swift in Sources */,
 				961E2D232580E35400547451 /* QueueItem.swift in Sources */,
 				961E2D472580E35400547451 /* APIRootURL.swift in Sources */,
+				9655A413258108EE006C46CF /* getWidgetsByScreenType.graphql.swift in Sources */,
 				961E2D3E2580E35400547451 /* V3APITokenManagable.swift in Sources */,
 				961E2D462580E35400547451 /* RequestHeader.swift in Sources */,
 				961E2D082580E35400547451 /* DeviceToken.swift in Sources */,
