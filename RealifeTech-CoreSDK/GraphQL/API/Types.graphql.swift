@@ -6,6 +6,130 @@ import Foundation
 
 /// ApolloType namespace
 public enum ApolloType {
+  public struct AnalyticEvent: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+
+    /// - Parameters:
+    ///   - type
+    ///   - action
+    ///   - new
+    ///   - old
+    ///   - version
+    ///   - timestamp
+    public init(type: String, action: String, new: Swift.Optional<String?> = nil, old: Swift.Optional<String?> = nil, version: String, timestamp: String) {
+      graphQLMap = ["type": type, "action": action, "new": new, "old": old, "version": version, "timestamp": timestamp]
+    }
+
+    public var type: String {
+      get {
+        return graphQLMap["type"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "type")
+      }
+    }
+
+    public var action: String {
+      get {
+        return graphQLMap["action"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "action")
+      }
+    }
+
+    public var new: Swift.Optional<String?> {
+      get {
+        return graphQLMap["new"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "new")
+      }
+    }
+
+    public var old: Swift.Optional<String?> {
+      get {
+        return graphQLMap["old"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "old")
+      }
+    }
+
+    public var version: String {
+      get {
+        return graphQLMap["version"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "version")
+      }
+    }
+
+    public var timestamp: String {
+      get {
+        return graphQLMap["timestamp"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "timestamp")
+      }
+    }
+  }
+
+  public enum Language: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case en
+    case fr
+    case nr
+    case de
+    case sv
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "en": self = .en
+        case "fr": self = .fr
+        case "nr": self = .nr
+        case "de": self = .de
+        case "sv": self = .sv
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .en: return "en"
+        case .fr: return "fr"
+        case .nr: return "nr"
+        case .de: return "de"
+        case .sv: return "sv"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: Language, rhs: Language) -> Bool {
+      switch (lhs, rhs) {
+        case (.en, .en): return true
+        case (.fr, .fr): return true
+        case (.nr, .nr): return true
+        case (.de, .de): return true
+        case (.sv, .sv): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [Language] {
+      return [
+        .en,
+        .fr,
+        .nr,
+        .de,
+        .sv,
+      ]
+    }
+  }
+
   public enum ScreenType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
     public typealias RawValue = String
     case discover
@@ -293,130 +417,6 @@ public enum ApolloType {
         .feed,
         .static,
       ]
-    }
-  }
-
-  public enum Language: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-    public typealias RawValue = String
-    case en
-    case fr
-    case nr
-    case de
-    case sv
-    /// Auto generated constant for unknown enum values
-    case __unknown(RawValue)
-
-    public init?(rawValue: RawValue) {
-      switch rawValue {
-        case "en": self = .en
-        case "fr": self = .fr
-        case "nr": self = .nr
-        case "de": self = .de
-        case "sv": self = .sv
-        default: self = .__unknown(rawValue)
-      }
-    }
-
-    public var rawValue: RawValue {
-      switch self {
-        case .en: return "en"
-        case .fr: return "fr"
-        case .nr: return "nr"
-        case .de: return "de"
-        case .sv: return "sv"
-        case .__unknown(let value): return value
-      }
-    }
-
-    public static func == (lhs: Language, rhs: Language) -> Bool {
-      switch (lhs, rhs) {
-        case (.en, .en): return true
-        case (.fr, .fr): return true
-        case (.nr, .nr): return true
-        case (.de, .de): return true
-        case (.sv, .sv): return true
-        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-        default: return false
-      }
-    }
-
-    public static var allCases: [Language] {
-      return [
-        .en,
-        .fr,
-        .nr,
-        .de,
-        .sv,
-      ]
-    }
-  }
-
-  public struct AnalyticEvent: GraphQLMapConvertible {
-    public var graphQLMap: GraphQLMap
-
-    /// - Parameters:
-    ///   - type
-    ///   - action
-    ///   - new
-    ///   - old
-    ///   - version
-    ///   - timestamp
-    public init(type: String, action: String, new: Swift.Optional<String?> = nil, old: Swift.Optional<String?> = nil, version: String, timestamp: String) {
-      graphQLMap = ["type": type, "action": action, "new": new, "old": old, "version": version, "timestamp": timestamp]
-    }
-
-    public var type: String {
-      get {
-        return graphQLMap["type"] as! String
-      }
-      set {
-        graphQLMap.updateValue(newValue, forKey: "type")
-      }
-    }
-
-    public var action: String {
-      get {
-        return graphQLMap["action"] as! String
-      }
-      set {
-        graphQLMap.updateValue(newValue, forKey: "action")
-      }
-    }
-
-    public var new: Swift.Optional<String?> {
-      get {
-        return graphQLMap["new"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-      }
-      set {
-        graphQLMap.updateValue(newValue, forKey: "new")
-      }
-    }
-
-    public var old: Swift.Optional<String?> {
-      get {
-        return graphQLMap["old"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
-      }
-      set {
-        graphQLMap.updateValue(newValue, forKey: "old")
-      }
-    }
-
-    public var version: String {
-      get {
-        return graphQLMap["version"] as! String
-      }
-      set {
-        graphQLMap.updateValue(newValue, forKey: "version")
-      }
-    }
-
-    public var timestamp: String {
-      get {
-        return graphQLMap["timestamp"] as! String
-      }
-      set {
-        graphQLMap.updateValue(newValue, forKey: "timestamp")
-      }
     }
   }
 }
