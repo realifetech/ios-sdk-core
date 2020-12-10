@@ -1,0 +1,10 @@
+/* 
+  APILayer.strings
+  APILayer
+
+  Created by JAlbert on 24/10/2019.
+  Copyright © 2020 Realife Tech. All rights reserved.
+*/
+
+"ERROR" = "Error";
+"UNPARSEABLE_ERROR" = "We're experiencing an issue fetching the data for your selection. Please bear with us while we fix this issue.";

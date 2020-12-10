@@ -1,0 +1,31 @@
+query getWidgetsByScreenType {
+  getWidgetsByScreenType(type: ScreenType!, pageSize: Int!, page: Int = 1) {
+    edges {
+      id
+      style {
+        type
+        size
+        padded
+      }
+      viewAllUrl
+      widgetType
+      variation {
+        fetchType
+        contentIds
+        params {
+          key
+          value
+        }
+        engagementParams {
+          key
+          value
+        }
+                translations {
+          language
+          title
+        }
+      }
+    }
+    nextPage
+  }
+}
