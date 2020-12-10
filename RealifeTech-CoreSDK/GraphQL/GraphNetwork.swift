@@ -40,7 +40,7 @@ public class GraphNetwork {
             .userDomainMask,
             true).first ?? ""
         let documentsUrl = URL(fileURLWithPath: documentsPath)
-        let sqliteFileUrl = documentsUrl.appendingPathComponent("test_apollo_db.sqlite")
+        let sqliteFileUrl = documentsUrl.appendingPathComponent("realifetech_core_apollo_db.sqlite")
         let sqliteCache = try? SQLiteNormalizedCache(fileURL: sqliteFileUrl)
         return ApolloStore(cache: sqliteCache ?? InMemoryNormalizedCache())
     }()

@@ -1,5 +1,5 @@
-query getWidgetsByScreenType {
-  getWidgetsByScreenType(type: ScreenType!, pageSize: Int!, page: Int = 1) {
+query getWidgetsByScreenId($screenId: ID!, $pageSize: Int!, $page: Int = 1) {
+  getWidgetsByScreenId(screenId: $screenId, pageSize: $pageSize, page: $page) {
     edges {
       id
       style {
@@ -20,7 +20,7 @@ query getWidgetsByScreenType {
           key
           value
         }
-                translations {
+        translations {
           language
           title
         }
