@@ -199,6 +199,7 @@ public enum ApolloType {
     public typealias RawValue = String
     case pager
     case carousel
+    case list
     /// Auto generated constant for unknown enum values
     case __unknown(RawValue)
 
@@ -206,6 +207,7 @@ public enum ApolloType {
       switch rawValue {
         case "PAGER": self = .pager
         case "CAROUSEL": self = .carousel
+        case "LIST": self = .list
         default: self = .__unknown(rawValue)
       }
     }
@@ -214,6 +216,7 @@ public enum ApolloType {
       switch self {
         case .pager: return "PAGER"
         case .carousel: return "CAROUSEL"
+        case .list: return "LIST"
         case .__unknown(let value): return value
       }
     }
@@ -222,6 +225,7 @@ public enum ApolloType {
       switch (lhs, rhs) {
         case (.pager, .pager): return true
         case (.carousel, .carousel): return true
+        case (.list, .list): return true
         case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
         default: return false
       }
@@ -231,6 +235,7 @@ public enum ApolloType {
       return [
         .pager,
         .carousel,
+        .list,
       ]
     }
   }
@@ -291,6 +296,7 @@ public enum ApolloType {
     case galleryCoverImage
     case news
     case ticket
+    case ticketProduct
     case fulfilmentPoint
     case socialPost
     case fulfilmentPointCategorySelector
@@ -309,6 +315,7 @@ public enum ApolloType {
         case "GalleryCoverImage": self = .galleryCoverImage
         case "News": self = .news
         case "Ticket": self = .ticket
+        case "TicketProduct": self = .ticketProduct
         case "FulfilmentPoint": self = .fulfilmentPoint
         case "SocialPost": self = .socialPost
         case "FulfilmentPointCategorySelector": self = .fulfilmentPointCategorySelector
@@ -328,6 +335,7 @@ public enum ApolloType {
         case .galleryCoverImage: return "GalleryCoverImage"
         case .news: return "News"
         case .ticket: return "Ticket"
+        case .ticketProduct: return "TicketProduct"
         case .fulfilmentPoint: return "FulfilmentPoint"
         case .socialPost: return "SocialPost"
         case .fulfilmentPointCategorySelector: return "FulfilmentPointCategorySelector"
@@ -347,6 +355,7 @@ public enum ApolloType {
         case (.galleryCoverImage, .galleryCoverImage): return true
         case (.news, .news): return true
         case (.ticket, .ticket): return true
+        case (.ticketProduct, .ticketProduct): return true
         case (.fulfilmentPoint, .fulfilmentPoint): return true
         case (.socialPost, .socialPost): return true
         case (.fulfilmentPointCategorySelector, .fulfilmentPointCategorySelector): return true
@@ -367,6 +376,7 @@ public enum ApolloType {
         .galleryCoverImage,
         .news,
         .ticket,
+        .ticketProduct,
         .fulfilmentPoint,
         .socialPost,
         .fulfilmentPointCategorySelector,

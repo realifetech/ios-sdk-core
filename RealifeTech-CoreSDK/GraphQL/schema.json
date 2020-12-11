@@ -4116,6 +4116,12 @@
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "LIST",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -4207,6 +4213,12 @@
           },
           {
             "name": "Ticket",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TicketProduct",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
