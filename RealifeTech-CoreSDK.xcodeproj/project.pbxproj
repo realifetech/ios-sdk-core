@@ -104,10 +104,10 @@
 		96CACC9D2582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACC972582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift */; };
 		96CACC9E2582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACC982582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift */; };
 		96CACCA42582046700238919 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACCA32582046700238919 /* Types.graphql.swift */; };
-		96CACCC425820E0A00238919 /* analytics_putAnalyticEvent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACCC325820E0A00238919 /* analytics_putAnalyticEvent.graphql.swift */; };
 		96CACCAA258206EB00238919 /* CoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACCA9258206EB00238919 /* CoreFactory.swift */; };
 		96CACCB0258207E900238919 /* CoreSDKConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACCAF258207E900238919 /* CoreSDKConfiguration.swift */; };
 		96CACCBA2582096F00238919 /* CoreSDKConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACCB92582096F00238919 /* CoreSDKConfigurationTests.swift */; };
+		96CACCC425820E0A00238919 /* analytics_putAnalyticEvent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CACCC325820E0A00238919 /* analytics_putAnalyticEvent.graphql.swift */; };
 		96FD1D3E258101760099EE4A /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD1D3D258101760099EE4A /* Date+Formatted.swift */; };
 		E6629D46D40D7FE7A1D5AD67 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5442736BFC18FEA93785A4 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework */; };
 /* End PBXBuildFile section */
@@ -223,10 +223,10 @@
 		96CACC972582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = canvas_getWidgetsByScreenId.graphql.swift; sourceTree = "<group>"; };
 		96CACC982582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = canvas_getWidgetsByScreenType.graphql.swift; sourceTree = "<group>"; };
 		96CACCA32582046700238919 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
-		96CACCC325820E0A00238919 /* analytics_putAnalyticEvent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = analytics_putAnalyticEvent.graphql.swift; sourceTree = "<group>"; };
 		96CACCA9258206EB00238919 /* CoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreFactory.swift; sourceTree = "<group>"; };
 		96CACCAF258207E900238919 /* CoreSDKConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSDKConfiguration.swift; sourceTree = "<group>"; };
 		96CACCB92582096F00238919 /* CoreSDKConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSDKConfigurationTests.swift; sourceTree = "<group>"; };
+		96CACCC325820E0A00238919 /* analytics_putAnalyticEvent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = analytics_putAnalyticEvent.graphql.swift; sourceTree = "<group>"; };
 		96FD1D3D258101760099EE4A /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
 		99781D05D91E227F8773F800 /* Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig"; path = "Target Support Files/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests/Pods-RealifeTech-CoreSDK-RealifeTech-CoreSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		9BBF3D0790B67608224EE84B /* Pods-RealifeTech-CoreSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealifeTech-CoreSDK.release.xcconfig"; path = "Target Support Files/Pods-RealifeTech-CoreSDK/Pods-RealifeTech-CoreSDK.release.xcconfig"; sourceTree = "<group>"; };
@@ -1151,6 +1151,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.concertlive.RealifeTech-CoreSDK";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1178,6 +1179,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.concertlive.RealifeTech-CoreSDK";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
