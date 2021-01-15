@@ -1,0 +1,8 @@
+query getScreenById($id: ID!) {
+  getScreenById(id: $id) {
+    translations {
+      language
+      title
+    }
+  }
+}

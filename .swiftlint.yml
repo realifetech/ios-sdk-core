@@ -1,0 +1,6 @@
+excluded:
+   - Pods
+   - RealifeTech-CoreSDK/APILayer
+   - RealifeTech-CoreSDK/APIV3Utilities
+   - RealifeTech-CoreSDK/GraphQL/API
+

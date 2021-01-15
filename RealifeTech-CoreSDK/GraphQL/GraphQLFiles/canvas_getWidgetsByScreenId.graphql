@@ -1,0 +1,31 @@
+query getWidgetsByScreenId($screenId: ID!, $pageSize: Int!, $page: Int = 1) {
+  getWidgetsByScreenId(screenId: $screenId, pageSize: $pageSize, page: $page) {
+    edges {
+      id
+      style {
+        type
+        size
+        padded
+      }
+      viewAllUrl
+      widgetType
+      variation {
+        fetchType
+        contentIds
+        params {
+          key
+          value
+        }
+        engagementParams {
+          key
+          value
+        }
+        translations {
+          language
+          title
+        }
+      }
+    }
+    nextPage
+  }
+}
