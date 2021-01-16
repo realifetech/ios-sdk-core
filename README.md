@@ -11,7 +11,7 @@ Note that our SDK currently depends on RxSwift packages which are automatically 
 # 2. Install the RealifeTech-CoreSDK Pod dependency
 Add the following line to your .podfile under your Apps target:
 ```
-pod ‘RealifeTech-CoreSDK’
+pod 'RealifeTech-CoreSDK', '~> 1.0.1'
 ```
 Open your terminal, navigate to the directory containing your podfile, and run:
 ```
@@ -65,4 +65,3 @@ static func requestValidToken(fromApiHelper apiHelper: V3APITokenManagable)
 ```
 
 To ensure the SDK is configured before any other functionality is used, we recommend adding the code to your `AppDelegate’s applicationDidFinishLaunching(_:)`.
-
