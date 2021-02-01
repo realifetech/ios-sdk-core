@@ -50,7 +50,7 @@ public enum CoreFactory {
         reachabilityHelper: ReachabilityChecking
     ) -> GraphQLDispatching {
         let client = GraphNetwork(
-            graphQLAPIUrl: configuration.graphApiUrl,
+            graphQLAPIUrl: configuration.graphQLApiUrl,
             tokenHelper: tokenHelper,
             deviceId: deviceId,
             reachabilityHelper: reachabilityHelper)
