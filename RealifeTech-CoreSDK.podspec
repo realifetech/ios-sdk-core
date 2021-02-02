@@ -96,7 +96,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'SwiftLint'
   spec.dependency 'RxSwift', '~> 5.1.1'
   spec.dependency 'RxCocoa', '~> 5.1.1'
-  spec.dependency 'Apollo', '~> 0.30.0'
+  spec.dependency 'Apollo', '~> 0.40.0'
   spec.dependency 'Apollo/SQLite'
 
 end
