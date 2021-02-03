@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum QueueAction {
+public enum QueueAction {
     case removeFirst, sendFirstToBack, doNothing
 }

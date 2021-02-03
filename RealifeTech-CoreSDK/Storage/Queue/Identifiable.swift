@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Identifiable {
+public protocol Identifiable {
     var uniqueId: UUID { get }
 }

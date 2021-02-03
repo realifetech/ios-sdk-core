@@ -11,7 +11,7 @@ Note that our SDK currently depends on RxSwift packages which are automatically 
 # 2. Install the RealifeTech-CoreSDK Pod dependency
 Add the following line to your .podfile under your Apps target:
 ```
-pod 'RealifeTech-CoreSDK', '~> 1.0.2'
+pod 'RealifeTech-CoreSDK', '~> 1.0.3'
 ```
 Open your terminal, navigate to the directory containing your podfile, and run:
 ```

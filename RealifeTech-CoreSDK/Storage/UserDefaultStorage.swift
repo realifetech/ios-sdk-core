@@ -9,6 +9,7 @@
 import Foundation
 
 public struct UserDefaultsStorage {
+
     let userDefaults: UserDefaults
     let dispatchQueue: DispatchQueue
 
@@ -23,7 +24,7 @@ public struct UserDefaultsStorage {
 
 extension UserDefaultsStorage: ReadableStorage {
 
-    func fetchValues(with prefix: String) throws -> [Data] {
+    public func fetchValues(with prefix: String) throws -> [Data] {
         return try UserDefaults.standard.dictionaryRepresentation().keys.filter { key in
             key.starts(with: prefix)
         }.compactMap { key in
@@ -31,14 +32,14 @@ extension UserDefaultsStorage: ReadableStorage {
         }
     }
 
-    func fetchValue(for key: String) throws -> Data {
+    public func fetchValue(for key: String) throws -> Data {
         guard let data = userDefaults.data(forKey: key) else {
             throw StorageError.notFound
         }
         return data
     }
 
-    func fetchValue(for key: String, handler: @escaping Handler<Data>) {
+    public func fetchValue(for key: String, handler: @escaping Handler<Data>) {
         dispatchQueue.async {
             guard let data = self.userDefaults.data(forKey: key) else {
                 return handler(.failure(StorageError.notFound))
@@ -51,18 +52,18 @@ extension UserDefaultsStorage: ReadableStorage {
 
 extension UserDefaultsStorage: WritableStorage {
 
-    func save(value: Data, for key: String) throws {
+    public func save(value: Data, for key: String) throws {
         userDefaults.setValue(value, forKey: key)
     }
 
-    func save(value: Data, for key: String, handler: @escaping Handler<Data>) {
+    public func save(value: Data, for key: String, handler: @escaping Handler<Data>) {
         dispatchQueue.async {
             self.userDefaults.setValue(value, forKey: key)
             handler(.success(value))
         }
     }
 
-    func deleteValue(for key: String) {
+    public func deleteValue(for key: String) {
         userDefaults.removeObject(forKey: key)
     }
 }

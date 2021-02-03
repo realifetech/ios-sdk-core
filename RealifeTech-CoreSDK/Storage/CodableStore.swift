@@ -8,21 +8,21 @@
 
 import Foundation
 
-protocol Storeable {
+public protocol Storeable {
     func fetchAll<T: Decodable>() throws -> [T]
     func fetch<T: Decodable>(for key: String) throws -> T
     func save<T: Encodable>(_ value: T, for key: String) throws
     func delete(key: String)
 }
 
-class CodableStore: Storeable {
+public class CodableStore: Storeable {
 
     private let storage: DataStorage
     private let decoder: JSONDecoder
     private let encoder: JSONEncoder
     private let storagePrefix: String
 
-    init(
+    public init(
         storage: DataStorage,
         decoder: JSONDecoder = .init(),
         encoder: JSONEncoder = .init(),
@@ -34,23 +34,23 @@ class CodableStore: Storeable {
         self.storagePrefix = storagePrefix
     }
 
-    func fetchAll<T: Decodable>() throws -> [T] {
+    public func fetchAll<T: Decodable>() throws -> [T] {
         let dataArray = try storage.fetchValues(with: storagePrefix)
         let mappedArray = try dataArray.map({ try decoder.decode(T.self, from: $0) })
         return mappedArray
     }
 
-    func fetch<T: Decodable>(for key: String) throws -> T {
+    public func fetch<T: Decodable>(for key: String) throws -> T {
         let data = try storage.fetchValue(for: storagePrefix + key)
         return try decoder.decode(T.self, from: data)
     }
 
-    func save<T: Encodable>(_ value: T, for key: String) throws {
+    public func save<T: Encodable>(_ value: T, for key: String) throws {
         let data = try encoder.encode(value)
         try storage.save(value: data, for: storagePrefix + key)
     }
 
-    func delete(key: String) {
+    public func delete(key: String) {
         storage.deleteValue(for: storagePrefix + key)
     }
 }

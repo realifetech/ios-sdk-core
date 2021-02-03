@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
+public class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
 
     // MARK: - Private Implementation
 
@@ -17,7 +17,7 @@ class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
 
     private let storage: Storeable
 
-    init(name: String, storage: Storeable? = nil) {
+    public init(name: String, storage: Storeable? = nil) {
         self.storage = storage ?? CodableStore(
             storage: DiskStorage(path: URL(fileURLWithPath: NSTemporaryDirectory())),
             storagePrefix: name)
@@ -55,11 +55,11 @@ class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
 
     // MARK: - Queue Providing
 
-    var next: Result<QueueItem<T>, QueueRetrievalError> { getNextQueueItem() }
-    var count: Int { queue.count }
-    var isEmpty: Bool { queue.isEmpty }
+    public var next: Result<QueueItem<T>, QueueRetrievalError> { getNextQueueItem() }
+    public var count: Int { queue.count }
+    public var isEmpty: Bool { queue.isEmpty }
 
-    func addToQueue(_ item: T) {
+    public func addToQueue(_ item: T) {
         try? storage.save(item, for: item.uniqueId.uuidString)
         queue.append(item)
     }
