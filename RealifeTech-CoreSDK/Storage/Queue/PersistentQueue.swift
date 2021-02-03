@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
+public class PersistentQueue<Queue: Codable & Identifiable>: QueueProviding {
 
     // MARK: - Private Implementation
 
     private var locked: Bool = false
-    private var queue: [T] = []
+    private var queue: [Queue] = []
 
     private let storage: Storeable
 
@@ -21,12 +21,12 @@ public class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
         self.storage = storage ?? CodableStore(
             storage: DiskStorage(path: URL(fileURLWithPath: NSTemporaryDirectory())),
             storagePrefix: name)
-        guard let storedQueue: [T] = try? self.storage.fetchAll() else { return }
+        guard let storedQueue: [Queue] = try? self.storage.fetchAll() else { return }
         queue = storedQueue
     }
 
     /// Provides an item from the queue. Calling will lock the queue
-    private func getNextQueueItem() -> Result<QueueItem<T>, QueueRetrievalError> {
+    private func getNextQueueItem() -> Result<QueueItem<Queue>, QueueRetrievalError> {
         if locked {
             return .failure(.queueIsLocked)
         } else if let nextItem = queue.first {
@@ -55,11 +55,11 @@ public class PersistentQueue<T: Codable & Identifiable>: QueueProviding {
 
     // MARK: - Queue Providing
 
-    public var next: Result<QueueItem<T>, QueueRetrievalError> { getNextQueueItem() }
+    public var next: Result<QueueItem<Queue>, QueueRetrievalError> { getNextQueueItem() }
     public var count: Int { queue.count }
     public var isEmpty: Bool { queue.isEmpty }
 
-    public func addToQueue(_ item: T) {
+    public func addToQueue(_ item: Queue) {
         try? storage.save(item, for: item.uniqueId.uuidString)
         queue.append(item)
     }

@@ -39,28 +39,28 @@ public struct DiskCacheCodableInterface {
         }
         return encoder
     }
-    static func local<T: Codable>(ofType type: T.Type, fileName: String, includeExpired: Bool = false, dateFormat: RequesterDateFormat? = nil) -> (obj: T?, expired: Bool) {
+    static func local<Model: Codable>(ofType type: Model.Type, fileName: String, includeExpired: Bool = false, dateFormat: RequesterDateFormat? = nil) -> (obj: Model?, expired: Bool) {
         let cacheResponse = DiskCache.read(fileName: fileName, includeExpired: includeExpired)
-        if let file = cacheResponse.file, let data = file.data(using: .utf8), let json = try? decode(data: data, toType: T.self, dateFormat: dateFormat) {
+        if let file = cacheResponse.file, let data = file.data(using: .utf8), let json = try? decode(data: data, toType: Model.self, dateFormat: dateFormat) {
             return (obj: json, expired: cacheResponse.expired)
         }
         return (obj: nil, expired: false)
     }
-    static func localItems<T: Codable>(ofType type: T.Type, withBaseFileName baseFileName: String) -> [T] {
+    static func localItems<Model: Codable>(ofType type: Model.Type, withBaseFileName baseFileName: String) -> [Model] {
         return DiskCache.readItems(withBaseFileName: baseFileName).map {
             guard let data = $0.data(using: .utf8) else { return nil }
-            return try? decode(data: data, toType: T.self)
+            return try? decode(data: data, toType: Model.self)
         }.compactMap { $0 }
     }
-    static func decode<T: Codable>(data: Data, toType: T.Type, dateFormat: RequesterDateFormat? = nil) throws -> T {
+    static func decode<Model: Codable>(data: Data, toType: Model.Type, dateFormat: RequesterDateFormat? = nil) throws -> Model {
         do {
-            return try decoder(forDateFormat: dateFormat).decode(T.self, from: data)
+            return try decoder(forDateFormat: dateFormat).decode(Model.self, from: data)
         } catch {
             print(error)
             throw DiskCacheDataProvidingError.unparseable
         }
     }
-    static func save<T: Codable>(codable: T, fileName: String, fileExpires: Bool = true) {
+    static func save<Model: Codable>(codable: Model, fileName: String, fileExpires: Bool = true) {
         guard let jsonData = try? JSONEncoder().encode(codable), let string = String(data: jsonData, encoding: .utf8) else { return }
         DiskCache.save(file: string, withFileName: fileName, fileExpires: fileExpires)
     }

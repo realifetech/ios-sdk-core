@@ -19,7 +19,7 @@ public extension LocalDiskCacheDataProviding {
     static func fullFileName(identifier: String, privateObj: Bool = false) -> String {
         return baseFileName + "-" + identifier + (privateObj ? DiskCache.privateIndicator : "")
     }
-    static func saveItem<T: Codable>(codable: T, identifier: String, privateObj: Bool = false) {
+    static func saveItem<Model: Codable>(codable: Model, identifier: String, privateObj: Bool = false) {
         DiskCacheCodableInterface.save(codable: codable, fileName: fullFileName(identifier: identifier, privateObj: privateObj), fileExpires: false)
     }
     static func item(withIdentifier identifier: String, privateObj: Bool = false) -> Cdble? {

@@ -57,7 +57,7 @@ public extension Requester {
         return request
     }
 
-    static func encode<T: Codable>(dataForBody: T) -> Any {
+    static func encode<Model: Codable>(dataForBody: Model) -> Any {
         let encoder = DiskCacheCodableInterface.encoder(forDateFormat: dateFormat())
         guard let data = try? encoder.encode(dataForBody), let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return [:] }
         return json

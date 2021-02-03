@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct QueueItem <T: Codable> {
+public struct QueueItem<Item: Codable> {
 
-    public let item: T
+    public let item: Item
     public let releaseQueue: (_: QueueAction) -> Void
 
-    public init(item: T, releaseQueue: @escaping (_: QueueAction) -> Void) {
+    public init(item: Item, releaseQueue: @escaping (_: QueueAction) -> Void) {
         self.item = item
         self.releaseQueue = releaseQueue
     }
