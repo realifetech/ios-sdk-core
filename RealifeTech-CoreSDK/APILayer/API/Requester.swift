@@ -17,7 +17,7 @@ public enum RequesterDateFormat {
 
 public protocol Requester {
     static func root() -> RequestRootURL
-    static var endpoint: String? { get }
+    static var endpoint: String { get }
     static func preDispatchAction() -> Observable<Any?>?
     static func interceptors() -> [(URLRequest) -> (URLRequest)]?
     static func dateFormat() -> RequesterDateFormat?
@@ -26,7 +26,7 @@ public protocol Requester {
 public extension Requester {
     
     static func request(forId id: String? = nil) -> URLRequest {
-        var theEndpoint = endpoint ?? ""
+        var theEndpoint = endpoint
         if let id = id { theEndpoint += "/\(id)" }
         return RequestCreator.createRequest(withRoot: Self.root(), andEndpoint: theEndpoint, httpMethod: .GET, body: nil, headers: nil)
     }
