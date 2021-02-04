@@ -22,7 +22,7 @@ public extension RemoteDiskCacheDataProviding {
     static func item(forRequest request: URLRequest, strategy: DiskCacheDataProvidingStrategy = .localOrRemoteIfExpired) -> Observable<Cdble> {
         return retrieve(type: Cdble.self, forRequest: request, strategy: strategy)
     }
-    static func retrieve<T: Codable>(type: T.Type, forRequest request: URLRequest = Rqstr.request(forId: nil), privateObj: Bool = false, strategy: DiskCacheDataProvidingStrategy = .localOrRemoteIfExpired) -> Observable<T> {
+    static func retrieve<Model: Codable>(type: Model.Type, forRequest request: URLRequest = Rqstr.request(forId: nil), privateObj: Bool = false, strategy: DiskCacheDataProvidingStrategy = .localOrRemoteIfExpired) -> Observable<Model> {
         var fileName = request.identifier
         if privateObj { fileName += DiskCache.privateIndicator }
         let theRemote = strategy == .remoteWithoutCachingResponse ? remote(ofType: type.self, forRequest: request, saveToFileWithName: nil) : remote(ofType: type.self, forRequest: request, saveToFileWithName: fileName, ignoreSystemCache: strategy == .localAndForcedRemote)
@@ -42,12 +42,12 @@ public extension RemoteDiskCacheDataProviding {
             return theRemote
         }
     }
-    private static func local<T: Codable>(ofType type: T.Type, fileName: String, includeExpired: Bool = false) -> (obj: Observable<T>?, expired: Bool) {
+    private static func local<Model: Codable>(ofType type: Model.Type, fileName: String, includeExpired: Bool = false) -> (obj: Observable<Model>?, expired: Bool) {
         let localResponse = DiskCacheCodableInterface.local(ofType: type, fileName: fileName, includeExpired: includeExpired, dateFormat: Rqstr.dateFormat())
         guard let localObj = localResponse.obj else { return (obj: nil, expired: false) }
         return (obj: Observable.from(optional: localObj), expired: localResponse.expired)
     }
-    private static func remote<T: Codable>(ofType type: T.Type, forRequest request: URLRequest, saveToFileWithName fileName: String?, ignoreSystemCache: Bool = false) -> Observable<T> {
+    private static func remote<Model: Codable>(ofType type: Model.Type, forRequest request: URLRequest, saveToFileWithName fileName: String?, ignoreSystemCache: Bool = false) -> Observable<Model> {
         var request = request
         if ignoreSystemCache { request.cachePolicy = .reloadIgnoringLocalCacheData }
         return Rqstr.response(forRequest: request).map { json in
@@ -55,7 +55,7 @@ public extension RemoteDiskCacheDataProviding {
             if let fileName = fileName, let string = String(data: jsonData, encoding: .utf8) {
                 DiskCache.save(file: string, withFileName: fileName)
             }
-            return try DiskCacheCodableInterface.decode(data: jsonData, toType: T.self, dateFormat: Rqstr.dateFormat())
+            return try DiskCacheCodableInterface.decode(data: jsonData, toType: Model.self, dateFormat: Rqstr.dateFormat())
         }
     }
 }

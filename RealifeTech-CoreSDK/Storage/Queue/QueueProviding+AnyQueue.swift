@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol QueueProviding {
+public protocol QueueProviding {
 
     associatedtype ItemType: Codable
 
@@ -24,25 +24,25 @@ protocol QueueProviding {
 // - https://www.natashatherobot.com/swift-type-erasure/
 // - https://robnapier.net/erasure
 
-struct AnyQueue<ItemType: Codable> {
+public struct AnyQueue<ItemType: Codable> {
 
     private var internalAddToQueue: (_ items: ItemType) -> Void
     private var internalNext: () -> Result<QueueItem<ItemType>, QueueRetrievalError>
     private var internalCount: () -> Int
     private var internalIsEmpty: () -> Bool
 
-    var next: Result<QueueItem<ItemType>, QueueRetrievalError> { internalNext() }
-    var count: Int { internalCount() }
-    var isEmpty: Bool { internalIsEmpty() }
+    public var next: Result<QueueItem<ItemType>, QueueRetrievalError> { internalNext() }
+    public var count: Int { internalCount() }
+    public var isEmpty: Bool { internalIsEmpty() }
 
-    init<Q: QueueProviding>(_ queue: Q) where Q.ItemType == ItemType {
+    public init<Q: QueueProviding>(_ queue: Q) where Q.ItemType == ItemType {
         self.internalAddToQueue = queue.addToQueue
         self.internalNext = { queue.next }
         self.internalCount = { queue.count }
         self.internalIsEmpty = { queue.isEmpty }
     }
 
-    func addToQueue(_ items: ItemType) {
+    public func addToQueue(_ items: ItemType) {
         internalAddToQueue(items)
     }
 }

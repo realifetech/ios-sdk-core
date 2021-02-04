@@ -9,7 +9,7 @@
 import Foundation
 
 public struct DeviceRequester: Requester, APIV3Requester {
-    public static var endpoint: String? = "/device"
+    public static var endpoint: String = "/device"
 }
 
 extension DeviceRequester {
@@ -17,7 +17,7 @@ extension DeviceRequester {
     static func register(device: Device) -> URLRequest {
         return RequestCreator.createRequest(
             withRoot: root(),
-            andEndpoint: endpoint! + "/register",
+            andEndpoint: endpoint + "/register",
             httpMethod: .POST,
             body: device.jsonRepresentation,
             headers: nil)
@@ -29,7 +29,7 @@ extension DeviceRequester {
         body["providerToken"] = deviceToken.providerToken ?? ""
         return RequestCreator.createRequest(
             withRoot: root(),
-            andEndpoint: endpoint! + "/me/token",
+            andEndpoint: endpoint + "/me/token",
             httpMethod: .POST,
             body: body,
             headers: nil)
