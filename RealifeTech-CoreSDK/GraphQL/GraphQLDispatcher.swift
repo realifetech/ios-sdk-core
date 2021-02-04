@@ -10,14 +10,14 @@ import Foundation
 import Apollo
 
 public protocol GraphQLDispatching: AnyObject {
-    func dispatch<T: GraphQLQuery>(
-        query: T,
+    func dispatch<Query: GraphQLQuery>(
+        query: Query,
         cachePolicy: GraphNetworkCachePolicy,
-        completion: @escaping (Result<GraphQLResult<T.Data>, Error>) -> Void
+        completion: @escaping (Result<GraphQLResult<Query.Data>, Error>) -> Void
     )
-    func dispatchMutation<T: GraphQLMutation>(
-        mutation: T,
-        completion:  @escaping (Result<GraphQLResult<T.Data>, Error>) -> Void
+    func dispatchMutation<Query: GraphQLMutation>(
+        mutation: Query,
+        completion:  @escaping (Result<GraphQLResult<Query.Data>, Error>) -> Void
     )
 }
 
@@ -29,10 +29,10 @@ public class GraphQLDispatcher: GraphQLDispatching {
         self.client = client
     }
 
-    public func dispatch<T: GraphQLQuery>(
-        query: T,
+    public func dispatch<Query: GraphQLQuery>(
+        query: Query,
         cachePolicy: GraphNetworkCachePolicy,
-        completion: @escaping (Result<GraphQLResult<T.Data>, Error>) -> Void
+        completion: @escaping (Result<GraphQLResult<Query.Data>, Error>) -> Void
     ) {
         client.apollo.fetch(query: query, cachePolicy: cachePolicy.apolloCachePolicyType) { result in
             switch result {
@@ -44,9 +44,9 @@ public class GraphQLDispatcher: GraphQLDispatching {
         }
     }
 
-    public func dispatchMutation<T: GraphQLMutation>(
-        mutation: T,
-        completion:  @escaping (Result<GraphQLResult<T.Data>, Error>) -> Void
+    public func dispatchMutation<Query: GraphQLMutation>(
+        mutation: Query,
+        completion:  @escaping (Result<GraphQLResult<Query.Data>, Error>) -> Void
     ) {
         client.apollo.perform(mutation: mutation) { result in
             switch result {

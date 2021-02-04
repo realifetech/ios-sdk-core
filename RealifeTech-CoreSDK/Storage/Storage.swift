@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias Handler<T> = (Result<T, Error>) -> Void
-typealias DataStorage = ReadableStorage & WritableStorage
+public typealias Handler<T> = (Result<T, Error>) -> Void
+public typealias DataStorage = ReadableStorage & WritableStorage
 
-protocol ReadableStorage {
+public protocol ReadableStorage {
 
     /// Fetches call values where the storage key starts with the prefix.
     /// Note that this is suceptable to data races with other threads.
@@ -25,7 +25,7 @@ protocol ReadableStorage {
     func fetchValue(for key: String, handler: @escaping Handler<Data>)
 }
 
-protocol WritableStorage {
+public protocol WritableStorage {
 
     /// Saves value synchronously.
     /// Note that this is suceptable to data races with other threads.
@@ -39,7 +39,7 @@ protocol WritableStorage {
     func deleteValue(for key: String)
 }
 
-enum StorageError: Error {
+public enum StorageError: Error {
     case notFound
     case cantWrite(Error)
 }

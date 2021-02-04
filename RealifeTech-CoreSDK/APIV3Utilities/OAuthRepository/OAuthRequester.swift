@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 struct OAuthRequester: JSONContentTypeHeaderRequestInserting, DeviceIdHeaderRequestInserting, Requester {
-    static var endpoint: String? = "/oauth/v2/token"
+    static var endpoint: String = "/oauth/v2/token"
     private static var defaultOAuthParameters: [String: Any] = [:]
 }
 
@@ -59,7 +59,7 @@ extension OAuthRequester {
         parameters["grant_type"] = "client_credentials"
         return RequestCreator.createRequest(
             withRoot: root(),
-            andEndpoint: endpoint!,
+            andEndpoint: endpoint,
             httpMethod: .POST,
             body: parameters)
     }
