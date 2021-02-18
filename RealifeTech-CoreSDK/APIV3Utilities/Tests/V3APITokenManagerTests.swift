@@ -38,11 +38,17 @@ final class V3APITokenManagerTests: XCTestCase {
         XCTAssertFalse(sut.tokenIsValid)
     }
 
-    func test_getTokenObservable() {
-        testRefreshGenerator.refreshTokenOrWaitAction = nil
-        XCTAssertNil(sut.getTokenObservable)
-        testRefreshGenerator.refreshTokenOrWaitAction = Observable.just(())
-        XCTAssertNotNil(sut.getTokenObservable)
+    func test_refreshToken() {
+        let refreshTokenValue = "REFRESH_TOKEN"
+        testStore.refreshToken = refreshTokenValue
+        XCTAssertEqual(sut.refreshToken, refreshTokenValue)
+    }
+
+    func test_refreshTokenIsValid() {
+        testStore.refreshTokenValid = true
+        XCTAssertTrue(sut.refreshTokenIsValid)
+        testStore.refreshTokenValid = false
+        XCTAssertFalse(sut.refreshTokenIsValid)
     }
 
     func test_getValidToken_noDelay() {
@@ -61,17 +67,31 @@ final class V3APITokenManagerTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
+
+    func test_storeCredentials() {
+        sut.storeCredentials(accessToken: "A", secondsExpiresIn: 10, refreshToken: "B")
+        XCTAssertEqual(testStore.credentialsToSave?.0, "A")
+        XCTAssertEqual(testStore.credentialsToSave?.1, 10)
+        XCTAssertEqual(testStore.credentialsToSave?.2, "B")
+    }
+
+    func test_removeCredentials() {
+        sut.removeCredentials()
+        XCTAssertTrue(testStore.removeCredentialsCalled)
+    }
 }
 
 private final class MockStore: AuthorisationStoring {
 
     var accessToken: String?
     var accessTokenValid: Bool = false
-    var credentialsToSave: (String, Int)?
+    var refreshToken: String?
+    var refreshTokenValid: Bool = false
+    var credentialsToSave: (String, Int, String?)?
     var removeCredentialsCalled: Bool = false
 
-    func saveCredentials(token: String, secondsExpiresIn: Int) {
-        credentialsToSave = (token, secondsExpiresIn)
+    func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?) {
+        credentialsToSave = (token, secondsExpiresIn, refreshToken)
     }
 
     func removeCredentials() {

@@ -94,11 +94,6 @@ final class APIV3RequesterTests: XCTestCase  {
         }))
     }
 
-    func test_preDispatchAction_none() {
-        testTokenManager.getTokenObservable = nil
-        XCTAssertNil(MockRequester.preDispatchAction())
-    }
-
     func test_preDispatchAction_some() {
         let bag = DisposeBag()
         let source = PublishSubject<Void>()
@@ -123,9 +118,15 @@ private final class MockTokenManager: V3APITokenManagable {
 
     var token: String?
     var tokenIsValid: Bool = false
+    var refreshToken: String?
+    var refreshTokenIsValid: Bool = false
     var getTokenObservable: Observable<Void>?
 
     func getValidToken(_ completion: (() -> Void)?) {
         completion?()
     }
+
+    func storeCredentials(accessToken: String, secondsExpiresIn: Int, refreshToken: String?) { }
+
+    func removeCredentials() { }
 }
