@@ -5,6 +5,7 @@
 //  Created by Ross Patman on 06/06/2016.
 //  Copyright © 2016 ConcertLive. All rights reserved.
 //
+
 import Foundation
 import RxSwift
 
@@ -12,8 +13,10 @@ import RxSwift
 protocol AuthorisationStoring {
     var accessToken: String? { get }
     var accessTokenValid: Bool { get }
+    var refreshToken: String? { get }
+    var refreshTokenValid: Bool { get }
 
-    func saveCredentials(token: String, secondsExpiresIn: Int)
+    func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?)
     func removeCredentials()
 }
 
@@ -23,6 +26,8 @@ struct AuthorisationStore: AuthorisationStoring {
     enum KeychainKey: String {
         case token = "livestyled-token"
         case expiryDate = "livestyled-tokenExpiryDate"
+        case refreshToken = "livestyled-refreshToken"
+        case refreshTokenExpiryDate = "livestyled-refreshTokenExpiryDate"
     }
 
     private let keychain: KeychainSwift
@@ -39,13 +44,24 @@ struct AuthorisationStore: AuthorisationStoring {
         return expiryDateValid(expiryDateString: keychain.get(KeychainKey.expiryDate.rawValue))
     }
 
-    func saveCredentials(token: String, secondsExpiresIn: Int) {
+    var refreshToken: String? {
+        return keychain.get(KeychainKey.refreshToken.rawValue)
+    }
+
+    var refreshTokenValid: Bool {
+        return expiryDateValid(expiryDateString: keychain.get(KeychainKey.refreshTokenExpiryDate.rawValue))
+    }
+
+    func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?) {
         update(accessToken: token, withSecondsExpiresIn: secondsExpiresIn)
+        update(refreshToken: refreshToken)
     }
 
     func removeCredentials() {
         keychain.delete(KeychainKey.token.rawValue)
         keychain.delete(KeychainKey.expiryDate.rawValue)
+        keychain.delete(KeychainKey.refreshToken.rawValue)
+        keychain.delete(KeychainKey.refreshTokenExpiryDate.rawValue)
     }
 
     private func update(accessToken: String, withSecondsExpiresIn seconds: Int) {
@@ -54,9 +70,16 @@ struct AuthorisationStore: AuthorisationStoring {
         keychain.set(expiryDate, forKey: KeychainKey.expiryDate.rawValue)
     }
 
+    private func update(refreshToken: String?) {
+        guard let refreshToken = refreshToken else { return }
+        keychain.set(refreshToken, forKey: KeychainKey.refreshToken.rawValue)
+        let nearlyFourteenDaysInSeconds = 1166400
+        let expiryDate = "\(Date().addingTimeInterval(Double(nearlyFourteenDaysInSeconds)).toMilliseconds())"
+        keychain.set(expiryDate, forKey: KeychainKey.refreshTokenExpiryDate.rawValue)
+    }
+
     private func expiryDateValid(expiryDateString: String?) -> Bool {
         guard let expiryDateString = expiryDateString, let timestamp = Int64(expiryDateString) else { return false }
-        // TODO: Reduce duplication with V3APITokenManager
         return Date().toMilliseconds() < timestamp
     }
 }

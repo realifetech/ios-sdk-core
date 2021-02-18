@@ -13,9 +13,8 @@ public class V3APITokenManager: V3APITokenManagable {
 
     public var token: String? { authorisationStore.accessToken }
     public var tokenIsValid: Bool { authorisationStore.accessTokenValid }
-    public var getTokenObservable: Observable<Void>? {
-        oAuthRefreshOrWaitActionGenerator.refreshTokenOrWaitAction
-    }
+    public var refreshToken: String? { authorisationStore.refreshToken }
+    public var refreshTokenIsValid: Bool { authorisationStore.refreshTokenValid }
 
     private let authorisationStore: AuthorisationStoring
     private let oAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating
@@ -41,5 +40,16 @@ public class V3APITokenManager: V3APITokenManagable {
                 completion?()
             })
             .disposed(by: disposeBag)
+    }
+
+    public func storeCredentials(accessToken: String, secondsExpiresIn: Int, refreshToken: String?) {
+        authorisationStore.saveCredentials(
+            token: accessToken,
+            secondsExpiresIn: secondsExpiresIn,
+            refreshToken: refreshToken)
+    }
+
+    public func removeCredentials() {
+        authorisationStore.removeCredentials()
     }
 }
