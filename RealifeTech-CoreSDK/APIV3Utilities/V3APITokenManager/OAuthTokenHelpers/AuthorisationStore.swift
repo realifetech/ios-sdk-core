@@ -54,7 +54,7 @@ struct AuthorisationStore: AuthorisationStoring {
 
     func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?) {
         update(accessToken: token, withSecondsExpiresIn: secondsExpiresIn)
-        update(refreshToken: refreshToken)
+        update(refreshToken: refreshToken, withSecondsExpiresIn: secondsExpiresIn)
     }
 
     func removeCredentials() {
@@ -70,10 +70,10 @@ struct AuthorisationStore: AuthorisationStoring {
         keychain.set(expiryDate, forKey: KeychainKey.expiryDate.rawValue)
     }
 
-    private func update(refreshToken: String?) {
+    private func update(refreshToken: String?, withSecondsExpiresIn seconds: Int?) {
         guard let refreshToken = refreshToken else { return }
         keychain.set(refreshToken, forKey: KeychainKey.refreshToken.rawValue)
-        let nearlyFourteenDaysInSeconds = 1166400
+        let nearlyFourteenDaysInSeconds = seconds ?? 1166400
         let expiryDate = "\(Date().addingTimeInterval(Double(nearlyFourteenDaysInSeconds)).toMilliseconds())"
         keychain.set(expiryDate, forKey: KeychainKey.refreshTokenExpiryDate.rawValue)
     }
