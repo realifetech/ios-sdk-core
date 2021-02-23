@@ -34,8 +34,9 @@ struct OAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating {
         } else if authorisationStore.accessTokenValid {
             return nil
         }
-        self.oAuthTokenRefreshWatcher.updateRefreshingStatus(newValue: .refreshing)
-        return authorisationWorker.requestInitialAccessToken
+        oAuthTokenRefreshWatcher.updateRefreshingStatus(newValue: .refreshing)
+        let refresh = authorisationWorker.refreshAccessToken ?? authorisationWorker.requestInitialAccessToken
+        return refresh
             .take(1)
             .do(onNext: { _ in
                 self.oAuthTokenRefreshWatcher.updateRefreshingStatus(newValue: .valid)
