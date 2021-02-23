@@ -10,27 +10,27 @@ import XCTest
 
 final class RequestCreatorTests: XCTestCase {
 
-    func testGetParametersWithArray() {
+    func test_getParametersWithArray() {
         let testBody = ["userActions[]": ["scheduled", "interested", "going"]]
         let getParameters = RequestCreator.addGETParameters(fromBody: testBody)
         XCTAssertEqual(getParameters, "?userActions[]=scheduled&userActions[]=interested&userActions[]=going&")
     }
 
-    func testGETSingleParameters() {
+    func test_getSingleParameters() {
         let testBody = ["forceApiCheck": 1]
         let getParameters = RequestCreator.addGETParameters(fromBody: testBody)
         XCTAssertEqual(getParameters, "?forceApiCheck=1&")
     }
 
-    func testGETMultipleParameters() {
+    func test_getMultipleParameters() {
         let testBody: [String: Any] = ["forceApiCheck": 1, "pageSize": 50, "testParameter": "test"]
         let getParameters = RequestCreator.addGETParameters(fromBody: testBody)
-        XCTAssert(getParameters.contains("forceApiCheck=1"))
-        XCTAssert(getParameters.contains("pageSize=50"))
-        XCTAssert(getParameters.contains("testParameter=test"))
+        XCTAssertTrue(getParameters.contains("forceApiCheck=1"))
+        XCTAssertTrue(getParameters.contains("pageSize=50"))
+        XCTAssertTrue(getParameters.contains("testParameter=test"))
     }
 
-    func testGETMultipleParametersDifferentOrder() {
+    func test_getMultipleParametersDifferentOrder() {
         let testBody1: [String: Any] = ["forceApiCheck": 1, "pageSize": 50, "testParameter": "test", "userActions[]": ["scheduled", "going", "calendar", "interested"]]
         let testBody2: [String: Any] = ["pageSize": 50, "forceApiCheck": 1, "testParameter": "test", "userActions[]": ["scheduled", "going", "calendar", "interested"]]
         XCTAssertEqual(RequestCreator.addGETParameters(fromBody: testBody1), RequestCreator.addGETParameters(fromBody: testBody2))

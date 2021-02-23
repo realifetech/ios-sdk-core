@@ -11,67 +11,67 @@ import XCTest
 
 final class RequestTimeLoggerTests: XCTestCase {
 
-    func testAddRequests() {
+    func test_addRequests() {
         let timeLogger = RequestTimeLogger()
         timeLogger.addRequest(withIdentifier: "aaa", andDate: Date(timeIntervalSince1970: 0))
         timeLogger.requestEntriesQueue.async {
-            XCTAssert(timeLogger.requestEntries.count == 1)
+            XCTAssertEqual(timeLogger.requestEntries.count, 1)
         }
         timeLogger.addRequest(withIdentifier: "bbb", andDate: Date(timeIntervalSince1970: 0))
         timeLogger.requestEntriesQueue.async {
-            XCTAssert(timeLogger.requestEntries.count == 2)
+            XCTAssertEqual(timeLogger.requestEntries.count, 2)
         }
         timeLogger.addRequest(withIdentifier: "aaa", andDate: Date(timeIntervalSince1970: 1))
         timeLogger.requestEntriesQueue.async {
-            XCTAssert(timeLogger.requestEntries.count == 2)
+            XCTAssertEqual(timeLogger.requestEntries.count, 2)
         }
     }
 
-    func testRemoveRequests() {
+    func test_removeRequests() {
         let timeLogger = RequestTimeLogger()
         timeLogger.addRequest(withIdentifier: "aaa", andDate: Date(timeIntervalSince1970: 0))
         timeLogger.addRequest(withIdentifier: "bbb", andDate: Date(timeIntervalSince1970: 1))
         timeLogger.removeRequest(withIdentifier: "ccc")
         timeLogger.requestEntriesQueue.async {
-            XCTAssert(timeLogger.requestEntries.count == 2)
+            XCTAssertEqual(timeLogger.requestEntries.count, 2)
         }
         timeLogger.removeRequest(withIdentifier: "aaa")
         timeLogger.requestEntriesQueue.async {
-            XCTAssert(timeLogger.requestEntries.count == 1)
-            XCTAssert(timeLogger.requestEntries.first?.key == "bbb")
+            XCTAssertEqual(timeLogger.requestEntries.count, 1)
+            XCTAssertEqual(timeLogger.requestEntries.first?.key, "bbb")
         }
         timeLogger.removeRequest(withIdentifier: "bbb")
         timeLogger.requestEntriesQueue.async {
-            XCTAssert(timeLogger.requestEntries.count == 0)
+            XCTAssertTrue(timeLogger.requestEntries.isEmpty)
         }
         timeLogger.removeRequest(withIdentifier: "aaa")
         timeLogger.requestEntriesQueue.async {
-            XCTAssert(timeLogger.requestEntries.count == 0)
+            XCTAssertTrue(timeLogger.requestEntries.isEmpty)
         }
     }
 
-    func testNoRequests() {
+    func test_noRequests() {
         let timeLogger = RequestTimeLogger()
         timeLogger.requestEntriesQueue.async {
             let containedSlow = timeLogger.containsSlowRequestsAndRemove()
             sleep(1)
             XCTAssertFalse(containedSlow)
-            XCTAssert(timeLogger.requestEntries.count == 0)
+            XCTAssertTrue(timeLogger.requestEntries.isEmpty)
         }
     }
 
-    func testSlowRequests() {
+    func test_slowRequests() {
         let timeLogger = RequestTimeLogger()
         timeLogger.addRequest(withIdentifier: "aaa", andDate: Date(timeIntervalSince1970: 0))
         timeLogger.requestEntriesQueue.async {
             let containedSlow = timeLogger.containsSlowRequestsAndRemove()
             sleep(1)
             XCTAssertTrue(containedSlow)
-            XCTAssert(timeLogger.requestEntries.count == 0)
+            XCTAssertTrue(timeLogger.requestEntries.isEmpty)
         }
     }
 
-    func testSlowAndFastRequests() {
+    func test_slowAndFastRequests() {
         let timeLogger = RequestTimeLogger()
         timeLogger.addRequest(withIdentifier: "aaa", andDate: Date(timeIntervalSince1970: 0))
         timeLogger.addRequest(withIdentifier: "bbb", andDate: Date(timeIntervalSinceNow: 20))
@@ -79,12 +79,12 @@ final class RequestTimeLoggerTests: XCTestCase {
             let containedSlow = timeLogger.containsSlowRequestsAndRemove()
             sleep(1)
             XCTAssertTrue(containedSlow)
-            XCTAssert(timeLogger.requestEntries.count == 1)
-            XCTAssert(timeLogger.requestEntries.first?.key == "bbb")
+            XCTAssertEqual(timeLogger.requestEntries.count, 1)
+            XCTAssertEqual(timeLogger.requestEntries.first?.key, "bbb")
         }
     }
 
-    func testFastRequests() {
+    func test_fastRequests() {
         let timeLogger = RequestTimeLogger()
         timeLogger.addRequest(withIdentifier: "aaa", andDate: Date(timeIntervalSinceNow: 20))
         timeLogger.addRequest(withIdentifier: "bbb", andDate: Date(timeIntervalSinceNow: 21))
@@ -92,7 +92,7 @@ final class RequestTimeLoggerTests: XCTestCase {
             let containedSlow = timeLogger.containsSlowRequestsAndRemove()
             sleep(1)
             XCTAssertFalse(containedSlow)
-            XCTAssert(timeLogger.requestEntries.count == 2)
+            XCTAssertEqual(timeLogger.requestEntries.count, 2)
         }
     }
 

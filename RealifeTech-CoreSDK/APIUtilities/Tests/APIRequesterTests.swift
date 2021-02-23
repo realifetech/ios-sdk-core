@@ -1,6 +1,6 @@
 //
-//  APIV3RequesterTests.swift
-//  APIV3UtilitiesTests
+//  APIRequesterTests.swift
+//  APIUtilitiesTests
 //
 //  Created by Olivier Butler on 07/10/2020.
 //  Copyright © 2020 Realife Tech. All rights reserved.
@@ -10,7 +10,7 @@ import XCTest
 import RxSwift
 @testable import RealifeTech_CoreSDK
 
-final class APIV3RequesterTests: XCTestCase  {
+final class APIRequesterTests: XCTestCase {
 
     let testRoot: String = "http://test.com"
     let testDeviceId: String = "ID123"
@@ -19,17 +19,19 @@ final class APIV3RequesterTests: XCTestCase  {
     let expectedLocale: String = "en_US_POSIX"
 
     override func setUp() {
-        APIV3RequesterHelper.deviceId = testDeviceId
-        APIV3RequesterHelper.v3baseUrl = APIRoot(rawValue: testRoot)
-        APIV3RequesterHelper.tokenManager = testTokenManager
+        super.setUp()
+        APIRequesterHelper.deviceId = testDeviceId
+        APIRequesterHelper.baseUrl = testRoot
+        APIRequesterHelper.tokenManager = testTokenManager
     }
 
     override func tearDown() {
         testTokenManager = MockTokenManager()
+        super.tearDown()
     }
 
     func test_root() {
-        XCTAssertEqual(MockRequester.root().rawValue, testRoot)
+        XCTAssertEqual(MockRequester.root(), testRoot)
     }
 
     func test_dateFormatString() {
@@ -112,9 +114,9 @@ final class APIV3RequesterTests: XCTestCase  {
     }
 }
 
-private struct MockRequester: APIV3Requester {}
+private struct MockRequester: APIRequester {}
 
-private final class MockTokenManager: V3APITokenManagable {
+private final class MockTokenManager: APITokenManagable {
 
     var token: String?
     var tokenIsValid: Bool = false

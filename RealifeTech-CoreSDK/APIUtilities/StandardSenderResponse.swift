@@ -1,5 +1,5 @@
 //
-//  StandardV3SenderResponse.swift
+//  StandardSenderResponse.swift
 //  CLArena
 //
 //  Created by Ross Patman on 21/02/2018.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct StandardV3SenderResponse: Codable {
+public struct StandardSenderResponse: Codable {
     let code: Int?
     let type: String?
     let message: String?
 }
 
-extension StandardV3SenderResponse {
+extension StandardSenderResponse {
     public var isSuccess: Bool { return code == 200 }
 }

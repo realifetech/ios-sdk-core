@@ -1,5 +1,5 @@
 //
-//  APIV3TokenInterceptor.swift
+//  APITokenInterceptor.swift
 //  RealifeTech-CoreSDK
 //
 //  Created by Mickey Lee on 02/02/2021.
@@ -8,11 +8,11 @@
 import Foundation
 import Apollo
 
-class APIV3TokenInterceptor: ApolloInterceptor {
+class APITokenInterceptor: ApolloInterceptor {
 
-    let tokenHelper: V3APITokenManagable
+    let tokenHelper: APITokenManagable
 
-    init(tokenHelper: V3APITokenManagable) {
+    init(tokenHelper: APITokenManagable) {
         self.tokenHelper = tokenHelper
     }
 

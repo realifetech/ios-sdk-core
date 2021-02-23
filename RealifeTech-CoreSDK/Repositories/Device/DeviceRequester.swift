@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct DeviceRequester: Requester, APIV3Requester {
+public struct DeviceRequester: Requester, APIRequester {
     public static var endpoint: String = "/device"
 }
 

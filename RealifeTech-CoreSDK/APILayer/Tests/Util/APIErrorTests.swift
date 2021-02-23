@@ -14,91 +14,62 @@ final class APIErrorTests: XCTestCase {
     let errorData = ["error": "invalid_grant", "error_description": "The access token provided has expired."]
     let mockError = MockAPIError.genericError()
     
-    func test_constructedError_from_ValidData() {
-        do {
-            let basicErrorData = try JSONEncoder().encode(errorData)
-            let constructedError = APIError.constructedError(data: basicErrorData)
-            XCTAssertEqual(constructedError.message, "The access token provided has expired.")
-        } catch {
-            XCTFail("Failed to encode dictionary")
-        }
+    func test_constructedError_from_ValidData() throws {
+        let basicErrorData = try JSONEncoder().encode(errorData)
+        let constructedError = APIError.constructedError(data: basicErrorData)
+        XCTAssertEqual(constructedError.message, "The access token provided has expired.")
     }
     
-    func test_constructedError_from_InvalidData() {
+    func test_constructedError_from_InvalidData() throws {
         let errorData = "{\"error\":\"invalid_grant\",\"error_description\":\"The access token provided has expired.\"}"
-        do {
-            let basicErrorData = try JSONEncoder().encode(errorData)
-            let constructedError = APIError.constructedError(data: basicErrorData)
-            XCTAssertEqual(constructedError.message, "UNPARSEABLE_ERROR")
-        } catch {
-            XCTFail("Failed to encode dictionaryString")
-        }
+        let basicErrorData = try JSONEncoder().encode(errorData)
+        let constructedError = APIError.constructedError(data: basicErrorData)
+        XCTAssertEqual(constructedError.message, "UNPARSEABLE_ERROR")
     }
     
-    func test_badRequest() {
-        do {
-            let basicErrorData = try JSONEncoder().encode(errorData)
-            let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 400)
-            XCTAssertTrue(constructedError.badRequest)
-            XCTAssertTrue(constructedError.clientError)
-            XCTAssertFalse(constructedError.logicError)
-            XCTAssertFalse(constructedError.unAuthenticated)
-        } catch {
-            XCTFail("Failed to encode dictionary")
-        }
+    func test_badRequest() throws {
+        let basicErrorData = try JSONEncoder().encode(errorData)
+        let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 400)
+        XCTAssertTrue(constructedError.badRequest)
+        XCTAssertTrue(constructedError.clientError)
+        XCTAssertFalse(constructedError.logicError)
+        XCTAssertFalse(constructedError.unAuthenticated)
     }
     
-    func test_clientError() {
-        do {
-            let basicErrorData = try JSONEncoder().encode(errorData)
-            let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 450)
-            XCTAssertFalse(constructedError.badRequest)
-            XCTAssertTrue(constructedError.clientError)
-            XCTAssertFalse(constructedError.logicError)
-            XCTAssertFalse(constructedError.unAuthenticated)
-        } catch {
-            XCTFail("Failed to encode dictionary")
-        }
+    func test_clientError() throws {
+        let basicErrorData = try JSONEncoder().encode(errorData)
+        let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 450)
+        XCTAssertFalse(constructedError.badRequest)
+        XCTAssertTrue(constructedError.clientError)
+        XCTAssertFalse(constructedError.logicError)
+        XCTAssertFalse(constructedError.unAuthenticated)
     }
     
-    func test_falseClientError() {
-        do {
-            let basicErrorData = try JSONEncoder().encode(errorData)
-            let constructedError = APIError.constructedError(data: basicErrorData)
-            XCTAssertFalse(constructedError.badRequest)
-            XCTAssertFalse(constructedError.clientError)
-            XCTAssertFalse(constructedError.logicError)
-            XCTAssertFalse(constructedError.unAuthenticated)
-        } catch {
-            XCTFail("Failed to encode dictionary")
-        }
+    func test_falseClientError() throws {
+        let basicErrorData = try JSONEncoder().encode(errorData)
+        let constructedError = APIError.constructedError(data: basicErrorData)
+        XCTAssertFalse(constructedError.badRequest)
+        XCTAssertFalse(constructedError.clientError)
+        XCTAssertFalse(constructedError.logicError)
+        XCTAssertFalse(constructedError.unAuthenticated)
     }
     
-    func test_logicError() {
-        do {
-            let basicErrorData = try JSONEncoder().encode(errorData)
-            let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 422)
-            XCTAssertFalse(constructedError.badRequest)
-            XCTAssertTrue(constructedError.clientError)
-            XCTAssertTrue(constructedError.logicError)
-            XCTAssertFalse(constructedError.unAuthenticated)
-        } catch {
-            XCTFail("Failed to encode dictionary")
-        }
+    func test_logicError() throws {
+        let basicErrorData = try JSONEncoder().encode(errorData)
+        let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 422)
+        XCTAssertFalse(constructedError.badRequest)
+        XCTAssertTrue(constructedError.clientError)
+        XCTAssertTrue(constructedError.logicError)
+        XCTAssertFalse(constructedError.unAuthenticated)
     }
     
-    func test_unAuthenticatedError() {
-        do {
-            let basicErrorData = try JSONEncoder().encode(errorData)
-            let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 401)
-            XCTAssertFalse(constructedError.badRequest)
-            XCTAssertTrue(constructedError.clientError)
-            XCTAssertFalse(constructedError.logicError)
-            XCTAssertTrue(constructedError.unAuthenticated)
-        } catch {
-            XCTFail("Failed to encode dictionary")
-        }
-
+    func test_unAuthenticatedError() throws {
+        let basicErrorData = try JSONEncoder().encode(errorData)
+        let constructedError = APIError.constructedError(data: basicErrorData, statusCode: 401)
+        XCTAssertFalse(constructedError.badRequest)
+        XCTAssertTrue(constructedError.clientError)
+        XCTAssertFalse(constructedError.logicError)
+        XCTAssertTrue(constructedError.unAuthenticated)
     }
     
     func test_constructedError_fromMockError() {

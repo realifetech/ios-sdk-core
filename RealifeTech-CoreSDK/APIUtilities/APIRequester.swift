@@ -1,5 +1,5 @@
 //
-//  APIV3Requester.swift
+//  APIRequester.swift
 //  CLArena
 //
 //  Created by Ross Patman on 15/02/2018.
@@ -9,18 +9,18 @@
 import Foundation
 import RxSwift
 
-public protocol APIV3Requester: JSONContentTypeHeaderRequestInserting, DeviceIdHeaderRequestInserting, OAuthHeaderRequestInserting {
-    static func root() -> RequestRootURL
+public protocol APIRequester: JSONContentTypeHeaderRequestInserting, DeviceIdHeaderRequestInserting, OAuthHeaderRequestInserting {
+    static func root() -> String
     static func preDispatchAction() -> Observable<Any?>?
     static func interceptors() -> [(URLRequest) -> (URLRequest)]?
     static func dateFormat() -> RequesterDateFormat?
 }
 
-extension APIV3Requester {
+extension APIRequester {
 
     public static func preDispatchAction() -> Observable<Any?>? {
         return .create { observer in
-            APIV3RequesterHelper.tokenManager.getValidToken {
+            APIRequesterHelper.tokenManager.getValidToken {
                 observer.onNext(())
                 observer.onCompleted()
             }
@@ -36,8 +36,8 @@ extension APIV3Requester {
         ]
     }
 
-    public static func root() -> RequestRootURL {
-        return APIV3RequesterHelper.v3baseUrl
+    public static func root() -> String {
+        return APIRequesterHelper.baseUrl
     }
 
     public static func dateFormatString() -> String {
@@ -49,7 +49,7 @@ extension APIV3Requester {
     }
 }
 
-extension APIV3Requester {
+extension APIRequester {
 
     static func format(date: Date, format: String? = nil) -> String {
         let dateFormat = format ?? dateFormatString()

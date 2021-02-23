@@ -1,6 +1,6 @@
 //
 //  OAuthRefreshOrWaitActionGeneratorTests.swift
-//  APIV3UtilitiesTests
+//  APIUtilitiesTests
 //
 //  Created by Olivier Butler on 08/10/2020.
 //  Copyright © 2020 Realife Tech. All rights reserved.

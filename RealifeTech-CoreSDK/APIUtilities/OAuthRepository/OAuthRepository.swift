@@ -22,10 +22,16 @@ struct OAuthRepository: RemoteDiskCacheDataProviding {
 extension OAuthRepository: OAuthProviding {
 
     static func requestInitialAccessToken() -> Observable<OAuthToken> {
-        return retrieve(type: Cdble.self, forRequest: Rqstr.requestInitialAccessToken(), strategy: .remoteWithoutCachingResponse)
+        return retrieve(
+            type: Cdble.self,
+            forRequest: Rqstr.requestInitialAccessToken(),
+            strategy: .remoteWithoutCachingResponse)
     }
 
     static func refreshAccessToken(_ refreshToken: String) -> Observable<OAuthToken> {
-        return retrieve(type: Cdble.self, forRequest: Rqstr.refreshAccessToken(refreshToken), strategy: .remoteWithoutCachingResponse)
+        return retrieve(
+            type: Cdble.self,
+            forRequest: Rqstr.refreshAccessToken(refreshToken),
+            strategy: .remoteWithoutCachingResponse)
     }
 }

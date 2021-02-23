@@ -25,7 +25,8 @@ class OAuthTokenRefreshWatcher: OAuthTokenRefreshWatchable {
     /// Returns the current token status.
     private var status: BehaviorRelay<OAuthTokenStatus>
 
-    /// If the status is currently refreshing, this variable can be used to observe whether the refresh succeeds or fails.
+    /// If the status is currently refreshing,
+    /// this variable can be used to observe whether the refresh succeeds or fails.
     /// Returns nil when no refresh is taking place.
     var ongoingTokenRefresh: Observable<Bool>? {
         guard status.value == .refreshing else { return nil }

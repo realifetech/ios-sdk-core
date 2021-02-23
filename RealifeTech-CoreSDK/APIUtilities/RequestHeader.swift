@@ -24,6 +24,8 @@ public struct RequestHeader {
     }
 
     public static func generateAuthHeader(accessToken: String) -> RequestHeader {
-        return RequestHeader(header: HeaderKeys.authorization.rawValue, valueForHeader: "\(HeaderKeys.bearerAuthorization.rawValue) \(accessToken)")
+        return RequestHeader(
+            header: HeaderKeys.authorization.rawValue,
+            valueForHeader: "\(HeaderKeys.bearerAuthorization.rawValue) \(accessToken)")
     }
 }

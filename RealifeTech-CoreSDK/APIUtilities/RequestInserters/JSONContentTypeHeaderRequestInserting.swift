@@ -13,6 +13,7 @@ public protocol JSONContentTypeHeaderRequestInserting {
 }
 
 extension JSONContentTypeHeaderRequestInserting {
+
     public static func addJSONContentTypeHeader(toRequest request: URLRequest) -> URLRequest {
         var request = request
         if request.value(forHTTPHeaderField: "Content-Type") == nil {

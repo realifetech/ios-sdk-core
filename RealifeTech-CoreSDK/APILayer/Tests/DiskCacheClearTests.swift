@@ -12,19 +12,29 @@ import XCTest
 final class DiskCacheClearTests: XCTestCase {
 
     override func setUp() {
+        super.setUp()
         clearObjs()
         populateObjs()
     }
 
     private var objs: [URL] {
-        guard let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return [] }
-        guard let files = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) else { return [] }
+        guard
+            let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first,
+            let files = try? FileManager.default.contentsOfDirectory(
+                at: dir,
+                includingPropertiesForKeys: nil,
+                options: .skipsHiddenFiles)
+        else {
+            return []
+        }
         return files.filter({ $0.absoluteString.contains("\(DiskCache.fileExtension)") })
     }
 
-    private var objNames: [Substring] { return objs.map { $0.absoluteString.split(separator: "$")[1] } }
+    private var objNames: [Substring] {
+        return objs.map { $0.absoluteString.split(separator: "$")[1] }
+    }
 
-    func obj(forURL URL: URL) -> String? {
+    private func obj(forURL URL: URL) -> String? {
         guard let text = try? String(contentsOf: URL.absoluteURL, encoding: .utf8) else { return nil }
         return text
     }
@@ -41,22 +51,22 @@ final class DiskCacheClearTests: XCTestCase {
         DiskCache.save(file: "3", withFileName: "$test3-private", fileExpires: false)
     }
 
-    func testClearAll() {
-        XCTAssert(objs.count == 3)
+    func test_clearAll() {
+        XCTAssertEqual(objs.count, 3)
         let expectation = XCTestExpectation(description: "completed")
         DiskCache.clear(deletionStrategy: .all) {
-            XCTAssert(self.objs.count == 0)
+            XCTAssertTrue(self.objs.isEmpty)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 3)
     }
 
-    func testClearPrivate() {
-        XCTAssert(objs.count == 3)
+    func test_clearPrivate() {
+        XCTAssertEqual(objs.count, 3)
         let expectation = XCTestExpectation(description: "completed")
-        DiskCache.clear(deletionStrategy: .privateOnly) {
-            let retrievedNames = self.objNames
-            XCTAssert(retrievedNames.count == 2)
+        DiskCache.clear(deletionStrategy: .privateOnly) { [self] in
+            XCTAssertEqual(objs.count, 2)
+            let retrievedNames = objNames
             XCTAssert(retrievedNames.contains("test1.diskcache"))
             XCTAssert(retrievedNames.contains("test2.diskcache"))
             expectation.fulfill()
@@ -64,12 +74,12 @@ final class DiskCacheClearTests: XCTestCase {
         wait(for: [expectation], timeout: 3)
     }
 
-    func testClearOutdated() {
+    func test_clearOutdated() {
         XCTAssert(objs.count == 3)
         let expectation = XCTestExpectation(description: "completed")
-        DiskCache.clear(deletionStrategy: .outdatedOnly) {
-            let retrievedNames = self.objNames
-            XCTAssert(retrievedNames.count == 2)
+        DiskCache.clear(deletionStrategy: .outdatedOnly) { [self] in
+            let retrievedNames = objNames
+            XCTAssertEqual(objs.count, 2)
             XCTAssert(retrievedNames.contains("test1.diskcache"))
             XCTAssert(retrievedNames.contains("test3-private.diskcache"))
             expectation.fulfill()
@@ -77,12 +87,12 @@ final class DiskCacheClearTests: XCTestCase {
         wait(for: [expectation], timeout: 3)
     }
 
-    func testClearNonPrivate() {
-        XCTAssert(objs.count == 3)
+    func test_clearNonPrivate() {
+        XCTAssertEqual(objs.count, 3)
         let expectation = XCTestExpectation(description: "completed")
-        DiskCache.clear(deletionStrategy: .allNonPrivate) {
-            let retrievedNames = self.objNames
-            XCTAssert(retrievedNames.count == 1)
+        DiskCache.clear(deletionStrategy: .allNonPrivate) { [self] in
+            let retrievedNames = objNames
+            XCTAssertEqual(objs.count, 1)
             XCTAssert(retrievedNames.contains("test3-private.diskcache"))
             expectation.fulfill()
         }

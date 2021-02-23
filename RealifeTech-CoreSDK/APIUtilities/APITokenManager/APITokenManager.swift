@@ -1,5 +1,5 @@
 //
-//  V3APITokenManager.swift
+//  APITokenManager.swift
 //  APIUtilities
 //
 //  Created by Olivier Butler on 05/10/2020.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-public class V3APITokenManager: V3APITokenManagable {
+public class APITokenManager: APITokenManagable {
 
     public var token: String? { authorisationStore.accessToken }
     public var tokenIsValid: Bool { authorisationStore.accessTokenValid }
@@ -21,7 +21,11 @@ public class V3APITokenManager: V3APITokenManagable {
     private let scheduler: SchedulerType
     private let disposeBag: DisposeBag = DisposeBag()
 
-    init(authorisationStore: AuthorisationStoring, oAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating, subscibeOnScheduler: SchedulerType = ConcurrentDispatchQueueScheduler(qos: .background)) {
+    init(
+        authorisationStore: AuthorisationStoring,
+        oAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating,
+        subscibeOnScheduler: SchedulerType = ConcurrentDispatchQueueScheduler(qos: .background)
+    ) {
         self.scheduler = subscibeOnScheduler
         self.authorisationStore = authorisationStore
         self.oAuthRefreshOrWaitActionGenerator = oAuthRefreshOrWaitActionGenerator

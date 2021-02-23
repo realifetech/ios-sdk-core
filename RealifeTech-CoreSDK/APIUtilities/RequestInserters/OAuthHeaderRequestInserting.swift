@@ -13,9 +13,15 @@ public protocol OAuthHeaderRequestInserting {
 }
 
 extension OAuthHeaderRequestInserting {
+
     public static func addOAuthHeader(toRequest request: URLRequest) -> URLRequest {
         var request = request
-        guard APIV3RequesterHelper.tokenManager.tokenIsValid, let accessToken = APIV3RequesterHelper.tokenManager.token else { return request }
+        guard
+            APIRequesterHelper.tokenManager.tokenIsValid,
+            let accessToken = APIRequesterHelper.tokenManager.token
+        else {
+            return request
+        }
         let oAuthHeader = RequestHeader.generateAuthHeader(accessToken: accessToken)
         request.addValue(oAuthHeader.valueForHeader, forHTTPHeaderField: oAuthHeader.header)
         return request

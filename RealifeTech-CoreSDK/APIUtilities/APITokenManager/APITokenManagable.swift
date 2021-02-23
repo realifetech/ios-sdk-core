@@ -1,5 +1,5 @@
 //
-//  EnvironmentVariables.swift
+//  APITokenManagable.swift
 //  APIUtilities
 //
 //  Created by Olivier Butler on 02/10/2020.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-public protocol V3APITokenManagable {
+public protocol APITokenManagable {
     var token: String? { get }
     var tokenIsValid: Bool { get }
     var refreshToken: String? { get }
@@ -20,7 +20,7 @@ public protocol V3APITokenManagable {
     func removeCredentials()
 }
 
-struct EmptyTokenManager: V3APITokenManagable {
+struct EmptyTokenManager: APITokenManagable {
 
     var token: String?
     var tokenIsValid: Bool = false

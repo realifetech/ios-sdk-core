@@ -1,6 +1,6 @@
 //
 //  AuthorsationStoreTests.swift
-//  APIV3Utilities
+//  APIUtilities
 //
 //  Created by Olivier Butler on 08/10/2020.
 //  Copyright © 2020 Realife Tech. All rights reserved.
@@ -133,7 +133,11 @@ private class KeychainSubclassSpy: KeychainSwift {
         return valuesToReturn[key]
     }
 
-    override func set(_ value: String, forKey key: String, withAccess access: KeychainSwiftAccessOptions? = nil) -> Bool {
+    override func set(
+        _ value: String,
+        forKey key: String,
+        withAccess access: KeychainSwiftAccessOptions? = nil
+    ) -> Bool {
         mutatedKeyValues[key] = value
         return true
     }

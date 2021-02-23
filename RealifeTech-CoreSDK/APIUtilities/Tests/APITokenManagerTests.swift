@@ -1,6 +1,6 @@
 //
-//  V3APITokenManagerTests.swift
-//  APIV3UtilitiesTests
+//  APITokenManagerTests.swift
+//  APIUtilitiesTests
 //
 //  Created by Olivier Butler on 08/10/2020.
 //  Copyright © 2020 Realife Tech. All rights reserved.
@@ -10,16 +10,16 @@ import XCTest
 import RxSwift
 @testable import RealifeTech_CoreSDK
 
-final class V3APITokenManagerTests: XCTestCase {
+final class APITokenManagerTests: XCTestCase {
 
     private var testStore: MockStore!
     private var testRefreshGenerator: MockRefreshGenerator!
-    var sut: V3APITokenManager!
+    var sut: APITokenManager!
 
     override func setUp() {
         testStore = MockStore()
         testRefreshGenerator = MockRefreshGenerator()
-        sut = V3APITokenManager(
+        sut = APITokenManager(
             authorisationStore: testStore,
             oAuthRefreshOrWaitActionGenerator: testRefreshGenerator,
             subscibeOnScheduler: MainScheduler.instance)
@@ -68,11 +68,12 @@ final class V3APITokenManagerTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 
-    func test_storeCredentials() {
+    func test_storeCredentials() throws {
         sut.storeCredentials(accessToken: "A", secondsExpiresIn: 10, refreshToken: "B")
-        XCTAssertEqual(testStore.credentialsToSave?.0, "A")
-        XCTAssertEqual(testStore.credentialsToSave?.1, 10)
-        XCTAssertEqual(testStore.credentialsToSave?.2, "B")
+        let credentialsReceived = try XCTUnwrap(testStore.credentialsToSave)
+        XCTAssertEqual(credentialsReceived.token, "A")
+        XCTAssertEqual(credentialsReceived.secondsExpiresIn, 10)
+        XCTAssertEqual(credentialsReceived.refreshToken, "B")
     }
 
     func test_removeCredentials() {
@@ -81,17 +82,26 @@ final class V3APITokenManagerTests: XCTestCase {
     }
 }
 
+struct StubToken {
+    let token: String
+    let secondsExpiresIn: Int
+    let refreshToken: String?
+}
+
 private final class MockStore: AuthorisationStoring {
 
     var accessToken: String?
     var accessTokenValid: Bool = false
     var refreshToken: String?
     var refreshTokenValid: Bool = false
-    var credentialsToSave: (String, Int, String?)?
+    var credentialsToSave: StubToken?
     var removeCredentialsCalled: Bool = false
 
     func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?) {
-        credentialsToSave = (token, secondsExpiresIn, refreshToken)
+        credentialsToSave = StubToken(
+            token: token,
+            secondsExpiresIn: secondsExpiresIn,
+            refreshToken: refreshToken)
     }
 
     func removeCredentials() {

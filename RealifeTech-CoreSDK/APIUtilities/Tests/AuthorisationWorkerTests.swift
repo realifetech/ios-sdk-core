@@ -1,6 +1,6 @@
 //
 //  AuthorisationWorkerTests.swift
-//  APIV3Utilities
+//  APIUtilities
 //
 //  Created by Olivier Butler on 08/10/2020.
 //  Copyright © 2020 Realife Tech. All rights reserved.
@@ -32,7 +32,7 @@ final class AuthorisationWorkerTests: XCTestCase {
             tokenType: nil,
             scope: nil)
         let expectation = XCTestExpectation(description: "OAuth observable did emit value")
-        emitInitialAccessToken(initialToken: testOAuthToken) { token in
+        emitInitialAccessToken(initialToken: testOAuthToken) { _ in
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -46,15 +46,12 @@ final class AuthorisationWorkerTests: XCTestCase {
             tokenType: nil,
             scope: nil)
         let expectation = XCTestExpectation(description: "OAuth observable did emit value")
-        emitInitialAccessToken(initialToken: testOAuthToken) { token in
+        emitInitialAccessToken(initialToken: testOAuthToken) { _ in
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
-        guard let(resultToken, resultExpiry, _) = storeSpy.savedCredentials else {
-            return XCTFail("No token details saved to store")
-        }
-        XCTAssertEqual(resultToken, testTokenString)
-        XCTAssertEqual(resultExpiry, testExpirySeconds)
+        XCTAssertEqual(storeSpy.savedCredentials?.token, testTokenString)
+        XCTAssertEqual(storeSpy.savedCredentials?.secondsExpiresIn, testExpirySeconds)
     }
 
     private func emitInitialAccessToken(initialToken: OAuthToken, completion: @escaping (OAuthToken) -> Void) {
@@ -78,10 +75,10 @@ final class AuthorisationWorkerTests: XCTestCase {
             tokenType: nil,
             scope: nil)
         let expectation = XCTestExpectation(description: "OAuth observable did emit value")
-        emitRefreshAccessToken(initialToken: testOAuthToken) { [self] token in
-            XCTAssertEqual(storeSpy.savedCredentials?.0, testTokenString)
-            XCTAssertEqual(storeSpy.savedCredentials?.1, testExpirySeconds)
-            XCTAssertEqual(storeSpy.savedCredentials?.2, testTokenString)
+        emitRefreshAccessToken(initialToken: testOAuthToken) { [self] _ in
+            XCTAssertEqual(storeSpy.savedCredentials?.token, testTokenString)
+            XCTAssertEqual(storeSpy.savedCredentials?.secondsExpiresIn, testExpirySeconds)
+            XCTAssertEqual(storeSpy.savedCredentials?.refreshToken, testTokenString)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -125,10 +122,13 @@ private final class MockAuthorisationStore: AuthorisationStoring {
     var accessTokenValid: Bool = false
     var refreshToken: String?
     var refreshTokenValid: Bool = false
-    var savedCredentials: (String, Int, String?)?
+    var savedCredentials: StubToken?
 
     func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?) {
-        self.savedCredentials = (token, secondsExpiresIn, refreshToken)
+        savedCredentials = StubToken(
+            token: token,
+            secondsExpiresIn: secondsExpiresIn,
+            refreshToken: refreshToken)
     }
 
     func removeCredentials() {}

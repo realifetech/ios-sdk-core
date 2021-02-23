@@ -20,13 +20,18 @@ struct OAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating {
     private let authorisationStore: AuthorisationStoring
     private let oAuthTokenRefreshWatcher: OAuthTokenRefreshWatchable
 
-    init (authorisationWorker: AuthorisationWorkable, oAuthTokenRefreshWatcher: OAuthTokenRefreshWatchable, authorisationStore: AuthorisationStoring) {
+    init (
+        authorisationWorker: AuthorisationWorkable,
+        oAuthTokenRefreshWatcher: OAuthTokenRefreshWatchable,
+        authorisationStore: AuthorisationStoring
+    ) {
         self.authorisationWorker = authorisationWorker
         self.authorisationStore = authorisationStore
         self.oAuthTokenRefreshWatcher = oAuthTokenRefreshWatcher
     }
 
-    /// Nil if we have a valid token. If no token exists, or is invalid, or is being currently refreshed, this will return an observable which will emit once the token action is complete.
+    /// Nil if we have a valid token. If no token exists, or is invalid, or is being currently refreshed,
+    /// this will return an observable which will emit once the token action is complete.
     var refreshTokenOrWaitAction: Observable<Void>? {
         if let ongoingTokenRefresh = oAuthTokenRefreshWatcher.ongoingTokenRefresh {
             // We take 1 because we only care about the current refresh.
