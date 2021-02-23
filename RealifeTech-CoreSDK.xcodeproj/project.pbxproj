@@ -97,6 +97,7 @@
 		961E2DC42580EDD200547451 /* CodableStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB42580E34F00547451 /* CodableStorageTests.swift */; };
 		961E2DC72580EDD500547451 /* DiskStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB52580E34F00547451 /* DiskStorageTests.swift */; };
 		9655A40B2581086B006C46CF /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 9655A40A2581086B006C46CF /* schema.json */; };
+		9667DE5B25E50FC700E5D960 /* content_getWebPageByType.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */; };
 		968A6C3F25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C3E25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift */; };
 		968A6C4325C9537C001545E9 /* APIV3TokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C4225C9537C001545E9 /* APIV3TokenInterceptor.swift */; };
 		968A6C4B25C953B1001545E9 /* RequestLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C4A25C953B1001545E9 /* RequestLoggingInterceptor.swift */; };
@@ -220,6 +221,7 @@
 		961E2CE82580E35400547451 /* RequestHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHeader.swift; sourceTree = "<group>"; };
 		961E2CE92580E35400547451 /* APIRootURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRootURL.swift; sourceTree = "<group>"; };
 		9655A40A2581086B006C46CF /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = content_getWebPageByType.graphql.swift; sourceTree = "<group>"; };
 		968A6C3E25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphNetworkInterceptorProvider.swift; sourceTree = "<group>"; };
 		968A6C4225C9537C001545E9 /* APIV3TokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIV3TokenInterceptor.swift; sourceTree = "<group>"; };
 		968A6C4A25C953B1001545E9 /* RequestLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoggingInterceptor.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				96CACC952582043D00238919 /* canvas_getScreenByScreenType.graphql.swift */,
 				96CACC972582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift */,
 				96CACC982582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift */,
+				9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */,
 				96CACCA32582046700238919 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -907,6 +910,7 @@
 				961E2CEA2580E35400547451 /* UIDeviceFactory.swift in Sources */,
 				961E2D112580E35400547451 /* GraphQLDispatcher.swift in Sources */,
 				961E2D012580E35400547451 /* Requester.swift in Sources */,
+				9667DE5B25E50FC700E5D960 /* content_getWebPageByType.graphql.swift in Sources */,
 				961E2D442580E35400547451 /* OAuthToken.swift in Sources */,
 				96CACC9B2582043E00238919 /* canvas_getScreenByScreenType.graphql.swift in Sources */,
 				96CACC992582043E00238919 /* canvas_getScreenByScreenId.graphql.swift in Sources */,

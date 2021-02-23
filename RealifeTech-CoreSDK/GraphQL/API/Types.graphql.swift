@@ -434,4 +434,64 @@ public enum ApolloType {
       ]
     }
   }
+
+  public enum WebPageType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case audioGuidesHelp
+    case tAndC
+    case privacy
+    case about
+    case aboutCompany
+    case purchasesHelp
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "audioGuidesHelp": self = .audioGuidesHelp
+        case "tAndC": self = .tAndC
+        case "privacy": self = .privacy
+        case "about": self = .about
+        case "aboutCompany": self = .aboutCompany
+        case "purchasesHelp": self = .purchasesHelp
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .audioGuidesHelp: return "audioGuidesHelp"
+        case .tAndC: return "tAndC"
+        case .privacy: return "privacy"
+        case .about: return "about"
+        case .aboutCompany: return "aboutCompany"
+        case .purchasesHelp: return "purchasesHelp"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: WebPageType, rhs: WebPageType) -> Bool {
+      switch (lhs, rhs) {
+        case (.audioGuidesHelp, .audioGuidesHelp): return true
+        case (.tAndC, .tAndC): return true
+        case (.privacy, .privacy): return true
+        case (.about, .about): return true
+        case (.aboutCompany, .aboutCompany): return true
+        case (.purchasesHelp, .purchasesHelp): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [WebPageType] {
+      return [
+        .audioGuidesHelp,
+        .tAndC,
+        .privacy,
+        .about,
+        .aboutCompany,
+        .purchasesHelp,
+      ]
+    }
+  }
 }
