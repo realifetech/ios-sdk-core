@@ -19,8 +19,8 @@ struct GraphNetworkInterceptorProvider: InterceptorProvider {
             LegacyCacheReadInterceptor(store: store),
             NetworkFetchInterceptor(client: client),
             RequestLoggingInterceptor(),
-            ResponseCodeInterceptor(),
             APIV3TokenInterceptor(tokenHelper: tokenHelper),
+            ResponseCodeInterceptor(),
             LegacyParsingInterceptor(cacheKeyForObject: store.cacheKeyForObject),
             LegacyCacheWriteInterceptor(store: store)
         ]

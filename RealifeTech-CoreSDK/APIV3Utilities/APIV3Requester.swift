@@ -17,9 +17,14 @@ public protocol APIV3Requester: JSONContentTypeHeaderRequestInserting, DeviceIdH
 }
 
 extension APIV3Requester {
+
     public static func preDispatchAction() -> Observable<Any?>? {
-        return APIV3RequesterHelper.tokenManager.getTokenObservable?.map {
-            $0 as Any
+        return .create { observer in
+            APIV3RequesterHelper.tokenManager.getValidToken {
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            return Disposables.create()
         }
     }
 
@@ -45,6 +50,7 @@ extension APIV3Requester {
 }
 
 extension APIV3Requester {
+
     static func format(date: Date, format: String? = nil) -> String {
         let dateFormat = format ?? dateFormatString()
         let formatter = DateFormatter()

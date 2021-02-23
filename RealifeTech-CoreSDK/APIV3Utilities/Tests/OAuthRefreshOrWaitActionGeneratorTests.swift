@@ -129,17 +129,21 @@ private final class MockStore: AuthorisationStoring {
 
     var accessToken: String?
     var accessTokenValid: Bool = false
+    var refreshToken: String?
+    var refreshTokenValid: Bool = false
 
-    func saveCredentials(token: String, secondsExpiresIn: Int) {}
+    func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?) {}
     func removeCredentials() {}
 }
 
 private final class MockWorker: AuthorisationWorkable {
 
     var requestInitialAccessToken: Observable<OAuthToken>
+    var refreshAccessToken: Observable<OAuthToken>?
 
     init(oAuthTokenObservable: Observable<OAuthToken>) {
         self.requestInitialAccessToken = oAuthTokenObservable
+        self.refreshAccessToken = nil
     }
 }
 

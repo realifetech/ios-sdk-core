@@ -32,7 +32,9 @@ class APIV3TokenInterceptor: ApolloInterceptor {
             return
         }
         if urlResponse.statusCode == 400 {
-            tokenHelper.getValidToken {
+            tokenHelper.getValidToken { [self] in
+                guard let token = tokenHelper.token, tokenHelper.tokenIsValid else { return }
+                request.addHeader(name: "Authorization", value: "Bearer \(token)")
                 chain.retry(request: request, completion: completion)
             }
         } else {
