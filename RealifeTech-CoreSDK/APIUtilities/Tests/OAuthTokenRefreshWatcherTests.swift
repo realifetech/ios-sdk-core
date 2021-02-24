@@ -35,17 +35,17 @@ final class OAuthTokenRefreshWatcherTests: XCTestCase {
         XCTAssertNotNil(sut.ongoingTokenRefresh)
     }
 
-    func test_ongoingTokenRefresh_refreshing_emitValueWhenValid() {
+    func test_ongoingTokenRefresh_refreshing_emitValueWhenValid() throws {
         let scheduler = TestScheduler(initialClock: 0)
         let disposeBag = DisposeBag()
         let observer = scheduler.createObserver(Bool.self)
         let tokenStatusInput = scheduler.createColdObservable([
-            Recorded.next(100, OAuthTokenStatus.invalid),
-            Recorded.next(300, OAuthTokenStatus.refreshing),
-            Recorded.next(400, OAuthTokenStatus.valid),
-            Recorded.next(450, OAuthTokenStatus.unknown),
-            Recorded.completed(500)])
-        let expectedResult = [Recorded.next(400, true)]
+            Recorded.next(10, OAuthTokenStatus.invalid),
+            Recorded.next(30, OAuthTokenStatus.refreshing),
+            Recorded.next(40, OAuthTokenStatus.valid),
+            Recorded.next(45, OAuthTokenStatus.unknown),
+            Recorded.completed(50)])
+        let expectedResult = [Recorded.next(40, true)]
         let tokenStatusSource = BehaviorRelay(value: OAuthTokenStatus.unknown)
         tokenStatusInput
             .bind(to: tokenStatusSource)
@@ -53,9 +53,7 @@ final class OAuthTokenRefreshWatcherTests: XCTestCase {
         let sut = OAuthTokenRefreshWatcher(tokenStatusSource: tokenStatusSource)
         sut.updateRefreshingStatus(newValue: .refreshing)
 
-        guard let observable = sut.ongoingTokenRefresh else {
-            return XCTFail("Did not receive a token refresh observable")
-        }
+        let observable = try XCTUnwrap(sut.ongoingTokenRefresh)
         observable
             .asDriver(onErrorJustReturn: true)
             .drive(observer)

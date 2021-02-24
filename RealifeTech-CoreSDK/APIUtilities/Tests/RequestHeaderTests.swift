@@ -24,5 +24,4 @@ final class RequestHeaderTests: XCTestCase {
         XCTAssertEqual(sut.header, "Authorization")
         XCTAssertEqual(sut.valueForHeader, "Bearer \(testToken)")
     }
-
 }

@@ -16,9 +16,9 @@ final class DiskStorageTests: XCTestCase {
         let date: Date
     }
 
-    let testData = Data()
-    let writeSut: DiskStorage = makeSut()
-    let readSut: DiskStorage = makeSut()
+    private let testData = Data()
+    private let writeSut: DiskStorage = makeSut()
+    private let readSut: DiskStorage = makeSut()
 
     override func setUp() {
         writeSut.deleteValue(for: "diskStorageData")
@@ -97,7 +97,7 @@ final class DiskStorageTests: XCTestCase {
         })
     }
 
-    private class func makeSut() -> DiskStorage {
+    private final class func makeSut() -> DiskStorage {
         let path = URL(fileURLWithPath: NSTemporaryDirectory())
         return DiskStorage(path: path)
     }

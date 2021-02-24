@@ -11,18 +11,24 @@ import XCTest
 
 final class APIRequesterHelperTests: XCTestCase {
 
-    let testDeviceId = "device123"
-    let testClientId = "client456"
-    let testClientSecret = "secret789"
-    let testBaseUrl = "baseUrl123"
-    var tokenManager: APITokenManagable?
+    private let testDeviceId = "device123"
+    private let testClientId = "client456"
+    private let testClientSecret = "secret789"
+    private let testBaseUrl = "baseUrl123"
+    private var tokenManager: APITokenManagable?
 
     override func setUp() {
+        super.setUp()
         tokenManager = APIRequesterHelper.setupAPI(
             deviceId: testDeviceId,
             clientId: testClientId,
             clientSecret: testClientSecret,
             baseUrl: testBaseUrl)
+    }
+
+    override func tearDown() {
+        tokenManager = nil
+        super.tearDown()
     }
 
     func test_setupAPI_staticProperties() {
@@ -33,17 +39,14 @@ final class APIRequesterHelperTests: XCTestCase {
         XCTAssertEqual(testBaseUrl, APIRequesterHelper.baseUrl)
     }
 
-    func test_setupAPI_oAuthParameters() {
+    func test_setupAPI_oAuthParameters() throws {
         let requestToTest = OAuthRequester.requestInitialAccessToken()
         XCTAssertTrue(requestToTest.url?.absoluteString.contains(testBaseUrl) ?? false)
-        guard
-            let bodyData = requestToTest.httpBody,
-            let bodyDict = try? JSONSerialization.jsonObject(
+        let bodyData = try XCTUnwrap(requestToTest.httpBody)
+        let bodyDict = try XCTUnwrap(
+            JSONSerialization.jsonObject(
                 with: bodyData,
-                options: .allowFragments) as? NSDictionary
-            else {
-                return XCTFail("No body data")
-        }
+                options: .allowFragments) as? NSDictionary)
         let resultClientId = bodyDict["client_id"] as? String
         let resultClientSecret = bodyDict["client_secret"] as? String
         XCTAssertEqual(resultClientId, testClientId + "_0")

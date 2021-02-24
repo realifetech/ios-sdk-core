@@ -12,7 +12,7 @@ enum MockErrorType: Int {
     case genericError
 }
 
-class MockAPIError: Error {
+final class MockAPIError: Error {
     var type: MockErrorType
     
     fileprivate init(type: MockErrorType) {
@@ -33,7 +33,7 @@ extension MockAPIError: LocalizedError {
     }
 }
 
-public class APIError: Error {
+public final class APIError: Error {
 
     var data: Data?
     var title: String? //probably to be used as an AlertController title

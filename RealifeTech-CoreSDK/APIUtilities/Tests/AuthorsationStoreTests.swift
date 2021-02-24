@@ -13,10 +13,10 @@ final class AuthorisationStoreTests: XCTestCase {
 
     var sut: AuthorisationStoring!
     private var keychain: KeychainSubclassSpy!
-    let tokenKey = AuthorisationStore.KeychainKey.token.rawValue
-    let expiryKey = AuthorisationStore.KeychainKey.expiryDate.rawValue
-    let refreshTokenKey = AuthorisationStore.KeychainKey.refreshToken.rawValue
-    let refreshTokenExpiryKey = AuthorisationStore.KeychainKey.refreshTokenExpiryDate.rawValue
+    private let tokenKey = AuthorisationStore.KeychainKey.token.rawValue
+    private let expiryKey = AuthorisationStore.KeychainKey.expiryDate.rawValue
+    private let refreshTokenKey = AuthorisationStore.KeychainKey.refreshToken.rawValue
+    private let refreshTokenExpiryKey = AuthorisationStore.KeychainKey.refreshTokenExpiryDate.rawValue
 
     override func setUp() {
         self.keychain = KeychainSubclassSpy()
@@ -116,7 +116,7 @@ final class AuthorisationStoreTests: XCTestCase {
     }
 }
 
-private class KeychainSubclassSpy: KeychainSwift {
+private final class KeychainSubclassSpy: KeychainSwift {
 
     var deletedKeys: [String] = []
     var retrievedKeys: [String] = []

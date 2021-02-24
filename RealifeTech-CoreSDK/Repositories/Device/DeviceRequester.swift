@@ -19,8 +19,7 @@ extension DeviceRequester {
             withRoot: root(),
             andEndpoint: endpoint + "/register",
             httpMethod: .POST,
-            body: device.jsonRepresentation,
-            headers: nil)
+            body: device.jsonRepresentation)
     }
 
     static func register(tokenForPushNotificationsWithDeviceToken deviceToken: DeviceToken) -> URLRequest {
@@ -31,7 +30,6 @@ extension DeviceRequester {
             withRoot: root(),
             andEndpoint: endpoint + "/me/token",
             httpMethod: .POST,
-            body: body,
-            headers: nil)
+            body: body)
     }
 }

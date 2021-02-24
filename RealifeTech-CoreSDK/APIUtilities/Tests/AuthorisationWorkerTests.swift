@@ -15,9 +15,9 @@ final class AuthorisationWorkerTests: XCTestCase {
     private var storeSpy: MockAuthorisationStore!
     var sut: AuthorisationWorker!
 
-    let testTokenString = "KENOT"
-    let testExpirySeconds = 1234
-    let disposeBag = DisposeBag()
+    private let testTokenString = "KENOT"
+    private let testExpirySeconds = 1234
+    private let disposeBag = DisposeBag()
 
     override func setUp() {
         storeSpy = MockAuthorisationStore()

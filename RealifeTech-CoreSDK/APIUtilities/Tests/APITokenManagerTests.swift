@@ -91,11 +91,11 @@ struct StubToken {
 private final class MockStore: AuthorisationStoring {
 
     var accessToken: String?
-    var accessTokenValid: Bool = false
+    var accessTokenValid = false
     var refreshToken: String?
-    var refreshTokenValid: Bool = false
+    var refreshTokenValid = false
     var credentialsToSave: StubToken?
-    var removeCredentialsCalled: Bool = false
+    var removeCredentialsCalled = false
 
     func saveCredentials(token: String, secondsExpiresIn: Int, refreshToken: String?) {
         credentialsToSave = StubToken(
