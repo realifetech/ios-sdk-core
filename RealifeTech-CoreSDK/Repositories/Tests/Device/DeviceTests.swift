@@ -11,7 +11,7 @@ import XCTest
 
 final class DeviceTests: XCTestCase {
 
-    static let jsonDevice: [String: Any] = [
+    private static let jsonDevice: [String: Any] = [
         "appVersion": "0.0.1alpha",
         "manufacturer": "APPLE",
         "osVersion": "4",
@@ -22,7 +22,7 @@ final class DeviceTests: XCTestCase {
         "token": "123"
     ]
 
-    static let testDevice: Device = Device(
+    private static let testDevice: Device = Device(
         deviceId: "123",
         type: "IOS",
         model: "OlivierPhone",

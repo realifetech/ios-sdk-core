@@ -16,8 +16,8 @@ final class CodableStorageTests: XCTestCase {
         let date: Date
     }
 
-    let readSut = makeSut()
-    let writeSut = makeSut()
+    private let readSut = makeSut()
+    private let writeSut = makeSut()
 
     override func setUp() {
         super.setUp()
