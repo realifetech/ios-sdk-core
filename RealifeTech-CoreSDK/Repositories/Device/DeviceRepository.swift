@@ -20,7 +20,7 @@ public protocol DeviceProviding {
 
 public struct DeviceRepository: RemoteDiskCacheDataProviding {
 
-    public typealias Cdble = StandardV3SenderResponse
+    public typealias Cdble = StandardSenderResponse
     public typealias Rqstr = DeviceRequester
 }
 
@@ -28,7 +28,7 @@ extension DeviceRepository: DeviceProviding {
 
     public static func registerDevice(_ device: Device) -> Observable<Bool> {
         return retrieve(
-            type: StandardV3SenderResponse.self,
+            type: StandardSenderResponse.self,
             forRequest: Rqstr.register(device: device),
             strategy: .remoteWithoutCachingResponse).map { $0.isSuccess }
     }

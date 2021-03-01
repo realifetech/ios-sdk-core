@@ -44,8 +44,8 @@ public struct AnalyticEvent: Codable {
             dictionary != nil,
             let dictionaryString = try? encoder.encode(dictionary),
             let jsonString = String(data: dictionaryString, encoding: .utf8)
-            else {
-                return nil
+        else {
+            return nil
         }
         return NSRegularExpression.escapedPattern(for: jsonString).replacingOccurrences(of: "\\", with: "")
     }

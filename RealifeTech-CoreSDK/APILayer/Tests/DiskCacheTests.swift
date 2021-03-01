@@ -25,8 +25,8 @@ struct DelTestObjLocalRepository: LocalDiskCacheDataProviding {
 final class DiskCacheTests: XCTestCase {
 
     func testLocalFullFileName() {
-        XCTAssert(TestObjLocalRepository.fullFileName(identifier: "123", privateObj: true) == "TestObjLocalRepository-123-private")
-        XCTAssert(TestObjLocalRepository.fullFileName(identifier: "123") == "TestObjLocalRepository-123")
+        XCTAssertEqual(TestObjLocalRepository.fullFileName(identifier: "123", privateObj: true), "TestObjLocalRepository-123-private")
+        XCTAssertEqual(TestObjLocalRepository.fullFileName(identifier: "123"), "TestObjLocalRepository-123")
     }
 
     func deleteObjs() {
@@ -35,7 +35,7 @@ final class DiskCacheTests: XCTestCase {
         TestObjLocalRepository.deleteItem(withIdentifier: "124")
     }
 
-    func testSingleItemSaveRead() {
+    func test_singleItemSaveRead() {
         deleteObjs()
         let obj = TestObj(id: "122", otherField: 455)
         TestObjLocalRepository.saveItem(codable: obj, identifier: "\(obj.id)")
@@ -43,20 +43,20 @@ final class DiskCacheTests: XCTestCase {
         let rawItem = DiskCache.read(fileName: fileName)
         XCTAssertNotNil(rawItem.file)
         let rawItems = DiskCache.readItems(withBaseFileName: TestObjLocalRepository.baseFileName)
-        XCTAssert(rawItems.count == 1)
+        XCTAssertEqual(rawItems.count, 1)
     }
 
-    func testMultipleItemsSaveRead() {
+    func test_multipleItemsSaveRead() {
         deleteObjs()
         let obj = TestObj(id: "123", otherField: 456)
         let obj2 = TestObj(id: "124", otherField: 457)
         TestObjLocalRepository.saveItem(codable: obj, identifier: "\(obj.id)")
         TestObjLocalRepository.saveItem(codable: obj2, identifier: "\(obj2.id)")
         let rawItems = DiskCache.readItems(withBaseFileName: TestObjLocalRepository.baseFileName)
-        XCTAssert(rawItems.count == 2)
+        XCTAssertEqual(rawItems.count, 2)
     }
 
-    func testDeleteItem() {
+    func test_deleteItem() {
         let obj = TestObj(id: "125", otherField: 459)
         let fileName = DelTestObjLocalRepository.fullFileName(identifier: "\(obj.id)")
         DelTestObjLocalRepository.saveItem(codable: obj, identifier: "\(obj.id)")
@@ -64,6 +64,6 @@ final class DiskCacheTests: XCTestCase {
         XCTAssertNotNil(rawItem.file)
         DelTestObjLocalRepository.deleteItem(withIdentifier: "\(obj.id)")
         let rawItems = DiskCache.readItems(withBaseFileName: DelTestObjLocalRepository.baseFileName)
-        XCTAssert(rawItems.count == 0)
+        XCTAssertTrue(rawItems.isEmpty)
     }
 }

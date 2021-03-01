@@ -40,45 +40,13 @@ public enum HttpMethod: String {
     case GET, PUT, POST, DELETE, PATCH
 }
 
-public protocol RequestRootURL {
-    var rawValue: String { get }
-}
-
 public struct RequestCreator {
 
-    static func path(withRoot root: RequestRootURL, andEndpoint endpoint: String) -> String {
-        return "\(root.rawValue)\(endpoint)"
-    }
-
     static func path(withRoot root: String, andEndpoint endpoint: String) -> String {
-        return "\(root)\(endpoint)"
+        return root + endpoint
     }
 
     public static func createRequest(withRoot root: String, andEndpoint endpoint: String, httpMethod: HttpMethod, body: [String: Any]? = nil, bodyData: Data? = nil, headers: [String: String]? = nil) -> URLRequest {
-        let urlString = path(withRoot: root, andEndpoint: endpoint)
-        var req = URLRequest(url: URL(string: urlString)!, timeoutInterval: 30)
-        req.httpMethod = httpMethod.rawValue
-        if let body = body {
-            if httpMethod == .GET {
-                req.url = URL(string: "\(urlString)\(addGETParameters(fromBody: body))")
-            } else {
-                if let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted) {
-                    req.httpBody = bodyData
-                }
-            }
-        }
-        if let bodyData = bodyData {
-            req.httpBody = bodyData
-        }
-        if let headers = headers {
-            for header in headers {
-                req.setValue(header.value, forHTTPHeaderField: header.key)
-            }
-        }
-        return req
-    }
-
-    public static func createRequest(withRoot root: RequestRootURL, andEndpoint endpoint: String, httpMethod: HttpMethod, body: [String: Any]? = nil, bodyData: Data? = nil, headers: [String: String]? = nil) -> URLRequest {
         let urlString = path(withRoot: root, andEndpoint: endpoint)
         var req = URLRequest(url: URL(string: urlString)!, timeoutInterval: 30)
         req.httpMethod = httpMethod.rawValue

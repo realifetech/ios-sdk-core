@@ -18,14 +18,15 @@ public struct Device: Codable, Equatable {
     let bluetoothOn: Bool?
     let wifiConnected: Bool?
 
-    public init(deviceId: String,
-                type: String = "IOS",
-                model: String,
-                manufacturer: String = "APPLE",
-                sdkVersion: String,
-                osVersion: String,
-                bluetoothOn: Bool,
-                wifiConnected: Bool
+    public init(
+        deviceId: String,
+        type: String = "IOS",
+        model: String,
+        manufacturer: String = "APPLE",
+        sdkVersion: String,
+        osVersion: String,
+        bluetoothOn: Bool,
+        wifiConnected: Bool
     ) {
         self.token = deviceId
         self.type = type
@@ -44,8 +45,8 @@ extension Device {
             let data = try? JSONEncoder().encode(self),
             let json = try? JSONSerialization.jsonObject(with: data, options: []),
             let jsonDict = json as? [String: Any]
-            else {
-                return [:]
+        else {
+            return [:]
         }
         return jsonDict
     }

@@ -12,13 +12,13 @@ import Apollo
 public class GraphNetwork {
 
     let graphQLAPIUrl: URL
-    let tokenHelper: V3APITokenManagable
+    let tokenHelper: APITokenManagable
     let deviceId: String
     let reachabilityHelper: ReachabilityChecking
 
     public init(
         graphQLAPIUrl: URL,
-        tokenHelper: V3APITokenManagable,
+        tokenHelper: APITokenManagable,
         deviceId: String,
         reachabilityHelper: ReachabilityChecking
     ) {

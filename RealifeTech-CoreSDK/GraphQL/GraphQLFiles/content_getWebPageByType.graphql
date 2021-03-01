@@ -1,0 +1,5 @@
+query getWebPageByType($type: WebPageType) {
+  getWebPageByType(type: $type) {
+    url
+  }
+}
