@@ -82,6 +82,9 @@ public enum ApolloType {
     case nr
     case de
     case sv
+    case nb
+    case lt
+    case pt
     /// Auto generated constant for unknown enum values
     case __unknown(RawValue)
 
@@ -92,6 +95,9 @@ public enum ApolloType {
         case "nr": self = .nr
         case "de": self = .de
         case "sv": self = .sv
+        case "nb": self = .nb
+        case "lt": self = .lt
+        case "pt": self = .pt
         default: self = .__unknown(rawValue)
       }
     }
@@ -103,6 +109,9 @@ public enum ApolloType {
         case .nr: return "nr"
         case .de: return "de"
         case .sv: return "sv"
+        case .nb: return "nb"
+        case .lt: return "lt"
+        case .pt: return "pt"
         case .__unknown(let value): return value
       }
     }
@@ -114,6 +123,9 @@ public enum ApolloType {
         case (.nr, .nr): return true
         case (.de, .de): return true
         case (.sv, .sv): return true
+        case (.nb, .nb): return true
+        case (.lt, .lt): return true
+        case (.pt, .pt): return true
         case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
         default: return false
       }
@@ -126,6 +138,9 @@ public enum ApolloType {
         .nr,
         .de,
         .sv,
+        .nb,
+        .lt,
+        .pt,
       ]
     }
   }
