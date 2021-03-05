@@ -7,14 +7,18 @@
 
 import Foundation
 
-internal struct RequestLogger {
+struct RequestLogger {
+
     static func log(request: URLRequest) {
-        
         #if APILOGGING
         guard let url = request.url else { return }
         print("---")
         print("Request URL: \(String(describing: url))")
-        if let body = request.httpBody, let bodyData = try? JSONSerialization.jsonObject(with: body, options: .mutableLeaves) {
+        if
+            let body = request.httpBody,
+            let bodyData = try? JSONSerialization.jsonObject(
+                with: body,
+                options: .mutableLeaves) {
             print("Request Body: \(String(describing: bodyData))")
         }
         print("Request Headers: \((String(describing: request.allHTTPHeaderFields ?? [:])))")

@@ -20,7 +20,7 @@ public protocol DiskCachable {
         expiresAt: Int64
     ) throws
     func readItem(with fileName: String, includeExpired: Bool) -> (file: String?, expired: Bool)
-    func readItems(with baseFileName: String) ->  [String]
+    func readItems(with baseFileName: String) -> [String]
     func deleteItem(with fileName: String)
     func clearItems(deletionStrategy: DiskCacheDeletionStrategy, completion: (() -> Void)?)
 }
@@ -30,15 +30,15 @@ public struct DiskCache: DiskCachable {
     private let fileManager: FileManager
     private let clearCacheQueue: DispatchQueue
 
+    private static let second: Int64 = 6000
+    private static let minute: Int64 = second * 60
+    private static let hour: Int64 = minute * 60
+    private static let day: Int64 = hour * 24
+    private static let cacheDuration: Int64 = minute * 10
+    private static let fileDuration: Int64 = day * 2
+    static let defaultExpiresAt = Date().toMilliseconds() + cacheDuration
     static let fileExtension: String = ".diskcache"
     static let privateIndicator: String = "-private"
-    static let second: Int64 = 6000
-    static let minute: Int64 = second * 60
-    static let hour: Int64 = minute * 60
-    static let day: Int64 = hour * 24
-    static let cacheDuration: Int64 = minute * 10
-    static let fileDuration: Int64 = day * 2
-    static let defaultExpiresAt = Date().toMilliseconds() + cacheDuration
 
     enum FileComponentKey {
         case expiry, file
@@ -81,7 +81,7 @@ public struct DiskCache: DiskCachable {
         }
     }
 
-    public func readItems(with baseFileName: String) ->  [String] {
+    public func readItems(with baseFileName: String) -> [String] {
         guard let files = try? getAllFilesUrl() else { return [] }
         return files
             .filter { return $0.lastPathComponent.starts(with: baseFileName) }

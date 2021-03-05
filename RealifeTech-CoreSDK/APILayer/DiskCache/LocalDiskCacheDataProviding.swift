@@ -11,6 +11,8 @@ import Foundation
 // Provides cache based CRUD operations for locally created objects
 public protocol LocalDiskCacheDataProviding {
     associatedtype Cdble: Codable
+
+    static var diskCache: DiskCachable { get }
 }
 
 public extension LocalDiskCacheDataProviding {
@@ -48,7 +50,7 @@ public extension LocalDiskCacheDataProviding {
     }
 
     static var items: [Cdble] {
-        return diskCacheCodableInterface.localItems(of: Cdble.self, wite: baseFileName)
+        return diskCacheCodableInterface.localItems(of: Cdble.self, with: baseFileName)
     }
 
     private static var baseFileName: String {

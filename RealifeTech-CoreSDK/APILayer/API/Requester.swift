@@ -21,6 +21,7 @@ public protocol Requester {
     static func preDispatchAction() -> Observable<Any?>?
     static func interceptors() -> [(URLRequest) -> (URLRequest)]?
     static func dateFormat() -> RequesterDateFormat?
+    static func response(forRequest request: URLRequest) -> Observable<Data>
 }
 
 public extension Requester {

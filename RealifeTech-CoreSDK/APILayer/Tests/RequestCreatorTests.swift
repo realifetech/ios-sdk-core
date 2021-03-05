@@ -42,6 +42,8 @@ final class RequestCreatorTests: XCTestCase {
             "forceApiCheck": 1,
             "testParameter": "test",
             "userActions[]": userActions]
-        XCTAssertEqual(RequestCreator.addGETParameters(fromBody: testBody1), RequestCreator.addGETParameters(fromBody: testBody2))
+        XCTAssertEqual(
+            RequestCreator.addGETParameters(fromBody: testBody1),
+            RequestCreator.addGETParameters(fromBody: testBody2))
     }
 }

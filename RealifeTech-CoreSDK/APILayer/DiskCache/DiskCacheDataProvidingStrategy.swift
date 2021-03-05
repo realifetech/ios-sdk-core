@@ -23,7 +23,7 @@ public enum DiskCacheDataProvidingError: Error, LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .directoryNotFound: return "Direcotry not found".localizedString
+        case .directoryNotFound: return "DIRECTORY_NOTFOUND_ERROR".localizedString
         case .unparseable: return "UNPARSEABLE_ERROR".localizedString
         }
     }

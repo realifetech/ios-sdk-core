@@ -48,7 +48,7 @@ public struct DiskCacheCodableInterface {
     /// - Returns: A list of objects
     func localItems<Model: Codable>(
         of type: Model.Type,
-        wite baseFileName: String
+        with baseFileName: String
     ) -> [Model] {
         return diskCache
             .readItems(with: baseFileName)
@@ -114,7 +114,7 @@ public struct DiskCacheCodableInterface {
         }
         return decoder
     }
-    
+
     private func makeEncoder(for dateFormat: RequesterDateFormat?) -> JSONEncoder {
         let encoder = JSONEncoder()
         if let dateFormat = dateFormat {

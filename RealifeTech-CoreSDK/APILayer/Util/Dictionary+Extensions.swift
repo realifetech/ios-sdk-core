@@ -13,10 +13,10 @@ extension Dictionary {
     /// - Parameter mapFunction: Function to use to transform existing key/value
     /// - Returns: Mapped dictionary
     public func map <K, V> (_ map: (Key, Value) -> (K, V)) -> [K: V] {
-        var mapped = [K: V]()
+        var mapped: [K: V] = [:]
         for (key, value) in self {
-            let (_key, _value) = map(key, value)
-            mapped[_key] = _value
+            let (theKey, theValue) = map(key, value)
+            mapped[theKey] = theValue
         }
         return mapped
     }

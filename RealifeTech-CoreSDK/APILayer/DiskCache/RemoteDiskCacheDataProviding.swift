@@ -13,6 +13,8 @@ import RxSwift
 public protocol RemoteDiskCacheDataProviding {
     associatedtype Cdble: Codable
     associatedtype Rqstr: Requester
+
+    static var diskCache: DiskCachable { get }
 }
 
 public extension RemoteDiskCacheDataProviding {
@@ -51,17 +53,17 @@ public extension RemoteDiskCacheDataProviding {
         privateObj: Bool = false,
         strategy: DiskCacheDataProvidingStrategy = .localOrRemoteIfExpired
     ) -> Observable<Model> {
+        let fileName = privateObj ? request.identifier + DiskCache.privateIndicator : request.identifier
         let theRemote = remote(
             of: type.self,
             forRequest: request,
+            saveToFileWithName: strategy != .remoteWithoutCachingResponse ? fileName: nil,
             ignoreSystemCache: strategy == .localAndForcedRemote)
-
-        let fileName = privateObj ? request.identifier + DiskCache.privateIndicator : request.identifier
-        _ = theRemote.map {
-            if strategy != .remoteWithoutCachingResponse {
-                saveToDiskCache($0, with: fileName)
-            }
-        }
+            .do(onNext: {
+                if strategy != .remoteWithoutCachingResponse {
+                    saveToDiskCache($0, with: fileName)
+                }
+            })
 
         switch strategy {
         case .localOrRemoteIfExpired:
@@ -93,12 +95,16 @@ public extension RemoteDiskCacheDataProviding {
             fileName: fileName,
             includeExpired: includeExpired,
             dateFormat: Rqstr.dateFormat())
-        return (object: .from(optional: local.object), expired: local.expired)
+        guard let localObject = local.object else {
+            return (object: nil, expired: false)
+        }
+        return (object: .just(localObject), expired: local.expired)
     }
 
     private static func remote<Model: Codable>(
         of type: Model.Type,
         forRequest request: URLRequest,
+        saveToFileWithName fileName: String?,
         ignoreSystemCache: Bool = false
     ) -> Observable<Model> {
         var request = request

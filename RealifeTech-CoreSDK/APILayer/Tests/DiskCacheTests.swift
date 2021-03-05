@@ -9,11 +9,6 @@
 import XCTest
 @testable import RealifeTech_CoreSDK
 
-struct TestObject: Codable {
-    let id: String
-    let otherField: Int
-}
-
 final class DiskCacheTests: XCTestCase {
 
     private var fileManager: MockFileManager!
@@ -173,12 +168,4 @@ private final class MockFileManager: FileManager {
     override func urls(for directory: FileManager.SearchPathDirectory, in domainMask: FileManager.SearchPathDomainMask) -> [URL] {
         return [temporaryDirectory]
     }
-}
-
-struct TestObjectLocalRepository: LocalDiskCacheDataProviding {
-    typealias Cdble = TestObject
-}
-
-struct DelTestObjLocalRepository: LocalDiskCacheDataProviding {
-    typealias Cdble = TestObject
 }
