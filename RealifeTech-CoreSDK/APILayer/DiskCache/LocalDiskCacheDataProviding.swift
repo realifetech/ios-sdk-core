@@ -12,23 +12,50 @@ import Foundation
 public protocol LocalDiskCacheDataProviding {
     associatedtype Cdble: Codable
 }
+
 public extension LocalDiskCacheDataProviding {
-    static var baseFileName: String {
+
+    static var diskCache: DiskCachable {
+        return DiskCache()
+    }
+
+    static var diskCacheCodableInterface: DiskCacheCodableInterface {
+        return DiskCacheCodableInterface(diskCache: diskCache)
+    }
+
+    private static func fullFileName(identifier: String, privateObj: Bool = false) -> String {
+        let postfix = privateObj ? DiskCache.privateIndicator : ""
+        return baseFileName + "-" + identifier + postfix
+    }
+
+    static func saveItem<Model: Codable>(
+        codable: Model,
+        identifier: String,
+        privateObj: Bool = false
+    ) {
+        try? diskCacheCodableInterface.save(
+            codable,
+            with: fullFileName(identifier: identifier, privateObj: privateObj),
+            canFileBeExpired: false)
+    }
+
+    static func item(withIdentifier identifier: String, privateObj: Bool = false) -> Cdble? {
+        return diskCacheCodableInterface.local(
+            of: Cdble.self,
+            fileName: fullFileName(identifier: identifier, privateObj: privateObj),
+            includeExpired: true)
+            .object
+    }
+
+    static var items: [Cdble] {
+        return diskCacheCodableInterface.localItems(of: Cdble.self, wite: baseFileName)
+    }
+
+    private static var baseFileName: String {
         return "\(self)"
     }
-    static func fullFileName(identifier: String, privateObj: Bool = false) -> String {
-        return baseFileName + "-" + identifier + (privateObj ? DiskCache.privateIndicator : "")
-    }
-    static func saveItem<Model: Codable>(codable: Model, identifier: String, privateObj: Bool = false) {
-        DiskCacheCodableInterface.save(codable: codable, fileName: fullFileName(identifier: identifier, privateObj: privateObj), fileExpires: false)
-    }
-    static func item(withIdentifier identifier: String, privateObj: Bool = false) -> Cdble? {
-        return DiskCacheCodableInterface.local(ofType: Cdble.self, fileName: fullFileName(identifier: identifier, privateObj: privateObj), includeExpired: true).obj
-    }
-    static var items: [Cdble] {
-        return DiskCacheCodableInterface.localItems(ofType: Cdble.self, withBaseFileName: baseFileName)
-    }
+
     static func deleteItem(withIdentifier identifier: String) {
-        DiskCache.deleteItem(fileWithName: fullFileName(identifier: identifier))
+        diskCache.deleteItem(with: fullFileName(identifier: identifier))
     }
 }

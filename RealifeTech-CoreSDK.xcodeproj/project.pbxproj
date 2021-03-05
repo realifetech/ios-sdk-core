@@ -70,7 +70,6 @@
 		961E2D452580E35400547451 /* OAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE72580E35400547451 /* OAuthRepository.swift */; };
 		961E2D462580E35400547451 /* RequestHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE82580E35400547451 /* RequestHeader.swift */; };
 		961E2D5E2580ED3B00547451 /* Dictionary+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */; };
-		961E2D612580ED3E00547451 /* DiskCacheClearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C872580E34500547451 /* DiskCacheClearTests.swift */; };
 		961E2D642580ED4100547451 /* DiskCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C892580E34500547451 /* DiskCacheTests.swift */; };
 		961E2D692580ED4400547451 /* RequestCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C832580E34500547451 /* RequestCreatorTests.swift */; };
 		961E2D6C2580ED4700547451 /* RequestTimeLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */; };
@@ -96,6 +95,7 @@
 		961E2DC72580EDD500547451 /* DiskStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB52580E34F00547451 /* DiskStorageTests.swift */; };
 		9655A40B2581086B006C46CF /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 9655A40A2581086B006C46CF /* schema.json */; };
 		9667DE5B25E50FC700E5D960 /* content_getWebPageByType.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */; };
+		9687B94325F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687B94225F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift */; };
 		968A6C3F25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C3E25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift */; };
 		968A6C4325C9537C001545E9 /* APITokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C4225C9537C001545E9 /* APITokenInterceptor.swift */; };
 		968A6C4B25C953B1001545E9 /* RequestLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C4A25C953B1001545E9 /* RequestLoggingInterceptor.swift */; };
@@ -147,7 +147,6 @@
 		961E2C832580E34500547451 /* RequestCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCreatorTests.swift; sourceTree = "<group>"; };
 		961E2C852580E34500547451 /* APIErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
 		961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+ExtensionTests.swift"; sourceTree = "<group>"; };
-		961E2C872580E34500547451 /* DiskCacheClearTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheClearTests.swift; sourceTree = "<group>"; };
 		961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTimeLoggerTests.swift; sourceTree = "<group>"; };
 		961E2C892580E34500547451 /* DiskCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheTests.swift; sourceTree = "<group>"; };
 		961E2C8B2580E34500547451 /* RequestCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCreator.swift; sourceTree = "<group>"; };
@@ -216,6 +215,7 @@
 		961E2CE82580E35400547451 /* RequestHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHeader.swift; sourceTree = "<group>"; };
 		9655A40A2581086B006C46CF /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = content_getWebPageByType.graphql.swift; sourceTree = "<group>"; };
+		9687B94225F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCacheDataProvidingStrategy.swift; sourceTree = "<group>"; };
 		968A6C3E25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphNetworkInterceptorProvider.swift; sourceTree = "<group>"; };
 		968A6C4225C9537C001545E9 /* APITokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITokenInterceptor.swift; sourceTree = "<group>"; };
 		968A6C4A25C953B1001545E9 /* RequestLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoggingInterceptor.swift; sourceTree = "<group>"; };
@@ -351,6 +351,7 @@
 			children = (
 				961E2C792580E34500547451 /* DiskCache.swift */,
 				961E2C772580E34500547451 /* DiskCacheCodableInterface.swift */,
+				9687B94225F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift */,
 				961E2C782580E34500547451 /* LocalDiskCacheDataProviding.swift */,
 				961E2C7A2580E34500547451 /* RemoteDiskCacheDataProviding.swift */,
 			);
@@ -379,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */,
-				961E2C872580E34500547451 /* DiskCacheClearTests.swift */,
 				961E2C892580E34500547451 /* DiskCacheTests.swift */,
 				961E2C832580E34500547451 /* RequestCreatorTests.swift */,
 				961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */,
@@ -932,6 +932,7 @@
 				961E2D2D2580E35400547451 /* DeviceIdHeaderRequestInserting.swift in Sources */,
 				96CACC9D2582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift in Sources */,
 				961E2D212580E35400547451 /* Identifiable.swift in Sources */,
+				9687B94325F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift in Sources */,
 				961E2D412580E35400547451 /* AuthorisationWorker.swift in Sources */,
 				961E2D2F2580E35400547451 /* OAuthHeaderRequestInserting.swift in Sources */,
 				961E2D182580E35400547451 /* Storage.swift in Sources */,
@@ -989,7 +990,6 @@
 				961E2D842580ED8100547451 /* EmptyTokenManagerTests.swift in Sources */,
 				961E2D9C2580ED9E00547451 /* ReadOnlyCurrentValueTests.swift in Sources */,
 				961E2D642580ED4100547451 /* DiskCacheTests.swift in Sources */,
-				961E2D612580ED3E00547451 /* DiskCacheClearTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

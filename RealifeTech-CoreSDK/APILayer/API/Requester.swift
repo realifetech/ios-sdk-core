@@ -24,21 +24,28 @@ public protocol Requester {
 }
 
 public extension Requester {
-    
+
     static func request(forId id: String? = nil) -> URLRequest {
         var theEndpoint = endpoint
-        if let id = id { theEndpoint += "/\(id)" }
-        return RequestCreator.createRequest(withRoot: Self.root(), andEndpoint: theEndpoint, httpMethod: .GET, body: nil, headers: nil)
+        if let id = id {
+            theEndpoint += "/\(id)"
+        }
+        return RequestCreator.createRequest(
+            withRoot: Self.root(),
+            andEndpoint: theEndpoint,
+            httpMethod: .GET)
     }
 
-    static func response(forRequest request: URLRequest) -> Observable<Any> {
-        var interceptedAction: Observable<Any> {
+    static func response(forRequest request: URLRequest) -> Observable<Data> {
+        var interceptedAction: Observable<Data> {
             let request = Self.applyInterceptors(request: request)
             return RequestDispatcher.dispatch(request: request)
         }
-        // If we have a pre-dispatch action (e.g. in OAuthRefreshOrWaitActionGenerator), we wrap the original request in that action. If not, we just return the original action.
+        // If we have a pre-dispatch action (e.g. in OAuthRefreshOrWaitActionGenerator),
+        // we wrap the original request in that action. If not, we just return the original action.
         if let preDispatchAction = Self.preDispatchAction() {
-            // This means that we'll wait for the pre-dispatch action to complete, then perform the original request (in this case called interceptedAction).
+            // This means that we'll wait for the pre-dispatch action to complete,
+            // then perform the original request (in this case called interceptedAction).
             return preDispatchAction.flatMap { _ in
                 return interceptedAction
             }
@@ -55,11 +62,5 @@ public extension Requester {
             }
         }
         return request
-    }
-
-    static func encode<Model: Codable>(dataForBody: Model) -> Any {
-        let encoder = DiskCacheCodableInterface.encoder(forDateFormat: dateFormat())
-        guard let data = try? encoder.encode(dataForBody), let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return [:] }
-        return json
     }
 }
