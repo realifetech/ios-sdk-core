@@ -57,7 +57,6 @@ public extension RemoteDiskCacheDataProviding {
         let theRemote = remote(
             of: type.self,
             forRequest: request,
-            saveToFileWithName: strategy != .remoteWithoutCachingResponse ? fileName: nil,
             ignoreSystemCache: strategy == .localAndForcedRemote)
             .do(onNext: {
                 if strategy != .remoteWithoutCachingResponse {
@@ -104,7 +103,6 @@ public extension RemoteDiskCacheDataProviding {
     private static func remote<Model: Codable>(
         of type: Model.Type,
         forRequest request: URLRequest,
-        saveToFileWithName fileName: String?,
         ignoreSystemCache: Bool = false
     ) -> Observable<Model> {
         var request = request
