@@ -10,11 +10,18 @@ import CryptoKit
 
 extension String {
 
-    var md5: String {
-        let digest = Insecure.MD5.hash(data: self.data(using: .utf8) ?? Data())
-        return digest.map {
-            String(format: "%02hhx", $0)
-        }.joined()
+    var sha256: String {
+        let digest = SHA256.hash(data: self.data(using: .utf8) ?? Data())
+        return digest.hexString
+    }
+}
+
+extension Digest {
+
+    var hexString: String {
+        Array(makeIterator())
+            .map { String(format: "%02X", $0) }
+            .joined()
     }
 }
 
@@ -23,16 +30,22 @@ public extension URLRequest {
     var identifier: String {
         guard let url = url else { return "" }
         var string = url.absoluteString
-        if let httpMethod = httpMethod { string += httpMethod }
+        if let httpMethod = httpMethod {
+            string += httpMethod
+        }
         if let allHTTPHeaderFields = allHTTPHeaderFields {
             let safeHeaderFields = allHTTPHeaderFields
-                .filter { return $0.key != "Authorization" }
+                .filter { $0.key != "Authorization" }
                 .sorted { $0.key < $1.key }
                 .map { "\($0.key)=\($0.value)" }
                 .joined(separator: ",")
             string += safeHeaderFields.description
         }
-        if let httpBody = httpBody, let bodyString = String(data: httpBody, encoding: .utf8) { string += bodyString }
-        return string.md5
+        if
+            let httpBody = httpBody,
+            let bodyString = String(data: httpBody, encoding: .utf8) {
+            string += bodyString
+        }
+        return string.sha256
     }
 }
