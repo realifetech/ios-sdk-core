@@ -35,7 +35,7 @@ public struct RequestCreator {
             } else {
                 if let bodyData = try? JSONSerialization.data(
                     withJSONObject: body,
-                    options: .prettyPrinted) {
+                    options: [.prettyPrinted, .sortedKeys]) {
                     req.httpBody = bodyData
                 }
             }
