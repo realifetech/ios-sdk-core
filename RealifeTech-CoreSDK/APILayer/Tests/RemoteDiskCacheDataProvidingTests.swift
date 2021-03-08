@@ -12,17 +12,10 @@ import RxTest
 
 final class RemoteDiskCacheDataProvidingTests: XCTestCase {
 
-    private var scheduler: TestScheduler!
     private let bag = DisposeBag()
-
-    override func setUp() {
-        super.setUp()
-        scheduler = TestScheduler(initialClock: 0)
-    }
 
     override func tearDown() {
         mockDiskCache.reset()
-        scheduler = nil
         super.tearDown()
     }
 
