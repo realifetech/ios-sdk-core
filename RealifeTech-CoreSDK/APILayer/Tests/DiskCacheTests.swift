@@ -38,8 +38,8 @@ final class DiskCacheTests: XCTestCase {
         if fileManager.fileExists(atPath: expectedSavedPath.path) {
             try fileManager.removeItem(at: expectedSavedPath)
         }
-        if fileManager.fileExists(atPath: expectedSavedPath.path) {
-            try fileManager.removeItem(at: expectedSavedPath)
+        if fileManager.fileExists(atPath: expectedSavedPrivateObjectPath.path) {
+            try fileManager.removeItem(at: expectedSavedPrivateObjectPath)
         }
         sut = nil
         clearCacheQueue = nil

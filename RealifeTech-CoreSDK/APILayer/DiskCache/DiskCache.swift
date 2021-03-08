@@ -98,9 +98,9 @@ public struct DiskCache: DiskCachable {
 
     public func clearItems(deletionStrategy: DiskCacheDeletionStrategy, completion: (() -> Void)?) {
         guard let files = try? getAllFilesUrl() else { return }
-        let fullExtension = deletionStrategy == .privateOnly ?
-            "\(Self.privateIndicator)\(Self.fileExtension)" :
-            "\(Self.fileExtension)"
+        let fullExtension = deletionStrategy == .privateOnly
+            ? "\(Self.privateIndicator)\(Self.fileExtension)"
+            : "\(Self.fileExtension)"
         clearCacheQueue.async {
             files
                 .filter { $0.absoluteString.contains(fullExtension) }
