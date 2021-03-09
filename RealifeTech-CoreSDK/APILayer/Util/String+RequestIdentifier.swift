@@ -11,8 +11,7 @@ import CryptoKit
 extension String {
 
     var sha256: String {
-        let digest = SHA256.hash(data: self.data(using: .utf8) ?? Data())
-        return digest.hexString
+        data(using: .utf8).map { SHA256.hash(data: $0).hexString } ?? ""
     }
 }
 
