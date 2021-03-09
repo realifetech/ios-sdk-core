@@ -18,6 +18,17 @@ public struct RequestCreator {
         return root + endpoint
     }
 
+    /// Generate an URLRequest with timeout interval 30 seconds
+    /// - Parameters:
+    ///   - root: Base URL
+    ///   - endpoint: The endpoint of the API call
+    ///   - httpMethod: GET, PUT, POST, DELETE, PATCH
+    ///   - body: If the HTTPMethod is GET, the function adds [URLQueryItem] to the URL.
+    ///           Otherwise, the function sets the httpBody with converted data.
+    ///           The default is nil.
+    ///   - bodyData: This should be passed only when the HTTPMethod is NOT GET. The default is nil.
+    ///   - headers: The function sets allHTTPHeaderFields with the headers. The default if nil.
+    /// - Returns: An URLRequest
     public static func createRequest(
         withRoot root: String,
         andEndpoint endpoint: String,
@@ -66,7 +77,7 @@ public struct RequestCreator {
         urlComponents.queryItems = queryItems
         urlComponents.percentEncodedQuery = urlComponents.percentEncodedQuery?
             .replacingOccurrences(of: "+", with: "%2B")
-        return urlComponents.url!
+        return urlComponents.url
     }
 
     private static func makeBodyData(for httpMethod: HttpMethod, with body: [String: Any]) -> Data? {
