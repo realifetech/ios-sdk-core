@@ -31,8 +31,19 @@ final class RequestCreatorTests: XCTestCase {
     }
 
     func test_getMultipleParametersDifferentOrder() {
-        let testBody1: [String: Any] = ["forceApiCheck": 1, "pageSize": 50, "testParameter": "test", "userActions[]": ["scheduled", "going", "calendar", "interested"]]
-        let testBody2: [String: Any] = ["pageSize": 50, "forceApiCheck": 1, "testParameter": "test", "userActions[]": ["scheduled", "going", "calendar", "interested"]]
-        XCTAssertEqual(RequestCreator.addGETParameters(fromBody: testBody1), RequestCreator.addGETParameters(fromBody: testBody2))
+        let userActions = ["scheduled", "going", "calendar", "interested"]
+        let testBody1: [String: Any] = [
+            "forceApiCheck": 1,
+            "pageSize": 50,
+            "testParameter": "test",
+            "userActions[]": userActions]
+        let testBody2: [String: Any] = [
+            "pageSize": 50,
+            "forceApiCheck": 1,
+            "testParameter": "test",
+            "userActions[]": userActions]
+        XCTAssertEqual(
+            RequestCreator.addGETParameters(fromBody: testBody1),
+            RequestCreator.addGETParameters(fromBody: testBody2))
     }
 }

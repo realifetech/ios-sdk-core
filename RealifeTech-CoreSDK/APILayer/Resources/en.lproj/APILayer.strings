@@ -8,3 +8,4 @@
 
 "ERROR" = "Error";
 "UNPARSEABLE_ERROR" = "We're experiencing an issue fetching the data for your selection. Please bear with us while we fix this issue.";
+"DIRECTORY_NOTFOUND_ERROR" = "Unable to get the directory.";

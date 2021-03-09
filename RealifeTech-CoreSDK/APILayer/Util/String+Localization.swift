@@ -8,10 +8,26 @@
 import Foundation
 
 extension String {
+
     var localizedString: String {
-        var localizedString = ""
-        localizedString = NSLocalizedString(self, tableName: "Accessibility", bundle: Bundle.main, comment: "")
-        if localizedString != self { return localizedString }
-        return NSLocalizedString(self, tableName: "APILayer", bundle: Bundle.main, comment: "")
+        return NSLocalizedString(
+            self,
+            tableName: "APILayer",
+            bundle: Bundle.apiLayerResourceBundle,
+            comment: "")
+    }
+}
+
+extension Bundle {
+
+    static var apiLayerResourceBundle: Bundle {
+        guard
+            let path = Bundle(for: APIError.self)
+                .path(forResource: "RealifeTech-CoreSDK", ofType: "bundle"),
+            let bundle = Bundle(path: path)
+        else {
+            return .main
+        }
+        return bundle
     }
 }

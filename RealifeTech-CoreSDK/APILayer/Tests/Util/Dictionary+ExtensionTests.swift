@@ -19,7 +19,7 @@ final class DictionaryExtensionTests: XCTestCase {
             "is": nil,
             "terry": nil
         ]
-        let result = dictionaryRemovingNilValuesFromDictionary(testDict as [String : AnyObject?])
+        let result = dictionaryRemovingNilValuesFromDictionary(testDict as [String: AnyObject?])
         result.enumerated().forEach {
             XCTAssertNotNil($0.1)
         }

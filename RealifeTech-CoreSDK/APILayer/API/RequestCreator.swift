@@ -7,34 +7,6 @@
 //
 
 import Foundation
-import CryptoKit
-
-extension String {
-    var md5: String {
-        let digest = Insecure.MD5.hash(data: self.data(using: .utf8) ?? Data())
-        return digest.map {
-            String(format: "%02hhx", $0)
-        }.joined()
-    }
-}
-
-public extension URLRequest {
-    var identifier: String {
-        guard let url = url else { return "" }
-        var string = url.absoluteString
-        if let httpMethod = httpMethod { string += httpMethod }
-        if let allHTTPHeaderFields = allHTTPHeaderFields {
-            let safeHeaderFields = allHTTPHeaderFields
-                .filter { return $0.key != "Authorization" }
-                .sorted { $0.key < $1.key }
-                .map { "\($0.key)=\($0.value)" }
-                .joined(separator: ",")
-            string += safeHeaderFields.description
-        }
-        if let httpBody = httpBody, let bodyString = String(data: httpBody, encoding: .utf8) { string += bodyString }
-        return string.md5
-    }
-}
 
 public enum HttpMethod: String {
     case GET, PUT, POST, DELETE, PATCH
@@ -46,7 +18,14 @@ public struct RequestCreator {
         return root + endpoint
     }
 
-    public static func createRequest(withRoot root: String, andEndpoint endpoint: String, httpMethod: HttpMethod, body: [String: Any]? = nil, bodyData: Data? = nil, headers: [String: String]? = nil) -> URLRequest {
+    public static func createRequest(
+        withRoot root: String,
+        andEndpoint endpoint: String,
+        httpMethod: HttpMethod,
+        body: [String: Any]? = nil,
+        bodyData: Data? = nil,
+        headers: [String: String]? = nil
+    ) -> URLRequest {
         let urlString = path(withRoot: root, andEndpoint: endpoint)
         var req = URLRequest(url: URL(string: urlString)!, timeoutInterval: 30)
         req.httpMethod = httpMethod.rawValue
@@ -54,7 +33,9 @@ public struct RequestCreator {
             if httpMethod == .GET {
                 req.url = URL(string: "\(urlString)\(addGETParameters(fromBody: body))")
             } else {
-                if let bodyData = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted) {
+                if let bodyData = try? JSONSerialization.data(
+                    withJSONObject: body,
+                    options: [.prettyPrinted, .sortedKeys]) {
                     req.httpBody = bodyData
                 }
             }
