@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum HttpMethod: String {
+public enum HttpMethod: String, CaseIterable {
     case GET, PUT, POST, DELETE, PATCH
 }
 
@@ -18,6 +18,17 @@ public struct RequestCreator {
         return root + endpoint
     }
 
+    /// Generate an URLRequest with timeout interval 30 seconds
+    /// - Parameters:
+    ///   - root: Base URL
+    ///   - endpoint: The endpoint of the API call
+    ///   - httpMethod: GET, PUT, POST, DELETE, PATCH
+    ///   - body: If the HTTPMethod is GET, the function adds [URLQueryItem] to the URL.
+    ///           Otherwise, the function sets the httpBody with converted data.
+    ///           The default is nil.
+    ///   - bodyData: This should be passed only when the HTTPMethod is NOT GET. The default is nil.
+    ///   - headers: The function sets allHTTPHeaderFields with the headers. The default if nil.
+    /// - Returns: An URLRequest
     public static func createRequest(
         withRoot root: String,
         andEndpoint endpoint: String,
@@ -27,55 +38,56 @@ public struct RequestCreator {
         headers: [String: String]? = nil
     ) -> URLRequest {
         let urlString = path(withRoot: root, andEndpoint: endpoint)
-        var req = URLRequest(url: URL(string: urlString)!, timeoutInterval: 30)
-        req.httpMethod = httpMethod.rawValue
+        var request = URLRequest(url: URL(string: urlString)!, timeoutInterval: 30)
+        request.httpMethod = httpMethod.rawValue
+        request.allHTTPHeaderFields = headers
+
         if let body = body {
-            if httpMethod == .GET {
-                req.url = URL(string: "\(urlString)\(addGETParameters(fromBody: body))")
-            } else {
-                if let bodyData = try? JSONSerialization.data(
-                    withJSONObject: body,
-                    options: [.prettyPrinted, .sortedKeys]) {
-                    req.httpBody = bodyData
-                }
-            }
+            request.url = makeQueryItems(for: request, with: body)
+            request.httpBody = makeBodyData(for: httpMethod, with: body)
         }
+
         if let bodyData = bodyData {
-            req.httpBody = bodyData
+            request.httpBody = bodyData
         }
-        if let headers = headers {
-            for header in headers {
-                req.setValue(header.value, forHTTPHeaderField: header.key)
-            }
-        }
-        return req
+
+        return request
     }
 
-    static func addGETParameters(fromBody body: [String: Any]) -> String {
-        var urlParams = "?"
-        let params = body.map { (key, value) -> (String, Any) in
-            return (key, value)
-            }.sorted { $0.key < $1.key }
-        for parameter in params {
-            let key = parameter.key
-            if let valueArray = parameter.value as? [String] {
-                for value in valueArray {
-                    urlParams += "\(key)=\(value.safelyUrlEncoded)&"
+    private static func makeQueryItems(for request: URLRequest, with body: [String: Any]) -> URL? {
+        guard
+            request.httpMethod == HttpMethod.GET.rawValue,
+            let url = request.url,
+            var urlComponents = URLComponents(string: url.absoluteString)
+        else {
+            return request.url
+        }
+        var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
+        body
+            .sorted(by: { $0.key < $1.key })
+            .forEach { (key, value) in
+                if let arrayValue = value as? [String] {
+                    arrayValue.forEach {
+                        queryItems.append(URLQueryItem(name: key, value: $0))
+                    }
+                } else {
+                    queryItems.append((URLQueryItem(name: key, value: String(describing: value))))
                 }
-            } else if let paramString = parameter.value as? String {
-                urlParams += "\(key)=\(paramString.safelyUrlEncoded)&"
-            } else {
-                urlParams += "\(key)=\(parameter.value)&"
             }
-        }
-        return urlParams
+        urlComponents.queryItems = queryItems
+        urlComponents.percentEncodedQuery = urlComponents.percentEncodedQuery?
+            .replacingOccurrences(of: "+", with: "%2B")
+        return urlComponents.url
     }
-}
 
-private extension String {
-    var safelyUrlEncoded: String {
-        var urlEncodedCharSet: CharacterSet = .urlHostAllowed
-        urlEncodedCharSet.remove("+")
-        return addingPercentEncoding(withAllowedCharacters: urlEncodedCharSet) ?? ""
+    private static func makeBodyData(for httpMethod: HttpMethod, with body: [String: Any]) -> Data? {
+        switch httpMethod {
+        case .GET:
+            return nil
+        default:
+            return try? JSONSerialization.data(
+                withJSONObject: body,
+                options: [.prettyPrinted, .sortedKeys])
+        }
     }
 }

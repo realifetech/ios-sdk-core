@@ -20,7 +20,6 @@
 		961E2CF32580E35400547451 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C792580E34500547451 /* DiskCache.swift */; };
 		961E2CF42580E35400547451 /* RemoteDiskCacheDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7A2580E34500547451 /* RemoteDiskCacheDataProviding.swift */; };
 		961E2CF52580E35400547451 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7C2580E34500547451 /* APIError.swift */; };
-		961E2CF62580E35400547451 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7D2580E34500547451 /* Dictionary+Extensions.swift */; };
 		961E2CF72580E35400547451 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7E2580E34500547451 /* String+Localization.swift */; };
 		961E2CF82580E35400547451 /* APILayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 961E2C802580E34500547451 /* APILayer.strings */; };
 		961E2CFF2580E35400547451 /* RequestCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C8B2580E34500547451 /* RequestCreator.swift */; };
@@ -69,7 +68,6 @@
 		961E2D442580E35400547451 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE62580E35400547451 /* OAuthToken.swift */; };
 		961E2D452580E35400547451 /* OAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE72580E35400547451 /* OAuthRepository.swift */; };
 		961E2D462580E35400547451 /* RequestHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE82580E35400547451 /* RequestHeader.swift */; };
-		961E2D5E2580ED3B00547451 /* Dictionary+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */; };
 		961E2D642580ED4100547451 /* DiskCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C892580E34500547451 /* DiskCacheTests.swift */; };
 		961E2D692580ED4400547451 /* RequestCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C832580E34500547451 /* RequestCreatorTests.swift */; };
 		961E2D6C2580ED4700547451 /* RequestTimeLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */; };
@@ -146,12 +144,10 @@
 		961E2C792580E34500547451 /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		961E2C7A2580E34500547451 /* RemoteDiskCacheDataProviding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDiskCacheDataProviding.swift; sourceTree = "<group>"; };
 		961E2C7C2580E34500547451 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		961E2C7D2580E34500547451 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		961E2C7E2580E34500547451 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		961E2C812580E34500547451 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/APILayer.strings; sourceTree = "<group>"; };
 		961E2C832580E34500547451 /* RequestCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCreatorTests.swift; sourceTree = "<group>"; };
 		961E2C852580E34500547451 /* APIErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
-		961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+ExtensionTests.swift"; sourceTree = "<group>"; };
 		961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTimeLoggerTests.swift; sourceTree = "<group>"; };
 		961E2C892580E34500547451 /* DiskCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheTests.swift; sourceTree = "<group>"; };
 		961E2C8B2580E34500547451 /* RequestCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCreator.swift; sourceTree = "<group>"; };
@@ -332,16 +328,8 @@
 				961E2C722580E34300547451 /* AnalyticEvent.swift */,
 				96FD1D3D258101760099EE4A /* Date+Formatted.swift */,
 				961E2C712580E34300547451 /* LogEventSending.swift */,
-				961E2C732580E34300547451 /* Tests */,
 			);
 			path = Logging;
-			sourceTree = "<group>";
-		};
-		961E2C732580E34300547451 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		961E2C752580E34500547451 /* APILayer */ = {
@@ -372,7 +360,6 @@
 			isa = PBXGroup;
 			children = (
 				961E2C7C2580E34500547451 /* APIError.swift */,
-				961E2C7D2580E34500547451 /* Dictionary+Extensions.swift */,
 				961E2C7E2580E34500547451 /* String+Localization.swift */,
 				9687B99325F2780800B0B067 /* String+RequestIdentifier.swift */,
 			);
@@ -406,7 +393,6 @@
 			isa = PBXGroup;
 			children = (
 				961E2C852580E34500547451 /* APIErrorTests.swift */,
-				961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -967,7 +953,6 @@
 				961E2D1F2580E35400547451 /* QueueError.swift in Sources */,
 				96CACCB0258207E900238919 /* CoreSDKConfiguration.swift in Sources */,
 				961E2D242580E35400547451 /* NetworkConnectivityChecker.swift in Sources */,
-				961E2CF62580E35400547451 /* Dictionary+Extensions.swift in Sources */,
 				961E2D3A2580E35400547451 /* StandardSenderResponse.swift in Sources */,
 				961E2CEC2580E35400547451 /* UIDeviceWrapper.swift in Sources */,
 				961E2CF32580E35400547451 /* DiskCache.swift in Sources */,
@@ -1004,7 +989,6 @@
 				961E2D972580ED9000547451 /* APITokenManagerTests.swift in Sources */,
 				961E2D762580ED7300547451 /* APIRequesterHelperTests.swift in Sources */,
 				96CACCBA2582096F00238919 /* CoreSDKConfigurationTests.swift in Sources */,
-				961E2D5E2580ED3B00547451 /* Dictionary+ExtensionTests.swift in Sources */,
 				961E2DAE2580EDB700547451 /* ReachabilityCheckerTests.swift in Sources */,
 				961E2D6F2580ED4A00547451 /* APIErrorTests.swift in Sources */,
 				961E2D842580ED8100547451 /* EmptyTokenManagerTests.swift in Sources */,

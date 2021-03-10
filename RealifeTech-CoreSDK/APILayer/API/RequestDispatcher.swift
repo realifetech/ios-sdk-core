@@ -22,10 +22,10 @@ public struct RequestDispatcher {
                     if 200 ..< 300 ~= response.statusCode {
                         return .just(data)
                     } else {
-                        return Observable.error(APIError.constructedError(data: data, statusCode: response.statusCode))
+                        return .error(APIError.constructedError(data: data, statusCode: response.statusCode))
                     }
                 } else {
-                    return Observable.error(APIError.unparseableError())
+                    return .error(APIError.unparseableError())
                 }
             })
             .do(onNext: { (_) in
