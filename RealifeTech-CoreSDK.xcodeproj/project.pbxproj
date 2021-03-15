@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0909B12325FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B12225FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift */; };
+		0909B12D25FF5C2E0026A9B5 /* payment_getMyPaymentIntent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B12C25FF5C2E0026A9B5 /* payment_getMyPaymentIntent.graphql.swift */; };
+		0909B13225FF67510026A9B5 /* payment_addPaymentSourceToMyWallet.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B13025FF67510026A9B5 /* payment_addPaymentSourceToMyWallet.graphql.swift */; };
+		0909B13325FF67510026A9B5 /* payment_createPaymentIntent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B13125FF67510026A9B5 /* payment_createPaymentIntent.graphql.swift */; };
+		0909B13D25FF692E0026A9B5 /* payment_updatePaymentIntent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B13C25FF692E0026A9B5 /* payment_updatePaymentIntent.graphql.swift */; };
 		2BD2559D3B64CB5141584EA0 /* Pods_RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A320110EF5AA0E00EC1F17 /* Pods_RealifeTech_CoreSDK.framework */; };
 		961E2C562580E31B00547451 /* RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */; };
 		961E2C5D2580E31B00547451 /* RealifeTech_CoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -129,6 +133,10 @@
 
 /* Begin PBXFileReference section */
 		0909B12225FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment_getMyPaymentSources.graphql.swift; sourceTree = "<group>"; };
+		0909B12C25FF5C2E0026A9B5 /* payment_getMyPaymentIntent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment_getMyPaymentIntent.graphql.swift; sourceTree = "<group>"; };
+		0909B13025FF67510026A9B5 /* payment_addPaymentSourceToMyWallet.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment_addPaymentSourceToMyWallet.graphql.swift; sourceTree = "<group>"; };
+		0909B13125FF67510026A9B5 /* payment_createPaymentIntent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment_createPaymentIntent.graphql.swift; sourceTree = "<group>"; };
+		0909B13C25FF692E0026A9B5 /* payment_updatePaymentIntent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment_updatePaymentIntent.graphql.swift; sourceTree = "<group>"; };
 		6C5442736BFC18FEA93785A4 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealifeTech_CoreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealifeTech_CoreSDK.h; sourceTree = "<group>"; };
@@ -475,6 +483,10 @@
 				96CACC982582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift */,
 				9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */,
 				0909B12225FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift */,
+				0909B12C25FF5C2E0026A9B5 /* payment_getMyPaymentIntent.graphql.swift */,
+				0909B13025FF67510026A9B5 /* payment_addPaymentSourceToMyWallet.graphql.swift */,
+				0909B13125FF67510026A9B5 /* payment_createPaymentIntent.graphql.swift */,
+				0909B13C25FF692E0026A9B5 /* payment_updatePaymentIntent.graphql.swift */,
 				96CACCA32582046700238919 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -896,6 +908,7 @@
 				961E2D0C2580E35400547451 /* GraphNetwork.swift in Sources */,
 				961E2CEA2580E35400547451 /* UIDeviceFactory.swift in Sources */,
 				961E2D112580E35400547451 /* GraphQLDispatcher.swift in Sources */,
+				0909B13225FF67510026A9B5 /* payment_addPaymentSourceToMyWallet.graphql.swift in Sources */,
 				961E2D012580E35400547451 /* Requester.swift in Sources */,
 				9667DE5B25E50FC700E5D960 /* content_getWebPageByType.graphql.swift in Sources */,
 				961E2D442580E35400547451 /* OAuthToken.swift in Sources */,
@@ -907,7 +920,9 @@
 				961E2CF72580E35400547451 /* String+Localization.swift in Sources */,
 				961E2D3C2580E35400547451 /* APIRequesterHelper.swift in Sources */,
 				961E2D2A2580E35400547451 /* BluetoothManagerWrapper.swift in Sources */,
+				0909B13325FF67510026A9B5 /* payment_createPaymentIntent.graphql.swift in Sources */,
 				961E2D452580E35400547451 /* OAuthRepository.swift in Sources */,
+				0909B13D25FF692E0026A9B5 /* payment_updatePaymentIntent.graphql.swift in Sources */,
 				961E2CF52580E35400547451 /* APIError.swift in Sources */,
 				961E2D282580E35400547451 /* ReachabilityChecking.swift in Sources */,
 				961E2D1B2580E35400547451 /* DiskStorage.swift in Sources */,
@@ -918,6 +933,7 @@
 				961E2CF42580E35400547451 /* RemoteDiskCacheDataProviding.swift in Sources */,
 				96CACCAA258206EB00238919 /* CoreFactory.swift in Sources */,
 				96CACCA42582046700238919 /* Types.graphql.swift in Sources */,
+				0909B12D25FF5C2E0026A9B5 /* payment_getMyPaymentIntent.graphql.swift in Sources */,
 				961E2D092580E35400547451 /* Device.swift in Sources */,
 				961E2D2E2580E35400547451 /* JSONContentTypeHeaderRequestInserting.swift in Sources */,
 				961E2CF12580E35400547451 /* DiskCacheCodableInterface.swift in Sources */,

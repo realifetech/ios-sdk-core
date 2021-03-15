@@ -1,0 +1,30 @@
+mutation updateMyPaymentIntent($id: ID!, $input: PaymentIntentInput!) {
+  updateMyPaymentIntent(id: $id, input: $input) {
+    id
+    orderType
+    orderId
+    status
+    paymentSource {
+      id
+      type
+      default
+      card {
+        brand
+        numberToken
+        expYear
+        expMonth
+        last4
+        fingerprint
+      }
+    }
+    amount
+    currency
+    livemode
+    cancellationReason
+    savePaymentSource
+    nextAction {
+      type
+      url
+    }
+  }
+}
