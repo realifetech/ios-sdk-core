@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0909B12325FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B12225FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift */; };
 		2BD2559D3B64CB5141584EA0 /* Pods_RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A320110EF5AA0E00EC1F17 /* Pods_RealifeTech_CoreSDK.framework */; };
 		961E2C562580E31B00547451 /* RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */; };
 		961E2C5D2580E31B00547451 /* RealifeTech_CoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -127,6 +128,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0909B12225FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment_getMyPaymentSources.graphql.swift; sourceTree = "<group>"; };
 		6C5442736BFC18FEA93785A4 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealifeTech_CoreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealifeTech_CoreSDK.h; sourceTree = "<group>"; };
@@ -458,16 +460,8 @@
 				961E2C9F2580E34A00547451 /* GraphNetworkCachePolicy.swift */,
 				961E2CA42580E34A00547451 /* GraphQLDispatcher.swift */,
 				9655A40A2581086B006C46CF /* schema.json */,
-				961E2C9C2580E34A00547451 /* Tests */,
 			);
 			path = GraphQL;
-			sourceTree = "<group>";
-		};
-		961E2C9C2580E34A00547451 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		961E2CA52580E34A00547451 /* API */ = {
@@ -480,6 +474,7 @@
 				96CACC972582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift */,
 				96CACC982582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift */,
 				9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */,
+				0909B12225FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift */,
 				96CACCA32582046700238919 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -916,6 +911,7 @@
 				961E2CF52580E35400547451 /* APIError.swift in Sources */,
 				961E2D282580E35400547451 /* ReachabilityChecking.swift in Sources */,
 				961E2D1B2580E35400547451 /* DiskStorage.swift in Sources */,
+				0909B12325FF4AE40026A9B5 /* payment_getMyPaymentSources.graphql.swift in Sources */,
 				961E2D3F2580E35400547451 /* OAuthRefreshOrWaitActionGenerator.swift in Sources */,
 				96FD1D3E258101760099EE4A /* Date+Formatted.swift in Sources */,
 				961E2D202580E35400547451 /* QueueAction.swift in Sources */,

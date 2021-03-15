@@ -1,0 +1,17 @@
+query getMyPaymentSources($pageSize: Int!, $page: Int! = 1) {
+  getMyPaymentSources(page:$page, pageSize:$pageSize) {
+    edges {
+      id
+      type
+      default
+      card {
+        brand
+        numberToken
+        expMonth
+        expYear
+        last4
+        fingerprint
+      }
+    }
+  }
+}
