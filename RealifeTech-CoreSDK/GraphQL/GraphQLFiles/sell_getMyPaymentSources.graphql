@@ -1,5 +1,5 @@
 query getMyPaymentSources($pageSize: Int!, $page: Int! = 1) {
-  getMyPaymentSources(page:$page, pageSize:$pageSize) {
+  getMyPaymentSources(page: $page, pageSize: $pageSize) {
     edges {
       id
       type
