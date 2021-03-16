@@ -1,0 +1,30 @@
+fragment widgetTranslation on WidgetVariationTranslation {
+  language
+  title
+}
+
+fragment widget on Widget {
+  id
+  style {
+    type
+    size
+    padded
+  }
+  viewAllUrl
+  widgetType
+  variation {
+    fetchType
+    contentIds
+    params {
+      key
+      value
+    }
+    engagementParams {
+      key
+      value
+    }
+    translations {
+      ...  widgetTranslation
+    }
+  }
+}

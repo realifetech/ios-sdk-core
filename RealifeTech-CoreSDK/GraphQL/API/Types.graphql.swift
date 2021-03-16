@@ -75,76 +75,6 @@ public enum ApolloType {
     }
   }
 
-  public enum Language: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-    public typealias RawValue = String
-    case en
-    case fr
-    case nr
-    case de
-    case sv
-    case nb
-    case lt
-    case pt
-    /// Auto generated constant for unknown enum values
-    case __unknown(RawValue)
-
-    public init?(rawValue: RawValue) {
-      switch rawValue {
-        case "en": self = .en
-        case "fr": self = .fr
-        case "nr": self = .nr
-        case "de": self = .de
-        case "sv": self = .sv
-        case "nb": self = .nb
-        case "lt": self = .lt
-        case "pt": self = .pt
-        default: self = .__unknown(rawValue)
-      }
-    }
-
-    public var rawValue: RawValue {
-      switch self {
-        case .en: return "en"
-        case .fr: return "fr"
-        case .nr: return "nr"
-        case .de: return "de"
-        case .sv: return "sv"
-        case .nb: return "nb"
-        case .lt: return "lt"
-        case .pt: return "pt"
-        case .__unknown(let value): return value
-      }
-    }
-
-    public static func == (lhs: Language, rhs: Language) -> Bool {
-      switch (lhs, rhs) {
-        case (.en, .en): return true
-        case (.fr, .fr): return true
-        case (.nr, .nr): return true
-        case (.de, .de): return true
-        case (.sv, .sv): return true
-        case (.nb, .nb): return true
-        case (.lt, .lt): return true
-        case (.pt, .pt): return true
-        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-        default: return false
-      }
-    }
-
-    public static var allCases: [Language] {
-      return [
-        .en,
-        .fr,
-        .nr,
-        .de,
-        .sv,
-        .nb,
-        .lt,
-        .pt,
-      ]
-    }
-  }
-
   public enum ScreenType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
     public typealias RawValue = String
     case discover
@@ -211,6 +141,136 @@ public enum ApolloType {
         .lineup,
         .social,
         .generic,
+      ]
+    }
+  }
+
+  public enum WebPageType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case audioGuidesHelp
+    case tAndC
+    case privacy
+    case about
+    case aboutCompany
+    case purchasesHelp
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "audioGuidesHelp": self = .audioGuidesHelp
+        case "tAndC": self = .tAndC
+        case "privacy": self = .privacy
+        case "about": self = .about
+        case "aboutCompany": self = .aboutCompany
+        case "purchasesHelp": self = .purchasesHelp
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .audioGuidesHelp: return "audioGuidesHelp"
+        case .tAndC: return "tAndC"
+        case .privacy: return "privacy"
+        case .about: return "about"
+        case .aboutCompany: return "aboutCompany"
+        case .purchasesHelp: return "purchasesHelp"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: WebPageType, rhs: WebPageType) -> Bool {
+      switch (lhs, rhs) {
+        case (.audioGuidesHelp, .audioGuidesHelp): return true
+        case (.tAndC, .tAndC): return true
+        case (.privacy, .privacy): return true
+        case (.about, .about): return true
+        case (.aboutCompany, .aboutCompany): return true
+        case (.purchasesHelp, .purchasesHelp): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [WebPageType] {
+      return [
+        .audioGuidesHelp,
+        .tAndC,
+        .privacy,
+        .about,
+        .aboutCompany,
+        .purchasesHelp,
+      ]
+    }
+  }
+
+  public enum Language: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case en
+    case fr
+    case nr
+    case de
+    case sv
+    case nb
+    case lt
+    case pt
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "en": self = .en
+        case "fr": self = .fr
+        case "nr": self = .nr
+        case "de": self = .de
+        case "sv": self = .sv
+        case "nb": self = .nb
+        case "lt": self = .lt
+        case "pt": self = .pt
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .en: return "en"
+        case .fr: return "fr"
+        case .nr: return "nr"
+        case .de: return "de"
+        case .sv: return "sv"
+        case .nb: return "nb"
+        case .lt: return "lt"
+        case .pt: return "pt"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: Language, rhs: Language) -> Bool {
+      switch (lhs, rhs) {
+        case (.en, .en): return true
+        case (.fr, .fr): return true
+        case (.nr, .nr): return true
+        case (.de, .de): return true
+        case (.sv, .sv): return true
+        case (.nb, .nb): return true
+        case (.lt, .lt): return true
+        case (.pt, .pt): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [Language] {
+      return [
+        .en,
+        .fr,
+        .nr,
+        .de,
+        .sv,
+        .nb,
+        .lt,
+        .pt,
       ]
     }
   }
@@ -446,66 +506,6 @@ public enum ApolloType {
         .featured,
         .feed,
         .static,
-      ]
-    }
-  }
-
-  public enum WebPageType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-    public typealias RawValue = String
-    case audioGuidesHelp
-    case tAndC
-    case privacy
-    case about
-    case aboutCompany
-    case purchasesHelp
-    /// Auto generated constant for unknown enum values
-    case __unknown(RawValue)
-
-    public init?(rawValue: RawValue) {
-      switch rawValue {
-        case "audioGuidesHelp": self = .audioGuidesHelp
-        case "tAndC": self = .tAndC
-        case "privacy": self = .privacy
-        case "about": self = .about
-        case "aboutCompany": self = .aboutCompany
-        case "purchasesHelp": self = .purchasesHelp
-        default: self = .__unknown(rawValue)
-      }
-    }
-
-    public var rawValue: RawValue {
-      switch self {
-        case .audioGuidesHelp: return "audioGuidesHelp"
-        case .tAndC: return "tAndC"
-        case .privacy: return "privacy"
-        case .about: return "about"
-        case .aboutCompany: return "aboutCompany"
-        case .purchasesHelp: return "purchasesHelp"
-        case .__unknown(let value): return value
-      }
-    }
-
-    public static func == (lhs: WebPageType, rhs: WebPageType) -> Bool {
-      switch (lhs, rhs) {
-        case (.audioGuidesHelp, .audioGuidesHelp): return true
-        case (.tAndC, .tAndC): return true
-        case (.privacy, .privacy): return true
-        case (.about, .about): return true
-        case (.aboutCompany, .aboutCompany): return true
-        case (.purchasesHelp, .purchasesHelp): return true
-        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-        default: return false
-      }
-    }
-
-    public static var allCases: [WebPageType] {
-      return [
-        .audioGuidesHelp,
-        .tAndC,
-        .privacy,
-        .about,
-        .aboutCompany,
-        .purchasesHelp,
       ]
     }
   }
