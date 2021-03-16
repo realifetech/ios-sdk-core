@@ -5,21 +5,3 @@ query getMyPaymentSources($pageSize: Int!, $page: Int! = 1) {
     }
   }
 }
-
-fragment paymentSourceDetails on PaymentSource {
-  id
-  type
-  default
-  card {
-    ...cardDetails
-  }
-}
-
-fragment cardDetails on Card {
-  brand
-  numberToken
-  expMonth
-  expYear
-  last4
-  fingerprint
-} 
