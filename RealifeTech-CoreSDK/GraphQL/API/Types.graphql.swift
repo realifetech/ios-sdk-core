@@ -736,41 +736,6 @@ public enum ApolloType {
     }
   }
 
-  public enum PaymentSourceType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-    public typealias RawValue = String
-    case card
-    /// Auto generated constant for unknown enum values
-    case __unknown(RawValue)
-
-    public init?(rawValue: RawValue) {
-      switch rawValue {
-        case "card": self = .card
-        default: self = .__unknown(rawValue)
-      }
-    }
-
-    public var rawValue: RawValue {
-      switch self {
-        case .card: return "card"
-        case .__unknown(let value): return value
-      }
-    }
-
-    public static func == (lhs: PaymentSourceType, rhs: PaymentSourceType) -> Bool {
-      switch (lhs, rhs) {
-        case (.card, .card): return true
-        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-        default: return false
-      }
-    }
-
-    public static var allCases: [PaymentSourceType] {
-      return [
-        .card,
-      ]
-    }
-  }
-
   public struct PaymentIntentInput: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
 
@@ -1051,6 +1016,41 @@ public enum ApolloType {
       return [
         .redirectToUrl,
         .collectCvc,
+      ]
+    }
+  }
+
+  public enum PaymentSourceType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case card
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "card": self = .card
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .card: return "card"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: PaymentSourceType, rhs: PaymentSourceType) -> Bool {
+      switch (lhs, rhs) {
+        case (.card, .card): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [PaymentSourceType] {
+      return [
+        .card,
       ]
     }
   }

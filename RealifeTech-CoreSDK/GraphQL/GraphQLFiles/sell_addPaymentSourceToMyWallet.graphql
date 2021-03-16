@@ -1,15 +1,5 @@
 mutation addPaymentSourceToMyWallet($input: PaymentSourceInput!) {
   addPaymentSourceToMyWallet(input: $input) {
-    id
-    type
-    default
-    card {
-      brand
-      numberToken
-      expYear
-      expMonth
-      last4
-      fingerprint
-    }
+    ...paymentSourceDetails
   }
 }

@@ -5,17 +5,7 @@ mutation updateMyPaymentIntent($id: ID!, $input: PaymentIntentInput!) {
     orderId
     status
     paymentSource {
-      id
-      type
-      default
-      card {
-        brand
-        numberToken
-        expYear
-        expMonth
-        last4
-        fingerprint
-      }
+      ...paymentSourceDetails
     }
     amount
     currency

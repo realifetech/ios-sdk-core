@@ -4,18 +4,8 @@ query getMyPaymentIntent($id: ID!) {
     orderType
     orderId
     status
-    paymentSource{
-      id
-      type
-      default
-      card {
-        brand
-        numberToken
-        expYear
-        expMonth
-        last4
-        fingerprint
-      }
+    paymentSource {
+      ...paymentSourceDetails
     }
     amount
     currency
