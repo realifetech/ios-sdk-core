@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0909B1CA260096630026A9B5 /* sell_getMyPaymentSources.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C5260096620026A9B5 /* sell_getMyPaymentSources.graphql.swift */; };
+		0909B1CB260096630026A9B5 /* sell_createPaymentIntent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C6260096620026A9B5 /* sell_createPaymentIntent.graphql.swift */; };
+		0909B1CC260096630026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C7260096620026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift */; };
+		0909B1CD260096630026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C8260096620026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift */; };
+		0909B1CE260096630026A9B5 /* sell_updatePaymentIntent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C9260096620026A9B5 /* sell_updatePaymentIntent.graphql.swift */; };
 		2BD2559D3B64CB5141584EA0 /* Pods_RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A320110EF5AA0E00EC1F17 /* Pods_RealifeTech_CoreSDK.framework */; };
 		961E2C562580E31B00547451 /* RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */; };
 		961E2C5D2580E31B00547451 /* RealifeTech_CoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -127,6 +132,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0909B1C5260096620026A9B5 /* sell_getMyPaymentSources.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_getMyPaymentSources.graphql.swift; sourceTree = "<group>"; };
+		0909B1C6260096620026A9B5 /* sell_createPaymentIntent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_createPaymentIntent.graphql.swift; sourceTree = "<group>"; };
+		0909B1C7260096620026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_fragment_paymentSourceDetails.graphql.swift; sourceTree = "<group>"; };
+		0909B1C8260096620026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_addPaymentSourceToMyWallet.graphql.swift; sourceTree = "<group>"; };
+		0909B1C9260096620026A9B5 /* sell_updatePaymentIntent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_updatePaymentIntent.graphql.swift; sourceTree = "<group>"; };
 		6C5442736BFC18FEA93785A4 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealifeTech_CoreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealifeTech_CoreSDK.h; sourceTree = "<group>"; };
@@ -458,16 +468,8 @@
 				961E2C9F2580E34A00547451 /* GraphNetworkCachePolicy.swift */,
 				961E2CA42580E34A00547451 /* GraphQLDispatcher.swift */,
 				9655A40A2581086B006C46CF /* schema.json */,
-				961E2C9C2580E34A00547451 /* Tests */,
 			);
 			path = GraphQL;
-			sourceTree = "<group>";
-		};
-		961E2C9C2580E34A00547451 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		961E2CA52580E34A00547451 /* API */ = {
@@ -480,6 +482,11 @@
 				96CACC972582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift */,
 				96CACC982582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift */,
 				9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */,
+				0909B1C8260096620026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift */,
+				0909B1C6260096620026A9B5 /* sell_createPaymentIntent.graphql.swift */,
+				0909B1C5260096620026A9B5 /* sell_getMyPaymentSources.graphql.swift */,
+				0909B1C9260096620026A9B5 /* sell_updatePaymentIntent.graphql.swift */,
+				0909B1C7260096620026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift */,
 				96CACCA32582046700238919 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -907,6 +914,7 @@
 				96CACC9B2582043E00238919 /* canvas_getScreenByScreenType.graphql.swift in Sources */,
 				96CACC992582043E00238919 /* canvas_getScreenByScreenId.graphql.swift in Sources */,
 				961E2D3B2580E35400547451 /* KeychainSwift.swift in Sources */,
+				0909B1CA260096630026A9B5 /* sell_getMyPaymentSources.graphql.swift in Sources */,
 				961E2D422580E35400547451 /* OAuthTokenRefreshWatcher.swift in Sources */,
 				961E2CED2580E35400547451 /* UIDeviceInterface.swift in Sources */,
 				961E2CF72580E35400547451 /* String+Localization.swift in Sources */,
@@ -932,9 +940,12 @@
 				961E2D2B2580E35400547451 /* DefaultDiskCacheStrategyProviding.swift in Sources */,
 				961E2D2D2580E35400547451 /* DeviceIdHeaderRequestInserting.swift in Sources */,
 				96CACC9D2582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift in Sources */,
+				0909B1CC260096630026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift in Sources */,
 				961E2D212580E35400547451 /* Identifiable.swift in Sources */,
+				0909B1CB260096630026A9B5 /* sell_createPaymentIntent.graphql.swift in Sources */,
 				9687B94325F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift in Sources */,
 				961E2D412580E35400547451 /* AuthorisationWorker.swift in Sources */,
+				0909B1CD260096630026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift in Sources */,
 				961E2D2F2580E35400547451 /* OAuthHeaderRequestInserting.swift in Sources */,
 				961E2D182580E35400547451 /* Storage.swift in Sources */,
 				968A6C4B25C953B1001545E9 /* RequestLoggingInterceptor.swift in Sources */,
@@ -956,6 +967,7 @@
 				961E2D3A2580E35400547451 /* StandardSenderResponse.swift in Sources */,
 				961E2CEC2580E35400547451 /* UIDeviceWrapper.swift in Sources */,
 				961E2CF32580E35400547451 /* DiskCache.swift in Sources */,
+				0909B1CE260096630026A9B5 /* sell_updatePaymentIntent.graphql.swift in Sources */,
 				961E2D172580E35400547451 /* ReadOnlyCurrentValue.swift in Sources */,
 				961E2D252580E35400547451 /* ReachabilityChecker.swift in Sources */,
 				961E2D002580E35400547451 /* RequestLogger.swift in Sources */,

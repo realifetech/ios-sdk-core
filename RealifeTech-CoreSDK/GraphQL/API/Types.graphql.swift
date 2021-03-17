@@ -509,4 +509,549 @@ public enum ApolloType {
       ]
     }
   }
+
+  public struct PaymentSourceInput: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+
+    /// - Parameters:
+    ///   - id
+    ///   - billingDetails
+    ///   - card
+    public init(id: Swift.Optional<GraphQLID?> = nil, billingDetails: Swift.Optional<PaymentSourceBillingDetailsInput?> = nil, card: Swift.Optional<CardInput?> = nil) {
+      graphQLMap = ["id": id, "billingDetails": billingDetails, "card": card]
+    }
+
+    public var id: Swift.Optional<GraphQLID?> {
+      get {
+        return graphQLMap["id"] as? Swift.Optional<GraphQLID?> ?? Swift.Optional<GraphQLID?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "id")
+      }
+    }
+
+    public var billingDetails: Swift.Optional<PaymentSourceBillingDetailsInput?> {
+      get {
+        return graphQLMap["billingDetails"] as? Swift.Optional<PaymentSourceBillingDetailsInput?> ?? Swift.Optional<PaymentSourceBillingDetailsInput?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "billingDetails")
+      }
+    }
+
+    public var card: Swift.Optional<CardInput?> {
+      get {
+        return graphQLMap["card"] as? Swift.Optional<CardInput?> ?? Swift.Optional<CardInput?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "card")
+      }
+    }
+  }
+
+  public struct PaymentSourceBillingDetailsInput: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+
+    /// - Parameters:
+    ///   - address
+    ///   - email
+    ///   - name
+    ///   - phone
+    public init(address: Swift.Optional<PaymentSourceAddressInput?> = nil, email: Swift.Optional<String?> = nil, name: Swift.Optional<String?> = nil, phone: Swift.Optional<String?> = nil) {
+      graphQLMap = ["address": address, "email": email, "name": name, "phone": phone]
+    }
+
+    public var address: Swift.Optional<PaymentSourceAddressInput?> {
+      get {
+        return graphQLMap["address"] as? Swift.Optional<PaymentSourceAddressInput?> ?? Swift.Optional<PaymentSourceAddressInput?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "address")
+      }
+    }
+
+    public var email: Swift.Optional<String?> {
+      get {
+        return graphQLMap["email"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "email")
+      }
+    }
+
+    public var name: Swift.Optional<String?> {
+      get {
+        return graphQLMap["name"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "name")
+      }
+    }
+
+    public var phone: Swift.Optional<String?> {
+      get {
+        return graphQLMap["phone"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "phone")
+      }
+    }
+  }
+
+  public struct PaymentSourceAddressInput: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+
+    /// - Parameters:
+    ///   - city
+    ///   - country
+    ///   - line1
+    ///   - line2
+    ///   - postalCode
+    ///   - state
+    public init(city: Swift.Optional<String?> = nil, country: Swift.Optional<String?> = nil, line1: Swift.Optional<String?> = nil, line2: Swift.Optional<String?> = nil, postalCode: Swift.Optional<String?> = nil, state: Swift.Optional<String?> = nil) {
+      graphQLMap = ["city": city, "country": country, "line1": line1, "line2": line2, "postalCode": postalCode, "state": state]
+    }
+
+    public var city: Swift.Optional<String?> {
+      get {
+        return graphQLMap["city"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "city")
+      }
+    }
+
+    public var country: Swift.Optional<String?> {
+      get {
+        return graphQLMap["country"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "country")
+      }
+    }
+
+    public var line1: Swift.Optional<String?> {
+      get {
+        return graphQLMap["line1"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "line1")
+      }
+    }
+
+    public var line2: Swift.Optional<String?> {
+      get {
+        return graphQLMap["line2"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "line2")
+      }
+    }
+
+    public var postalCode: Swift.Optional<String?> {
+      get {
+        return graphQLMap["postalCode"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "postalCode")
+      }
+    }
+
+    public var state: Swift.Optional<String?> {
+      get {
+        return graphQLMap["state"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "state")
+      }
+    }
+  }
+
+  public struct CardInput: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+
+    /// - Parameters:
+    ///   - brand
+    ///   - numberToken
+    ///   - expMonth
+    ///   - expYear
+    ///   - securityCodeToken
+    ///   - last4
+    public init(brand: String, numberToken: String, expMonth: String, expYear: String, securityCodeToken: String, last4: String) {
+      graphQLMap = ["brand": brand, "numberToken": numberToken, "expMonth": expMonth, "expYear": expYear, "securityCodeToken": securityCodeToken, "last4": last4]
+    }
+
+    public var brand: String {
+      get {
+        return graphQLMap["brand"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "brand")
+      }
+    }
+
+    public var numberToken: String {
+      get {
+        return graphQLMap["numberToken"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "numberToken")
+      }
+    }
+
+    public var expMonth: String {
+      get {
+        return graphQLMap["expMonth"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "expMonth")
+      }
+    }
+
+    public var expYear: String {
+      get {
+        return graphQLMap["expYear"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "expYear")
+      }
+    }
+
+    public var securityCodeToken: String {
+      get {
+        return graphQLMap["securityCodeToken"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "securityCodeToken")
+      }
+    }
+
+    public var last4: String {
+      get {
+        return graphQLMap["last4"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "last4")
+      }
+    }
+  }
+
+  public struct PaymentIntentInput: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+
+    /// - Parameters:
+    ///   - orderType
+    ///   - orderId
+    ///   - paymentSource
+    ///   - amount
+    ///   - currency
+    ///   - savePaymentSource
+    ///   - livemode
+    ///   - cancellationReason
+    ///   - receiptEmail
+    public init(orderType: OrderType, orderId: GraphQLID, paymentSource: Swift.Optional<PaymentSourceInput?> = nil, amount: Int, currency: String, savePaymentSource: Bool, livemode: Bool, cancellationReason: Swift.Optional<CancellationReason?> = nil, receiptEmail: Swift.Optional<String?> = nil) {
+      graphQLMap = ["orderType": orderType, "orderId": orderId, "paymentSource": paymentSource, "amount": amount, "currency": currency, "savePaymentSource": savePaymentSource, "livemode": livemode, "cancellationReason": cancellationReason, "receiptEmail": receiptEmail]
+    }
+
+    public var orderType: OrderType {
+      get {
+        return graphQLMap["orderType"] as! OrderType
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "orderType")
+      }
+    }
+
+    public var orderId: GraphQLID {
+      get {
+        return graphQLMap["orderId"] as! GraphQLID
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "orderId")
+      }
+    }
+
+    public var paymentSource: Swift.Optional<PaymentSourceInput?> {
+      get {
+        return graphQLMap["paymentSource"] as? Swift.Optional<PaymentSourceInput?> ?? Swift.Optional<PaymentSourceInput?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "paymentSource")
+      }
+    }
+
+    public var amount: Int {
+      get {
+        return graphQLMap["amount"] as! Int
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "amount")
+      }
+    }
+
+    public var currency: String {
+      get {
+        return graphQLMap["currency"] as! String
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "currency")
+      }
+    }
+
+    public var savePaymentSource: Bool {
+      get {
+        return graphQLMap["savePaymentSource"] as! Bool
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "savePaymentSource")
+      }
+    }
+
+    public var livemode: Bool {
+      get {
+        return graphQLMap["livemode"] as! Bool
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "livemode")
+      }
+    }
+
+    public var cancellationReason: Swift.Optional<CancellationReason?> {
+      get {
+        return graphQLMap["cancellationReason"] as? Swift.Optional<CancellationReason?> ?? Swift.Optional<CancellationReason?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "cancellationReason")
+      }
+    }
+
+    public var receiptEmail: Swift.Optional<String?> {
+      get {
+        return graphQLMap["receiptEmail"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+      }
+      set {
+        graphQLMap.updateValue(newValue, forKey: "receiptEmail")
+      }
+    }
+  }
+
+  public enum OrderType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case foodAndBeverage
+    case ticket
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "food_and_beverage": self = .foodAndBeverage
+        case "ticket": self = .ticket
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .foodAndBeverage: return "food_and_beverage"
+        case .ticket: return "ticket"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: OrderType, rhs: OrderType) -> Bool {
+      switch (lhs, rhs) {
+        case (.foodAndBeverage, .foodAndBeverage): return true
+        case (.ticket, .ticket): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [OrderType] {
+      return [
+        .foodAndBeverage,
+        .ticket,
+      ]
+    }
+  }
+
+  public enum CancellationReason: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case duplicate
+    case fraudulent
+    case requestedByCustomer
+    case abandoned
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "duplicate": self = .duplicate
+        case "fraudulent": self = .fraudulent
+        case "requested_by_customer": self = .requestedByCustomer
+        case "abandoned": self = .abandoned
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .duplicate: return "duplicate"
+        case .fraudulent: return "fraudulent"
+        case .requestedByCustomer: return "requested_by_customer"
+        case .abandoned: return "abandoned"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: CancellationReason, rhs: CancellationReason) -> Bool {
+      switch (lhs, rhs) {
+        case (.duplicate, .duplicate): return true
+        case (.fraudulent, .fraudulent): return true
+        case (.requestedByCustomer, .requestedByCustomer): return true
+        case (.abandoned, .abandoned): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [CancellationReason] {
+      return [
+        .duplicate,
+        .fraudulent,
+        .requestedByCustomer,
+        .abandoned,
+      ]
+    }
+  }
+
+  public enum PaymentStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case requiresPaymentMethod
+    case requiresAction
+    case processing
+    case succeeded
+    case canceled
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "requires_payment_method": self = .requiresPaymentMethod
+        case "requires_action": self = .requiresAction
+        case "processing": self = .processing
+        case "succeeded": self = .succeeded
+        case "canceled": self = .canceled
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .requiresPaymentMethod: return "requires_payment_method"
+        case .requiresAction: return "requires_action"
+        case .processing: return "processing"
+        case .succeeded: return "succeeded"
+        case .canceled: return "canceled"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: PaymentStatus, rhs: PaymentStatus) -> Bool {
+      switch (lhs, rhs) {
+        case (.requiresPaymentMethod, .requiresPaymentMethod): return true
+        case (.requiresAction, .requiresAction): return true
+        case (.processing, .processing): return true
+        case (.succeeded, .succeeded): return true
+        case (.canceled, .canceled): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [PaymentStatus] {
+      return [
+        .requiresPaymentMethod,
+        .requiresAction,
+        .processing,
+        .succeeded,
+        .canceled,
+      ]
+    }
+  }
+
+  public enum PaymentActionType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case redirectToUrl
+    case collectCvc
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "redirect_to_url": self = .redirectToUrl
+        case "collect_cvc": self = .collectCvc
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .redirectToUrl: return "redirect_to_url"
+        case .collectCvc: return "collect_cvc"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: PaymentActionType, rhs: PaymentActionType) -> Bool {
+      switch (lhs, rhs) {
+        case (.redirectToUrl, .redirectToUrl): return true
+        case (.collectCvc, .collectCvc): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [PaymentActionType] {
+      return [
+        .redirectToUrl,
+        .collectCvc,
+      ]
+    }
+  }
+
+  public enum PaymentSourceType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+    public typealias RawValue = String
+    case card
+    /// Auto generated constant for unknown enum values
+    case __unknown(RawValue)
+
+    public init?(rawValue: RawValue) {
+      switch rawValue {
+        case "card": self = .card
+        default: self = .__unknown(rawValue)
+      }
+    }
+
+    public var rawValue: RawValue {
+      switch self {
+        case .card: return "card"
+        case .__unknown(let value): return value
+      }
+    }
+
+    public static func == (lhs: PaymentSourceType, rhs: PaymentSourceType) -> Bool {
+      switch (lhs, rhs) {
+        case (.card, .card): return true
+        case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+      }
+    }
+
+    public static var allCases: [PaymentSourceType] {
+      return [
+        .card,
+      ]
+    }
+  }
 }
