@@ -1,6 +1,9 @@
 excluded:
    - Pods
-   - RealifeTech-CoreSDK/APILayer
+   - RealifeTech-CoreSDK/APILayer/Tests
    - RealifeTech-CoreSDK/APIUtilities
    - RealifeTech-CoreSDK/GraphQL/API
 
+identifier_name:
+  excluded:
+    - id

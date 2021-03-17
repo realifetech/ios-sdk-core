@@ -1,8 +1,9 @@
+#import "./canvas_fragment_screen.graphql"
+
 query getScreenById($id: ID!) {
   getScreenById(id: $id) {
     translations {
-      language
-      title
+      ... screenTranslation
     }
   }
 }

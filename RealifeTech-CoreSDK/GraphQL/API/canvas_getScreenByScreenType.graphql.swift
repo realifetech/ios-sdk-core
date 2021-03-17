@@ -15,14 +15,19 @@ public extension ApolloType {
           __typename
           translations {
             __typename
-            language
-            title
+            ...screenTranslation
           }
         }
       }
       """
 
     public let operationName: String = "getScreenByScreenType"
+
+    public var queryDocument: String {
+      var document: String = operationDefinition
+      document.append("\n" + ScreenTranslation.fragmentDefinition)
+      return document
+    }
 
     public var type: ScreenType
 
@@ -106,8 +111,7 @@ public extension ApolloType {
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("language", type: .nonNull(.scalar(Language.self))),
-              GraphQLField("title", type: .nonNull(.scalar(String.self))),
+              GraphQLFragmentSpread(ScreenTranslation.self),
             ]
           }
 
@@ -130,21 +134,29 @@ public extension ApolloType {
             }
           }
 
-          public var language: Language {
+          public var fragments: Fragments {
             get {
-              return resultMap["language"]! as! Language
+              return Fragments(unsafeResultMap: resultMap)
             }
             set {
-              resultMap.updateValue(newValue, forKey: "language")
+              resultMap += newValue.resultMap
             }
           }
 
-          public var title: String {
-            get {
-              return resultMap["title"]! as! String
+          public struct Fragments {
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
             }
-            set {
-              resultMap.updateValue(newValue, forKey: "title")
+
+            public var screenTranslation: ScreenTranslation {
+              get {
+                return ScreenTranslation(unsafeResultMap: resultMap)
+              }
+              set {
+                resultMap += newValue.resultMap
+              }
             }
           }
         }

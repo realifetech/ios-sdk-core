@@ -97,12 +97,20 @@ final class RequestTimeLoggerTests: XCTestCase {
     }
 
     func testIsSlowRequest() {
-        XCTAssertTrue(RequestTimeLogger.isSlowRequest(requestDate: Date(timeIntervalSince1970: 0), currentDate: Date(timeIntervalSince1970: 3)))
-        XCTAssertTrue(RequestTimeLogger.isSlowRequest(requestDate: Date(timeIntervalSince1970: 0), currentDate: Date(timeIntervalSince1970: 4)))
+        XCTAssertTrue(RequestTimeLogger.isSlowRequest(
+                        requestDate: Date(timeIntervalSince1970: 0),
+                        currentDate: Date(timeIntervalSince1970: 3)))
+        XCTAssertTrue(RequestTimeLogger.isSlowRequest(
+                        requestDate: Date(timeIntervalSince1970: 0),
+                        currentDate: Date(timeIntervalSince1970: 4)))
     }
 
     func testIsFastRequest() {
-        XCTAssertFalse(RequestTimeLogger.isSlowRequest(requestDate: Date(timeIntervalSince1970: 0), currentDate: Date(timeIntervalSince1970: 0)))
-        XCTAssertFalse(RequestTimeLogger.isSlowRequest(requestDate: Date(timeIntervalSince1970: 0), currentDate: Date(timeIntervalSince1970: 2)))
+        XCTAssertFalse(RequestTimeLogger.isSlowRequest(
+                        requestDate: Date(timeIntervalSince1970: 0),
+                        currentDate: Date(timeIntervalSince1970: 0)))
+        XCTAssertFalse(RequestTimeLogger.isSlowRequest(
+                        requestDate: Date(timeIntervalSince1970: 0),
+                        currentDate: Date(timeIntervalSince1970: 2)))
     }
 }

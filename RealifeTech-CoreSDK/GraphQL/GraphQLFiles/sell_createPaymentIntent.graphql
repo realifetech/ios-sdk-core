@@ -1,0 +1,20 @@
+mutation createPaymentIntent($input: PaymentIntentInput!) {
+  createPaymentIntent(input: $input) {
+    id
+    orderType
+    orderId
+    status
+    paymentSource {
+      ...paymentSourceDetails
+    }
+    amount
+    currency
+    livemode
+    cancellationReason
+    savePaymentSource
+    nextAction {
+      type
+      url
+    }
+  }
+}

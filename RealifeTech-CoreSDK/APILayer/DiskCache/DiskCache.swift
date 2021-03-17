@@ -8,112 +8,169 @@
 
 import Foundation
 
-public extension Date {
-    func toMilliseconds() -> Int64 {
-        return Int64(self.timeIntervalSince1970 * 1000)
-    }
+public enum DiskCacheDeletionStrategy {
+    case all, privateOnly, outdatedOnly, allNonPrivate
 }
 
-public struct DiskCache {
+public protocol DiskCachable {
+    func save(
+        _ file: String,
+        with fileName: String,
+        fileCanBeExpired: Bool,
+        expiresAt: Int64
+    ) throws
+    func readItem(with fileName: String, includeExpired: Bool) -> (file: String?, expired: Bool)
+    func readItems(with baseFileName: String) -> [String]
+    func deleteItem(with fileName: String)
+    func clearItems(deletionStrategy: DiskCacheDeletionStrategy, completion: (() -> Void)?)
+}
+
+public struct DiskCache: DiskCachable {
+
+    private let fileManager: FileManager
+    private let clearCacheQueue: DispatchQueue
+
+    private static let second: Int64 = 6000
+    private static let minute: Int64 = second * 60
+    private static let hour: Int64 = minute * 60
+    private static let day: Int64 = hour * 24
+    private static let cacheDuration: Int64 = minute * 10
+    private static let fileDuration: Int64 = day * 2
+    static let defaultExpiresAt = Date().toMilliseconds() + cacheDuration
     static let fileExtension: String = ".diskcache"
     static let privateIndicator: String = "-private"
-    static let second: Int64 = 6000
-    static let minute: Int64 = second * 60
-    static let hour: Int64 = minute * 60
-    static let day: Int64 = hour * 24
-    static let cacheDuration: Int64 = minute * 10
-    static let fileDuration: Int64 = day * 2
 
-    public enum FileKey {
+    enum FileComponentKey {
         case expiry, file
     }
 
-    public enum DeletionStrategy {
-        case all, privateOnly, outdatedOnly, allNonPrivate
+    public init(
+        fileManager: FileManager = .default,
+        clearCacheQueue: DispatchQueue = DispatchQueue.global(qos: .background)
+    ) {
+        self.fileManager = fileManager
+        self.clearCacheQueue = clearCacheQueue
     }
 
-    static func save(file: String, withFileName fileName: String, fileExpires: Bool = true, expiresTimestamp: Int64 = Date().toMilliseconds()+cacheDuration) {
-        guard let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
-        let fileURL = dir.appendingPathComponent("\(fileName)\(fileExtension)")
-        let expiryTimestamp = fileExpires ? "\(expiresTimestamp)" : "NA"
+    public func save(
+        _ file: String,
+        with fileName: String,
+        fileCanBeExpired: Bool,
+        expiresAt: Int64
+    ) throws {
+        let fileUrl = try getFileUrl(fileName)
+        let expiryTimestamp = fileCanBeExpired ? "\(expiresAt)" : "NA"
         let text = "\(expiryTimestamp)|\(file)"
-        do {
-            try text.write(to: fileURL, atomically: false, encoding: .utf8)
-        } catch {
-            print(error)
-        }
+        try text.write(to: fileUrl, atomically: false, encoding: .utf8)
     }
 
-    static func read(fileName: String, includeExpired: Bool = false) -> (file: String?, expired: Bool) {
-        guard let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return (file: nil, expired: false) }
-        let fileURL = dir.appendingPathComponent("\(fileName)\(fileExtension)")
+    public func readItem(with fileName: String, includeExpired: Bool) -> (file: String?, expired: Bool) {
+        guard let fileUrl = try? getFileUrl(fileName) else {
+            return (file: nil, expired: false)
+        }
         do {
-            let text = try String(contentsOf: fileURL, encoding: .utf8)
-            let expired = fileExpired(text: text)
+            let text = try String(contentsOf: fileUrl, encoding: .utf8)
+            let expired = isFileExpired(text)
             if !includeExpired && expired {
                 return (file: nil, expired: true)
             }
-            return (file: fileComponent(text: text, key: .file), expired: expired)
+            let file = getFileComponent(by: .file, from: text)
+            return (file: file, expired: expired)
         } catch {
             return (file: nil, expired: false)
         }
     }
 
-    static func readItems(withBaseFileName baseFileName: String) -> [String] {
-        guard let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return [] }
-        guard let files = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) else { return [] }
+    public func readItems(with baseFileName: String) -> [String] {
+        guard let files = try? getAllFilesUrl() else { return [] }
         return files
             .filter { return $0.lastPathComponent.starts(with: baseFileName) }
             .map { try? String(contentsOf: $0.absoluteURL, encoding: .utf8) }
             .compactMap { $0 }
-            .map { return fileComponent(text: $0, key: .file) }
+            .map { return getFileComponent(by: .file, from: $0) }
             .compactMap { $0 }
     }
 
-    public static func clear(deletionStrategy: DeletionStrategy, completion: (() -> Void)? = nil) {
-        guard let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
-        DispatchQueue.global(qos: .background).async {
-            guard let files = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) else { return }
-            let fullExtension = deletionStrategy == .privateOnly ? "\(DiskCache.privateIndicator)\(DiskCache.fileExtension)" : "\(DiskCache.fileExtension)"
-            for file in files.filter({ $0.absoluteString.contains(fullExtension) }) {
-                var shouldDelete = false
-                switch deletionStrategy {
-                case .all, .privateOnly: shouldDelete = true
-                case .allNonPrivate: shouldDelete = !file.absoluteString.contains("\(DiskCache.privateIndicator)")
-                case .outdatedOnly:
-                    guard let text = try? String(contentsOf: file.absoluteURL, encoding: .utf8) else { continue }
-                    shouldDelete = fileExpired(text: text, andAlsoOutdated: true)
+    public func deleteItem(with fileName: String) {
+        guard let fileUrl = try? getFileUrl(fileName) else { return }
+        try? fileManager.removeItem(at: fileUrl)
+    }
+
+    public func clearItems(deletionStrategy: DiskCacheDeletionStrategy, completion: (() -> Void)?) {
+        guard let files = try? getAllFilesUrl() else { return }
+        let fullExtension = deletionStrategy == .privateOnly
+            ? "\(Self.privateIndicator)\(Self.fileExtension)"
+            : "\(Self.fileExtension)"
+        clearCacheQueue.async {
+            files
+                .filter { $0.absoluteString.contains(fullExtension) }
+                .forEach {
+                    var shouldDelete = false
+                    switch deletionStrategy {
+                    case .all, .privateOnly:
+                        shouldDelete = true
+                    case .allNonPrivate:
+                        shouldDelete = !$0.absoluteString.contains("\(Self.privateIndicator)")
+                    case .outdatedOnly:
+                        guard let text = try? String(contentsOf: $0.absoluteURL, encoding: .utf8) else { return }
+                        shouldDelete = isFileExpired(text, and: true)
+                    }
+                    if shouldDelete {
+                        try? fileManager.removeItem(atPath: $0.path)
+                    }
                 }
-                guard shouldDelete else { continue }
-                try? FileManager.default.removeItem(atPath: file.path)
-            }
             completion?()
         }
     }
 
-    static func deleteItem(fileWithName fileName: String) {
-        guard let dir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
-        let fileURL = dir.appendingPathComponent("\(fileName)\(fileExtension)")
-        try? FileManager.default.removeItem(at: fileURL)
+    // MARK: - Private helpers
+
+    private func getFileUrl(_ fileName: String) throws -> URL {
+        guard let dir = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            throw DiskCacheDataProvidingError.directoryNotFound
+        }
+        return dir.appendingPathComponent("\(fileName)\(Self.fileExtension)")
     }
 
-    private static func fileExpired(text: String, andAlsoOutdated alsoOutdated: Bool = false) -> Bool {
-        guard let expiry = fileComponent(text: text, key: .expiry) else { return true }
+    private func getAllFilesUrl() throws -> [URL] {
+        guard
+            let dir = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first,
+            let files = try? fileManager.contentsOfDirectory(
+                at: dir,
+                includingPropertiesForKeys: nil,
+                options: .skipsHiddenFiles)
+        else {
+            throw DiskCacheDataProvidingError.directoryNotFound
+        }
+        return files
+    }
+
+    private func isFileExpired(_ file: String, and alsoOutdated: Bool = false) -> Bool {
+        guard let expiry = getFileComponent(by: .expiry, from: file) else { return true }
         guard let expiryDate = Int64(expiry) else { return false }
         let currentDate = Int64(Date().toMilliseconds())
         if alsoOutdated {
-            return currentDate - expiryDate > fileDuration
+            return currentDate - expiryDate > Self.fileDuration
         } else {
             return currentDate > expiryDate
         }
     }
-    
-    private static func fileComponent(text: String, key: FileKey) -> String? {
+
+    private func getFileComponent(by key: FileComponentKey, from text: String) -> String? {
         let components = text.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: true)
         guard components.count == 2 else { return nil }
         switch key {
-        case .expiry: return String(components[0])
-        case .file: return String(components[1])
+        case .expiry:
+            return String(components[0])
+        case .file:
+            return String(components[1])
         }
+    }
+}
+
+extension Date {
+
+    func toMilliseconds() -> Int64 {
+        return Int64(self.timeIntervalSince1970 * 1000)
     }
 }

@@ -6,43 +6,40 @@ import Foundation
 
 /// ApolloType namespace
 public extension ApolloType {
-  final class GetWidgetsByScreenIdQuery: GraphQLQuery {
+  final class GetMyPaymentSourcesQuery: GraphQLQuery {
     /// The raw GraphQL definition of this operation.
     public let operationDefinition: String =
       """
-      query getWidgetsByScreenId($screenId: ID!, $pageSize: Int!, $page: Int = 1) {
-        getWidgetsByScreenId(screenId: $screenId, pageSize: $pageSize, page: $page) {
+      query getMyPaymentSources($pageSize: Int!, $page: Int! = 1) {
+        getMyPaymentSources(page: $page, pageSize: $pageSize) {
           __typename
           edges {
             __typename
-            ...widget
+            ...paymentSourceDetails
           }
-          nextPage
         }
       }
       """
 
-    public let operationName: String = "getWidgetsByScreenId"
+    public let operationName: String = "getMyPaymentSources"
 
     public var queryDocument: String {
       var document: String = operationDefinition
-      document.append("\n" + Widget.fragmentDefinition)
-      document.append("\n" + WidgetTranslation.fragmentDefinition)
+      document.append("\n" + PaymentSourceDetails.fragmentDefinition)
+      document.append("\n" + CardDetails.fragmentDefinition)
       return document
     }
 
-    public var screenId: GraphQLID
     public var pageSize: Int
-    public var page: Int?
+    public var page: Int
 
-    public init(screenId: GraphQLID, pageSize: Int, page: Int? = nil) {
-      self.screenId = screenId
+    public init(pageSize: Int, page: Int) {
       self.pageSize = pageSize
       self.page = page
     }
 
     public var variables: GraphQLMap? {
-      return ["screenId": screenId, "pageSize": pageSize, "page": page]
+      return ["pageSize": pageSize, "page": page]
     }
 
     public struct Data: GraphQLSelectionSet {
@@ -50,7 +47,7 @@ public extension ApolloType {
 
       public static var selections: [GraphQLSelection] {
         return [
-          GraphQLField("getWidgetsByScreenId", arguments: ["screenId": GraphQLVariable("screenId"), "pageSize": GraphQLVariable("pageSize"), "page": GraphQLVariable("page")], type: .object(GetWidgetsByScreenId.selections)),
+          GraphQLField("getMyPaymentSources", arguments: ["page": GraphQLVariable("page"), "pageSize": GraphQLVariable("pageSize")], type: .object(GetMyPaymentSource.selections)),
         ]
       }
 
@@ -60,27 +57,26 @@ public extension ApolloType {
         self.resultMap = unsafeResultMap
       }
 
-      public init(getWidgetsByScreenId: GetWidgetsByScreenId? = nil) {
-        self.init(unsafeResultMap: ["__typename": "Query", "getWidgetsByScreenId": getWidgetsByScreenId.flatMap { (value: GetWidgetsByScreenId) -> ResultMap in value.resultMap }])
+      public init(getMyPaymentSources: GetMyPaymentSource? = nil) {
+        self.init(unsafeResultMap: ["__typename": "Query", "getMyPaymentSources": getMyPaymentSources.flatMap { (value: GetMyPaymentSource) -> ResultMap in value.resultMap }])
       }
 
-      public var getWidgetsByScreenId: GetWidgetsByScreenId? {
+      public var getMyPaymentSources: GetMyPaymentSource? {
         get {
-          return (resultMap["getWidgetsByScreenId"] as? ResultMap).flatMap { GetWidgetsByScreenId(unsafeResultMap: $0) }
+          return (resultMap["getMyPaymentSources"] as? ResultMap).flatMap { GetMyPaymentSource(unsafeResultMap: $0) }
         }
         set {
-          resultMap.updateValue(newValue?.resultMap, forKey: "getWidgetsByScreenId")
+          resultMap.updateValue(newValue?.resultMap, forKey: "getMyPaymentSources")
         }
       }
 
-      public struct GetWidgetsByScreenId: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["WidgetEdge"]
+      public struct GetMyPaymentSource: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PaymentSourceEdge"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("edges", type: .list(.object(Edge.selections))),
-            GraphQLField("nextPage", type: .scalar(Int.self)),
           ]
         }
 
@@ -90,8 +86,8 @@ public extension ApolloType {
           self.resultMap = unsafeResultMap
         }
 
-        public init(edges: [Edge?]? = nil, nextPage: Int? = nil) {
-          self.init(unsafeResultMap: ["__typename": "WidgetEdge", "edges": edges.flatMap { (value: [Edge?]) -> [ResultMap?] in value.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } } }, "nextPage": nextPage])
+        public init(edges: [Edge?]? = nil) {
+          self.init(unsafeResultMap: ["__typename": "PaymentSourceEdge", "edges": edges.flatMap { (value: [Edge?]) -> [ResultMap?] in value.map { (value: Edge?) -> ResultMap? in value.flatMap { (value: Edge) -> ResultMap in value.resultMap } } }])
         }
 
         public var __typename: String {
@@ -112,22 +108,13 @@ public extension ApolloType {
           }
         }
 
-        public var nextPage: Int? {
-          get {
-            return resultMap["nextPage"] as? Int
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "nextPage")
-          }
-        }
-
         public struct Edge: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["Widget"]
+          public static let possibleTypes: [String] = ["PaymentSource"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLFragmentSpread(Widget.self),
+              GraphQLFragmentSpread(PaymentSourceDetails.self),
             ]
           }
 
@@ -162,9 +149,9 @@ public extension ApolloType {
               self.resultMap = unsafeResultMap
             }
 
-            public var widget: Widget {
+            public var paymentSourceDetails: PaymentSourceDetails {
               get {
-                return Widget(unsafeResultMap: resultMap)
+                return PaymentSourceDetails(unsafeResultMap: resultMap)
               }
               set {
                 resultMap += newValue.resultMap

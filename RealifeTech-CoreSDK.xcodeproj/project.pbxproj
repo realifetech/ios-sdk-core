@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0909B1CA260096630026A9B5 /* sell_getMyPaymentSources.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C5260096620026A9B5 /* sell_getMyPaymentSources.graphql.swift */; };
+		0909B1CB260096630026A9B5 /* sell_createPaymentIntent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C6260096620026A9B5 /* sell_createPaymentIntent.graphql.swift */; };
+		0909B1CC260096630026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C7260096620026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift */; };
+		0909B1CD260096630026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C8260096620026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift */; };
+		0909B1CE260096630026A9B5 /* sell_updatePaymentIntent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B1C9260096620026A9B5 /* sell_updatePaymentIntent.graphql.swift */; };
 		2BD2559D3B64CB5141584EA0 /* Pods_RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A320110EF5AA0E00EC1F17 /* Pods_RealifeTech_CoreSDK.framework */; };
 		961E2C562580E31B00547451 /* RealifeTech_CoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */; };
 		961E2C5D2580E31B00547451 /* RealifeTech_CoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -20,7 +25,6 @@
 		961E2CF32580E35400547451 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C792580E34500547451 /* DiskCache.swift */; };
 		961E2CF42580E35400547451 /* RemoteDiskCacheDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7A2580E34500547451 /* RemoteDiskCacheDataProviding.swift */; };
 		961E2CF52580E35400547451 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7C2580E34500547451 /* APIError.swift */; };
-		961E2CF62580E35400547451 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7D2580E34500547451 /* Dictionary+Extensions.swift */; };
 		961E2CF72580E35400547451 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C7E2580E34500547451 /* String+Localization.swift */; };
 		961E2CF82580E35400547451 /* APILayer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 961E2C802580E34500547451 /* APILayer.strings */; };
 		961E2CFF2580E35400547451 /* RequestCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C8B2580E34500547451 /* RequestCreator.swift */; };
@@ -69,8 +73,6 @@
 		961E2D442580E35400547451 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE62580E35400547451 /* OAuthToken.swift */; };
 		961E2D452580E35400547451 /* OAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE72580E35400547451 /* OAuthRepository.swift */; };
 		961E2D462580E35400547451 /* RequestHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CE82580E35400547451 /* RequestHeader.swift */; };
-		961E2D5E2580ED3B00547451 /* Dictionary+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */; };
-		961E2D612580ED3E00547451 /* DiskCacheClearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C872580E34500547451 /* DiskCacheClearTests.swift */; };
 		961E2D642580ED4100547451 /* DiskCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C892580E34500547451 /* DiskCacheTests.swift */; };
 		961E2D692580ED4400547451 /* RequestCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C832580E34500547451 /* RequestCreatorTests.swift */; };
 		961E2D6C2580ED4700547451 /* RequestTimeLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */; };
@@ -94,8 +96,16 @@
 		961E2DBF2580EDCB00547451 /* DeviceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2C932580E34800547451 /* DeviceTokenTests.swift */; };
 		961E2DC42580EDD200547451 /* CodableStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB42580E34F00547451 /* CodableStorageTests.swift */; };
 		961E2DC72580EDD500547451 /* DiskStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E2CB52580E34F00547451 /* DiskStorageTests.swift */; };
+		962BEF9B2600901D000FA938 /* canvas_fragment_widget.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962BEF992600901D000FA938 /* canvas_fragment_widget.graphql.swift */; };
+		962BEF9C2600901D000FA938 /* canvas_fragment_screen.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962BEF9A2600901D000FA938 /* canvas_fragment_screen.graphql.swift */; };
 		9655A40B2581086B006C46CF /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 9655A40A2581086B006C46CF /* schema.json */; };
 		9667DE5B25E50FC700E5D960 /* content_getWebPageByType.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */; };
+		9687B94325F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687B94225F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift */; };
+		9687B97A25F2334F00B0B067 /* LocalDiskCacheDataProvidingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687B97925F2334F00B0B067 /* LocalDiskCacheDataProvidingTests.swift */; };
+		9687B98025F23A1D00B0B067 /* MockDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687B97F25F23A1D00B0B067 /* MockDiskCache.swift */; };
+		9687B98625F23A5300B0B067 /* DiskCacheCodableInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687B98525F23A5300B0B067 /* DiskCacheCodableInterfaceTests.swift */; };
+		9687B98C25F23F3B00B0B067 /* RemoteDiskCacheDataProvidingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687B98B25F23F3B00B0B067 /* RemoteDiskCacheDataProvidingTests.swift */; };
+		9687B99425F2780800B0B067 /* String+RequestIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687B99325F2780800B0B067 /* String+RequestIdentifier.swift */; };
 		968A6C3F25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C3E25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift */; };
 		968A6C4325C9537C001545E9 /* APITokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C4225C9537C001545E9 /* APITokenInterceptor.swift */; };
 		968A6C4B25C953B1001545E9 /* RequestLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968A6C4A25C953B1001545E9 /* RequestLoggingInterceptor.swift */; };
@@ -124,6 +134,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0909B1C5260096620026A9B5 /* sell_getMyPaymentSources.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_getMyPaymentSources.graphql.swift; sourceTree = "<group>"; };
+		0909B1C6260096620026A9B5 /* sell_createPaymentIntent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_createPaymentIntent.graphql.swift; sourceTree = "<group>"; };
+		0909B1C7260096620026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_fragment_paymentSourceDetails.graphql.swift; sourceTree = "<group>"; };
+		0909B1C8260096620026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_addPaymentSourceToMyWallet.graphql.swift; sourceTree = "<group>"; };
+		0909B1C9260096620026A9B5 /* sell_updatePaymentIntent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sell_updatePaymentIntent.graphql.swift; sourceTree = "<group>"; };
 		6C5442736BFC18FEA93785A4 /* Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealifeTech_CoreSDK_RealifeTech_CoreSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4C2580E31B00547451 /* RealifeTech_CoreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealifeTech_CoreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961E2C4F2580E31B00547451 /* RealifeTech_CoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealifeTech_CoreSDK.h; sourceTree = "<group>"; };
@@ -141,13 +156,10 @@
 		961E2C792580E34500547451 /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		961E2C7A2580E34500547451 /* RemoteDiskCacheDataProviding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDiskCacheDataProviding.swift; sourceTree = "<group>"; };
 		961E2C7C2580E34500547451 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		961E2C7D2580E34500547451 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		961E2C7E2580E34500547451 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		961E2C812580E34500547451 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/APILayer.strings; sourceTree = "<group>"; };
 		961E2C832580E34500547451 /* RequestCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCreatorTests.swift; sourceTree = "<group>"; };
 		961E2C852580E34500547451 /* APIErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
-		961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+ExtensionTests.swift"; sourceTree = "<group>"; };
-		961E2C872580E34500547451 /* DiskCacheClearTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheClearTests.swift; sourceTree = "<group>"; };
 		961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTimeLoggerTests.swift; sourceTree = "<group>"; };
 		961E2C892580E34500547451 /* DiskCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCacheTests.swift; sourceTree = "<group>"; };
 		961E2C8B2580E34500547451 /* RequestCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCreator.swift; sourceTree = "<group>"; };
@@ -214,8 +226,16 @@
 		961E2CE62580E35400547451 /* OAuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		961E2CE72580E35400547451 /* OAuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthRepository.swift; sourceTree = "<group>"; };
 		961E2CE82580E35400547451 /* RequestHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHeader.swift; sourceTree = "<group>"; };
+		962BEF992600901D000FA938 /* canvas_fragment_widget.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = canvas_fragment_widget.graphql.swift; sourceTree = "<group>"; };
+		962BEF9A2600901D000FA938 /* canvas_fragment_screen.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = canvas_fragment_screen.graphql.swift; sourceTree = "<group>"; };
 		9655A40A2581086B006C46CF /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = content_getWebPageByType.graphql.swift; sourceTree = "<group>"; };
+		9687B94225F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCacheDataProvidingStrategy.swift; sourceTree = "<group>"; };
+		9687B97925F2334F00B0B067 /* LocalDiskCacheDataProvidingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDiskCacheDataProvidingTests.swift; sourceTree = "<group>"; };
+		9687B97F25F23A1D00B0B067 /* MockDiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDiskCache.swift; sourceTree = "<group>"; };
+		9687B98525F23A5300B0B067 /* DiskCacheCodableInterfaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCacheCodableInterfaceTests.swift; sourceTree = "<group>"; };
+		9687B98B25F23F3B00B0B067 /* RemoteDiskCacheDataProvidingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDiskCacheDataProvidingTests.swift; sourceTree = "<group>"; };
+		9687B99325F2780800B0B067 /* String+RequestIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RequestIdentifier.swift"; sourceTree = "<group>"; };
 		968A6C3E25C952FB001545E9 /* GraphNetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphNetworkInterceptorProvider.swift; sourceTree = "<group>"; };
 		968A6C4225C9537C001545E9 /* APITokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITokenInterceptor.swift; sourceTree = "<group>"; };
 		968A6C4A25C953B1001545E9 /* RequestLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoggingInterceptor.swift; sourceTree = "<group>"; };
@@ -322,16 +342,8 @@
 				961E2C722580E34300547451 /* AnalyticEvent.swift */,
 				96FD1D3D258101760099EE4A /* Date+Formatted.swift */,
 				961E2C712580E34300547451 /* LogEventSending.swift */,
-				961E2C732580E34300547451 /* Tests */,
 			);
 			path = Logging;
-			sourceTree = "<group>";
-		};
-		961E2C732580E34300547451 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		961E2C752580E34500547451 /* APILayer */ = {
@@ -351,6 +363,7 @@
 			children = (
 				961E2C792580E34500547451 /* DiskCache.swift */,
 				961E2C772580E34500547451 /* DiskCacheCodableInterface.swift */,
+				9687B94225F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift */,
 				961E2C782580E34500547451 /* LocalDiskCacheDataProviding.swift */,
 				961E2C7A2580E34500547451 /* RemoteDiskCacheDataProviding.swift */,
 			);
@@ -361,8 +374,8 @@
 			isa = PBXGroup;
 			children = (
 				961E2C7C2580E34500547451 /* APIError.swift */,
-				961E2C7D2580E34500547451 /* Dictionary+Extensions.swift */,
 				961E2C7E2580E34500547451 /* String+Localization.swift */,
+				9687B99325F2780800B0B067 /* String+RequestIdentifier.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -378,11 +391,13 @@
 		961E2C822580E34500547451 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				961E2C862580E34500547451 /* Dictionary+ExtensionTests.swift */,
-				961E2C872580E34500547451 /* DiskCacheClearTests.swift */,
-				961E2C892580E34500547451 /* DiskCacheTests.swift */,
 				961E2C832580E34500547451 /* RequestCreatorTests.swift */,
 				961E2C882580E34500547451 /* RequestTimeLoggerTests.swift */,
+				961E2C892580E34500547451 /* DiskCacheTests.swift */,
+				9687B98525F23A5300B0B067 /* DiskCacheCodableInterfaceTests.swift */,
+				9687B97925F2334F00B0B067 /* LocalDiskCacheDataProvidingTests.swift */,
+				9687B98B25F23F3B00B0B067 /* RemoteDiskCacheDataProvidingTests.swift */,
+				9687B97F25F23A1D00B0B067 /* MockDiskCache.swift */,
 				961E2C842580E34500547451 /* Util */,
 			);
 			path = Tests;
@@ -457,16 +472,8 @@
 				961E2C9F2580E34A00547451 /* GraphNetworkCachePolicy.swift */,
 				961E2CA42580E34A00547451 /* GraphQLDispatcher.swift */,
 				9655A40A2581086B006C46CF /* schema.json */,
-				961E2C9C2580E34A00547451 /* Tests */,
 			);
 			path = GraphQL;
-			sourceTree = "<group>";
-		};
-		961E2C9C2580E34A00547451 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		961E2CA52580E34A00547451 /* API */ = {
@@ -474,11 +481,18 @@
 			children = (
 				96CACCC325820E0A00238919 /* analytics_putAnalyticEvent.graphql.swift */,
 				96CACC942582043D00238919 /* audience_fetchBelongsToAudienceWithExternalId.graphql.swift */,
+				962BEF9A2600901D000FA938 /* canvas_fragment_screen.graphql.swift */,
+				962BEF992600901D000FA938 /* canvas_fragment_widget.graphql.swift */,
 				96CACC932582043D00238919 /* canvas_getScreenByScreenId.graphql.swift */,
 				96CACC952582043D00238919 /* canvas_getScreenByScreenType.graphql.swift */,
 				96CACC972582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift */,
 				96CACC982582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift */,
 				9667DE5A25E50FC700E5D960 /* content_getWebPageByType.graphql.swift */,
+				0909B1C8260096620026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift */,
+				0909B1C6260096620026A9B5 /* sell_createPaymentIntent.graphql.swift */,
+				0909B1C5260096620026A9B5 /* sell_getMyPaymentSources.graphql.swift */,
+				0909B1C9260096620026A9B5 /* sell_updatePaymentIntent.graphql.swift */,
+				0909B1C7260096620026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift */,
 				96CACCA32582046700238919 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -832,7 +846,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\nGRAPHQL_PATH=\"${SRCROOT}/RealifeTech-CoreSDK/GraphQL\"\ncd $GRAPHQL_PATH\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://staging-graphql-eu.realifetech.com\" --header=\"Authorization: Bearer NGZjZjViZDE2YTk5MjU1YzJlMzk3MDYxYzhmZjc4MzBlMDQxYzg2MjYwMTNmYTAwY2IyMzI4NzlkNWI3YzEzNw\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --namespace=\"ApolloType\" --includes=${GRAPHQL_PATH}/GraphQLFiles/*.graphql --localSchemaFile=\"${GRAPHQL_PATH}/schema.json\" API/\n";
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\nGRAPHQL_PATH=\"${SRCROOT}/RealifeTech-CoreSDK/GraphQL\"\ncd $GRAPHQL_PATH\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://staging-graphql-eu.realifetech.com\" --header=\"Authorization: Bearer NGZjZjViZDE2YTk5MjU1YzJlMzk3MDYxYzhmZjc4MzBlMDQxYzg2MjYwMTNmYTAwY2IyMzI4NzlkNWI3YzEzNw\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --namespace=\"ApolloType\" --includes=${GRAPHQL_PATH}/GraphQLFiles/*.graphql --localSchemaFile=\"${GRAPHQL_PATH}/schema.json\" API/\n";
 		};
 		E9D97CAE360A20C86112AFBD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -891,6 +905,7 @@
 				961E2CFF2580E35400547451 /* RequestCreator.swift in Sources */,
 				96CACC9E2582043E00238919 /* canvas_getWidgetsByScreenType.graphql.swift in Sources */,
 				961E2CEF2580E35400547451 /* AnalyticEvent.swift in Sources */,
+				962BEF9C2600901D000FA938 /* canvas_fragment_screen.graphql.swift in Sources */,
 				961E2D3D2580E35400547451 /* APITokenManager.swift in Sources */,
 				961E2D1A2580E35400547451 /* UserDefaultStorage.swift in Sources */,
 				961E2CF22580E35400547451 /* LocalDiskCacheDataProviding.swift in Sources */,
@@ -906,6 +921,7 @@
 				96CACC9B2582043E00238919 /* canvas_getScreenByScreenType.graphql.swift in Sources */,
 				96CACC992582043E00238919 /* canvas_getScreenByScreenId.graphql.swift in Sources */,
 				961E2D3B2580E35400547451 /* KeychainSwift.swift in Sources */,
+				0909B1CA260096630026A9B5 /* sell_getMyPaymentSources.graphql.swift in Sources */,
 				961E2D422580E35400547451 /* OAuthTokenRefreshWatcher.swift in Sources */,
 				961E2CED2580E35400547451 /* UIDeviceInterface.swift in Sources */,
 				961E2CF72580E35400547451 /* String+Localization.swift in Sources */,
@@ -931,13 +947,18 @@
 				961E2D2B2580E35400547451 /* DefaultDiskCacheStrategyProviding.swift in Sources */,
 				961E2D2D2580E35400547451 /* DeviceIdHeaderRequestInserting.swift in Sources */,
 				96CACC9D2582043E00238919 /* canvas_getWidgetsByScreenId.graphql.swift in Sources */,
+				0909B1CC260096630026A9B5 /* sell_fragment_paymentSourceDetails.graphql.swift in Sources */,
 				961E2D212580E35400547451 /* Identifiable.swift in Sources */,
+				0909B1CB260096630026A9B5 /* sell_createPaymentIntent.graphql.swift in Sources */,
+				9687B94325F1FE7200B0B067 /* DiskCacheDataProvidingStrategy.swift in Sources */,
 				961E2D412580E35400547451 /* AuthorisationWorker.swift in Sources */,
+				0909B1CD260096630026A9B5 /* sell_addPaymentSourceToMyWallet.graphql.swift in Sources */,
 				961E2D2F2580E35400547451 /* OAuthHeaderRequestInserting.swift in Sources */,
 				961E2D182580E35400547451 /* Storage.swift in Sources */,
 				968A6C4B25C953B1001545E9 /* RequestLoggingInterceptor.swift in Sources */,
 				961E2D222580E35400547451 /* PersistentQueue.swift in Sources */,
 				961E2D432580E35400547451 /* OAuthRequester.swift in Sources */,
+				962BEF9B2600901D000FA938 /* canvas_fragment_widget.graphql.swift in Sources */,
 				961E2D022580E35400547451 /* RequestTimeLogger.swift in Sources */,
 				961E2D032580E35400547451 /* RequestDispatcher.swift in Sources */,
 				961E2D232580E35400547451 /* QueueItem.swift in Sources */,
@@ -947,13 +968,14 @@
 				961E2D082580E35400547451 /* DeviceToken.swift in Sources */,
 				961E2D1E2580E35400547451 /* QueueProviding+AnyQueue.swift in Sources */,
 				961E2D072580E35400547451 /* DeviceRepository.swift in Sources */,
+				9687B99425F2780800B0B067 /* String+RequestIdentifier.swift in Sources */,
 				961E2D1F2580E35400547451 /* QueueError.swift in Sources */,
 				96CACCB0258207E900238919 /* CoreSDKConfiguration.swift in Sources */,
 				961E2D242580E35400547451 /* NetworkConnectivityChecker.swift in Sources */,
-				961E2CF62580E35400547451 /* Dictionary+Extensions.swift in Sources */,
 				961E2D3A2580E35400547451 /* StandardSenderResponse.swift in Sources */,
 				961E2CEC2580E35400547451 /* UIDeviceWrapper.swift in Sources */,
 				961E2CF32580E35400547451 /* DiskCache.swift in Sources */,
+				0909B1CE260096630026A9B5 /* sell_updatePaymentIntent.graphql.swift in Sources */,
 				961E2D172580E35400547451 /* ReadOnlyCurrentValue.swift in Sources */,
 				961E2D252580E35400547451 /* ReachabilityChecker.swift in Sources */,
 				961E2D002580E35400547451 /* RequestLogger.swift in Sources */,
@@ -966,11 +988,14 @@
 			files = (
 				961E2D692580ED4400547451 /* RequestCreatorTests.swift in Sources */,
 				961E2D7C2580ED7A00547451 /* AuthorisationWorkerTests.swift in Sources */,
+				9687B97A25F2334F00B0B067 /* LocalDiskCacheDataProvidingTests.swift in Sources */,
+				9687B98C25F23F3B00B0B067 /* RemoteDiskCacheDataProvidingTests.swift in Sources */,
 				961E2D922580ED8D00547451 /* StandardSenderResponseTests.swift in Sources */,
 				961E2D812580ED7D00547451 /* AuthorsationStoreTests.swift in Sources */,
 				961E2D6C2580ED4700547451 /* RequestTimeLoggerTests.swift in Sources */,
 				961E2DBF2580EDCB00547451 /* DeviceTokenTests.swift in Sources */,
 				961E2DBA2580EDC700547451 /* DeviceTests.swift in Sources */,
+				9687B98625F23A5300B0B067 /* DiskCacheCodableInterfaceTests.swift in Sources */,
 				961E2DAB2580EDB500547451 /* BluetoothManagerWrapperTests.swift in Sources */,
 				961E2DA62580EDAC00547451 /* UIDeviceHelperTests.swift in Sources */,
 				961E2D8F2580ED8A00547451 /* RequestHeaderTests.swift in Sources */,
@@ -979,17 +1004,16 @@
 				961E2DC42580EDD200547451 /* CodableStorageTests.swift in Sources */,
 				961E2DC72580EDD500547451 /* DiskStorageTests.swift in Sources */,
 				961E2D8C2580ED8700547451 /* OAuthTokenRefreshWatcherTests.swift in Sources */,
+				9687B98025F23A1D00B0B067 /* MockDiskCache.swift in Sources */,
 				961E2D872580ED8400547451 /* OAuthRefreshOrWaitActionGeneratorTests.swift in Sources */,
 				961E2D972580ED9000547451 /* APITokenManagerTests.swift in Sources */,
 				961E2D762580ED7300547451 /* APIRequesterHelperTests.swift in Sources */,
 				96CACCBA2582096F00238919 /* CoreSDKConfigurationTests.swift in Sources */,
-				961E2D5E2580ED3B00547451 /* Dictionary+ExtensionTests.swift in Sources */,
 				961E2DAE2580EDB700547451 /* ReachabilityCheckerTests.swift in Sources */,
 				961E2D6F2580ED4A00547451 /* APIErrorTests.swift in Sources */,
 				961E2D842580ED8100547451 /* EmptyTokenManagerTests.swift in Sources */,
 				961E2D9C2580ED9E00547451 /* ReadOnlyCurrentValueTests.swift in Sources */,
 				961E2D642580ED4100547451 /* DiskCacheTests.swift in Sources */,
-				961E2D612580ED3E00547451 /* DiskCacheClearTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,7 +1179,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.concertlive.RealifeTech-CoreSDK";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1183,7 +1207,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.concertlive.RealifeTech-CoreSDK";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
