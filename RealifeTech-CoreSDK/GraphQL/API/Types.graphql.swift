@@ -152,7 +152,22 @@ public enum ApolloType {
     case privacy
     case about
     case aboutCompany
-    case purchasesHelp
+    case important
+    case info
+    case times
+    case event
+    case welcome
+    case travel
+    case faq
+    case food
+    case program
+    case social
+    case menu
+    case legal
+    case quizHelp
+    case quizTerms
+    case quizWinner
+    case ntpTerms
     /// Auto generated constant for unknown enum values
     case __unknown(RawValue)
 
@@ -163,7 +178,22 @@ public enum ApolloType {
         case "privacy": self = .privacy
         case "about": self = .about
         case "aboutCompany": self = .aboutCompany
-        case "purchasesHelp": self = .purchasesHelp
+        case "important": self = .important
+        case "info": self = .info
+        case "times": self = .times
+        case "event": self = .event
+        case "welcome": self = .welcome
+        case "travel": self = .travel
+        case "faq": self = .faq
+        case "food": self = .food
+        case "program": self = .program
+        case "social": self = .social
+        case "menu": self = .menu
+        case "legal": self = .legal
+        case "quizHelp": self = .quizHelp
+        case "quizTerms": self = .quizTerms
+        case "quizWinner": self = .quizWinner
+        case "ntpTerms": self = .ntpTerms
         default: self = .__unknown(rawValue)
       }
     }
@@ -175,7 +205,22 @@ public enum ApolloType {
         case .privacy: return "privacy"
         case .about: return "about"
         case .aboutCompany: return "aboutCompany"
-        case .purchasesHelp: return "purchasesHelp"
+        case .important: return "important"
+        case .info: return "info"
+        case .times: return "times"
+        case .event: return "event"
+        case .welcome: return "welcome"
+        case .travel: return "travel"
+        case .faq: return "faq"
+        case .food: return "food"
+        case .program: return "program"
+        case .social: return "social"
+        case .menu: return "menu"
+        case .legal: return "legal"
+        case .quizHelp: return "quizHelp"
+        case .quizTerms: return "quizTerms"
+        case .quizWinner: return "quizWinner"
+        case .ntpTerms: return "ntpTerms"
         case .__unknown(let value): return value
       }
     }
@@ -187,7 +232,22 @@ public enum ApolloType {
         case (.privacy, .privacy): return true
         case (.about, .about): return true
         case (.aboutCompany, .aboutCompany): return true
-        case (.purchasesHelp, .purchasesHelp): return true
+        case (.important, .important): return true
+        case (.info, .info): return true
+        case (.times, .times): return true
+        case (.event, .event): return true
+        case (.welcome, .welcome): return true
+        case (.travel, .travel): return true
+        case (.faq, .faq): return true
+        case (.food, .food): return true
+        case (.program, .program): return true
+        case (.social, .social): return true
+        case (.menu, .menu): return true
+        case (.legal, .legal): return true
+        case (.quizHelp, .quizHelp): return true
+        case (.quizTerms, .quizTerms): return true
+        case (.quizWinner, .quizWinner): return true
+        case (.ntpTerms, .ntpTerms): return true
         case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
         default: return false
       }
@@ -200,7 +260,22 @@ public enum ApolloType {
         .privacy,
         .about,
         .aboutCompany,
-        .purchasesHelp,
+        .important,
+        .info,
+        .times,
+        .event,
+        .welcome,
+        .travel,
+        .faq,
+        .food,
+        .program,
+        .social,
+        .menu,
+        .legal,
+        .quizHelp,
+        .quizTerms,
+        .quizWinner,
+        .ntpTerms,
       ]
     }
   }
