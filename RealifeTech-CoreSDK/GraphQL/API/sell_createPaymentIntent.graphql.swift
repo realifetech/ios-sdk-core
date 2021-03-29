@@ -31,6 +31,7 @@ public extension ApolloType {
             type
             url
           }
+          lastPaymentError
         }
       }
       """
@@ -99,6 +100,7 @@ public extension ApolloType {
             GraphQLField("cancellationReason", type: .scalar(CancellationReason.self)),
             GraphQLField("savePaymentSource", type: .scalar(Bool.self)),
             GraphQLField("nextAction", type: .object(NextAction.selections)),
+            GraphQLField("lastPaymentError", type: .scalar(String.self)),
           ]
         }
 
@@ -108,8 +110,8 @@ public extension ApolloType {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, orderType: OrderType, orderId: GraphQLID, status: PaymentStatus, paymentSource: PaymentSource? = nil, amount: Int, currency: String, livemode: Bool, cancellationReason: CancellationReason? = nil, savePaymentSource: Bool? = nil, nextAction: NextAction? = nil) {
-          self.init(unsafeResultMap: ["__typename": "PaymentIntent", "id": id, "orderType": orderType, "orderId": orderId, "status": status, "paymentSource": paymentSource.flatMap { (value: PaymentSource) -> ResultMap in value.resultMap }, "amount": amount, "currency": currency, "livemode": livemode, "cancellationReason": cancellationReason, "savePaymentSource": savePaymentSource, "nextAction": nextAction.flatMap { (value: NextAction) -> ResultMap in value.resultMap }])
+        public init(id: GraphQLID, orderType: OrderType, orderId: GraphQLID, status: PaymentStatus, paymentSource: PaymentSource? = nil, amount: Int, currency: String, livemode: Bool, cancellationReason: CancellationReason? = nil, savePaymentSource: Bool? = nil, nextAction: NextAction? = nil, lastPaymentError: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "PaymentIntent", "id": id, "orderType": orderType, "orderId": orderId, "status": status, "paymentSource": paymentSource.flatMap { (value: PaymentSource) -> ResultMap in value.resultMap }, "amount": amount, "currency": currency, "livemode": livemode, "cancellationReason": cancellationReason, "savePaymentSource": savePaymentSource, "nextAction": nextAction.flatMap { (value: NextAction) -> ResultMap in value.resultMap }, "lastPaymentError": lastPaymentError])
         }
 
         public var __typename: String {
@@ -217,6 +219,15 @@ public extension ApolloType {
           }
           set {
             resultMap.updateValue(newValue?.resultMap, forKey: "nextAction")
+          }
+        }
+
+        public var lastPaymentError: String? {
+          get {
+            return resultMap["lastPaymentError"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "lastPaymentError")
           }
         }
 
