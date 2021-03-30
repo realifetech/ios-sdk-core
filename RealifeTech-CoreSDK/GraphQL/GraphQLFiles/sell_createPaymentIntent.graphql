@@ -16,5 +16,6 @@ mutation createPaymentIntent($input: PaymentIntentInput!) {
       type
       url
     }
+    lastPaymentError
   }
 }

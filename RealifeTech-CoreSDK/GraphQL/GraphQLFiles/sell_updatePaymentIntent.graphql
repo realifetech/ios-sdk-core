@@ -16,5 +16,6 @@ mutation updateMyPaymentIntent($id: ID!, $input: PaymentIntentInput!) {
       type
       url
     }
+    lastPaymentError
   }
 }
