@@ -49,6 +49,5 @@ struct OAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating {
                 self.oAuthTokenRefreshWatcher.updateRefreshingStatus(newValue: .invalid)
             })
             .map { _ in return () }
-            .catchError { _ in return Observable.just(()) }
     }
 }

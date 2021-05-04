@@ -20,7 +20,7 @@ extension APIRequester {
 
     public static func preDispatchAction() -> Observable<Any?>? {
         return .create { observer in
-            APIRequesterHelper.tokenManager.getValidToken {
+            APIRequesterHelper.tokenManager.getValidToken { _ in
                 observer.onNext(())
                 observer.onCompleted()
             }

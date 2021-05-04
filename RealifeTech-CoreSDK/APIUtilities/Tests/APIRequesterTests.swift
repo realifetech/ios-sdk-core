@@ -124,8 +124,8 @@ private final class MockTokenManager: APITokenManagable {
     var refreshTokenIsValid: Bool = false
     var getTokenObservable: Observable<Void>?
 
-    func getValidToken(_ completion: (() -> Void)?) {
-        completion?()
+    func getValidToken(_ completion: ((Result<Void, Error>) -> Void)?) {
+        completion?(.success(()))
     }
 
     func storeCredentials(accessToken: String, secondsExpiresIn: Int, refreshToken: String?) { }

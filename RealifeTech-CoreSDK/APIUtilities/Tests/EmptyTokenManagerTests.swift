@@ -14,7 +14,7 @@ final class EmptyTokenManagerTests: XCTestCase {
     func test_getValidToken() {
         let sut = EmptyTokenManager()
         var didExecuteCompletion: Bool = false
-        sut.getValidToken {
+        sut.getValidToken { _ in
             didExecuteCompletion = true
         }
         XCTAssertTrue(didExecuteCompletion)
