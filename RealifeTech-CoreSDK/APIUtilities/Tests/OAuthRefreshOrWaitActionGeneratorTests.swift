@@ -13,11 +13,12 @@ import RxTest
 
 final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
 
-    let emptyToken = OAuthToken(accessToken: nil,
-                                refreshToken: nil,
-                                expiresIn: nil,
-                                tokenType: nil,
-                                scope: nil)
+    let emptyToken = OAuthToken(
+        accessToken: nil,
+        refreshToken: nil,
+        expiresIn: nil,
+        tokenType: nil,
+        scope: nil)
 
     func test_refreshOrWaitAction_noRefreshValidToken() {
         let store = MockStore()
@@ -32,7 +33,7 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
         XCTAssertNil(sut.refreshTokenOrWaitAction)
     }
 
-    func test_refreshOrWaitAction_refreshInProgress() {
+    func test_refreshOrWaitAction_refreshInProgress() throws {
         let scheduler = TestScheduler(initialClock: 0)
         let disposeBag = DisposeBag()
         let refreshCompleteStream = scheduler.createColdObservable([
@@ -47,9 +48,7 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
             authorisationWorker: worker,
             oAuthTokenRefreshWatcher: watcher,
             authorisationStore: store)
-        guard let outputStream = sut.refreshTokenOrWaitAction else {
-            return XCTFail("No refreshOrWait observable provided")
-        }
+        let outputStream = try XCTUnwrap(sut.refreshTokenOrWaitAction)
         let observer = scheduler.createObserver(Bool.self)
         outputStream
             .asDriver(onErrorJustReturn: Void())
@@ -59,29 +58,30 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
         scheduler.start()
 
         let expectedEvents = [
-            Recorded.next(100, true),
-            Recorded.completed(100)
+            Recorded.next(500, true),
+            Recorded.completed(500)
         ]
         XCTAssertEqual(expectedEvents, observer.events)
     }
 
-    func test_refreshOrWaitAction_getToken_success() {
+    func test_refreshOrWaitAction_getToken_success() throws {
         let inputEvents = [
             Recorded.next(100, emptyToken),
             Recorded.next(300, emptyToken),
             Recorded.completed(500)]
         let refreshEvents = [
-            Recorded.next(100, true),
-            Recorded.completed(100)]
+            Recorded.next(500, true),
+            Recorded.completed(500)]
         let tokenStatuses = [
             OAuthTokenStatus.refreshing,
             OAuthTokenStatus.valid]
-        refreshOrWaitAction_getToken(inputEvents: inputEvents,
-                                     expectedRefreshEvents: refreshEvents,
-                                     expectedTokenStatuses: tokenStatuses)
+        try refreshOrWaitAction_getToken(
+            inputEvents: inputEvents,
+            expectedRefreshEvents: refreshEvents,
+            expectedTokenStatuses: tokenStatuses)
     }
 
-    func test_refreshOrWaitAction_getToken_failure() {
+    func test_refreshOrWaitAction_getToken_failure() throws {
         let inputEvents: [Recorded<Event<OAuthToken>>] = [
             Recorded.error(100, MockError())]
         let refreshEvents = [
@@ -90,16 +90,17 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
         let tokenStatuses = [
             OAuthTokenStatus.refreshing,
             OAuthTokenStatus.invalid]
-        refreshOrWaitAction_getToken(inputEvents: inputEvents,
-                                     expectedRefreshEvents: refreshEvents,
-                                     expectedTokenStatuses: tokenStatuses)
+        try refreshOrWaitAction_getToken(
+            inputEvents: inputEvents,
+            expectedRefreshEvents: refreshEvents,
+            expectedTokenStatuses: tokenStatuses)
     }
 
     private func refreshOrWaitAction_getToken(
         inputEvents: [Recorded<Event<OAuthToken>>],
         expectedRefreshEvents: [Recorded<Event<Bool>>],
         expectedTokenStatuses: [OAuthTokenStatus]
-    ) {
+    ) throws {
         let scheduler = TestScheduler(initialClock: 0)
         let disposeBag = DisposeBag()
         let tokenStream = scheduler.createColdObservable(inputEvents)
@@ -110,9 +111,7 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
             authorisationWorker: worker,
             oAuthTokenRefreshWatcher: watcher,
             authorisationStore: store)
-        guard let outputStream = sut.refreshTokenOrWaitAction else {
-            return XCTFail("No refreshOrWait observable provided")
-        }
+        let outputStream = try XCTUnwrap(sut.refreshTokenOrWaitAction)
         let observer = scheduler.createObserver(Bool.self)
         outputStream
             .asDriver(onErrorJustReturn: Void())

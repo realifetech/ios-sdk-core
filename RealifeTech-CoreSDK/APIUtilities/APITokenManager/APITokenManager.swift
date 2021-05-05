@@ -19,7 +19,7 @@ public class APITokenManager: APITokenManagable {
     private let authorisationStore: AuthorisationStoring
     private let oAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating
     private let scheduler: SchedulerType
-    private let disposeBag: DisposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init(
         authorisationStore: AuthorisationStoring,
