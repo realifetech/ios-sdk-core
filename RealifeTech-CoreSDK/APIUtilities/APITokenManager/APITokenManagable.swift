@@ -15,7 +15,7 @@ public protocol APITokenManagable {
     var refreshToken: String? { get }
     var refreshTokenIsValid: Bool { get }
 
-    func getValidToken(_: (() -> Void)?)
+    func getValidToken(_: ((Result<Void, Error>) -> Void)?)
     func storeCredentials(accessToken: String, secondsExpiresIn: Int, refreshToken: String?)
     func removeCredentials()
 }
@@ -27,8 +27,8 @@ struct EmptyTokenManager: APITokenManagable {
     var refreshToken: String?
     var refreshTokenIsValid: Bool = false
 
-    func getValidToken(_ completion: (() -> Void)?) {
-        completion?()
+    func getValidToken(_ completion: ((Result<Void, Error>) -> Void)?) {
+        completion?(.success(()))
     }
 
     func storeCredentials(accessToken: String, secondsExpiresIn: Int, refreshToken: String?) { }

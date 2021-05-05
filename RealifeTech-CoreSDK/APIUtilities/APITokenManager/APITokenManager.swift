@@ -31,17 +31,20 @@ public class APITokenManager: APITokenManagable {
         self.oAuthRefreshOrWaitActionGenerator = oAuthRefreshOrWaitActionGenerator
     }
 
-    public func getValidToken(_ completion: (() -> Void)?) {
+    public func getValidToken(_ completion: ((Result<Void, Error>) -> Void)?) {
         guard let getTokenObservable = oAuthRefreshOrWaitActionGenerator.refreshTokenOrWaitAction else {
-            completion?()
+            completion?(.success(()))
             return
         }
         getTokenObservable
             .subscribeOn(scheduler)
             .observeOn(MainScheduler.instance)
             .take(1)
-            .subscribe(onNext: { _ in
-                completion?()
+            .subscribe(onNext: {
+                completion?(.success(()))
+            }, onError: { [weak self] error in
+                self?.removeCredentials()
+                completion?(.failure(error))
             })
             .disposed(by: disposeBag)
     }
