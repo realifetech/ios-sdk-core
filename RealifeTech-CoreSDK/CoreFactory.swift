@@ -64,7 +64,7 @@ public enum CoreFactory {
     ///  completion: Optional closure with default nil value
     public static func requestValidToken(
         fromApiHelper apiHelper: APITokenManagable,
-        completion: (() -> Void)? = nil
+        completion: ((Result<Void, Error>) -> Void)? = nil
     ) {
         apiHelper.getValidToken(completion)
     }

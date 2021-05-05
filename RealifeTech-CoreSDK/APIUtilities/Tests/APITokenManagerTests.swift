@@ -54,7 +54,7 @@ final class APITokenManagerTests: XCTestCase {
     func test_getValidToken_noDelay() {
         testRefreshGenerator.refreshTokenOrWaitAction = nil
         var synchronousCompletionCheck = false
-        sut.getValidToken { synchronousCompletionCheck = true }
+        sut.getValidToken { _ in synchronousCompletionCheck = true }
         XCTAssertTrue(synchronousCompletionCheck)
     }
 
@@ -62,7 +62,7 @@ final class APITokenManagerTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Valid token completion called")
         let observableSource = PublishSubject<Void>.just(())
         testRefreshGenerator.refreshTokenOrWaitAction = observableSource.asObservable()
-        sut.getValidToken {
+        sut.getValidToken { _ in
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.01)
