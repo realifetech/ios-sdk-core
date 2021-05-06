@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "RealifeTech-CoreSDK"
-  spec.version      = "1.0.9"
+  spec.version      = "1.0.10"
   spec.summary      = "Providing the core services with the RealifeTech Experience Automation Platform."
 
   spec.description  = "This is RealifeTech Core SDK, it provides the core services with RealifeTech backend services. Creating a better experience of the real world for every person."

@@ -33,16 +33,17 @@ struct OAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating {
     /// Nil if we have a valid token. If no token exists, or is invalid, or is being currently refreshed,
     /// this will return an observable which will emit once the token action is complete.
     var refreshTokenOrWaitAction: Observable<Void>? {
-        if let ongoingTokenRefresh = oAuthTokenRefreshWatcher.ongoingTokenRefresh {
-            // We take 1 because we only care about the current refresh.
-            return ongoingTokenRefresh.take(1).map { _ in return () }
-        } else if authorisationStore.accessTokenValid {
+        if authorisationStore.accessTokenValid {
             return nil
+        }
+        if let ongoingTokenRefresh = oAuthTokenRefreshWatcher.ongoingTokenRefresh {
+            // We take the last one because we only care about the current refresh.
+            return ongoingTokenRefresh.takeLast(1).map { _ in return () }
         }
         oAuthTokenRefreshWatcher.updateRefreshingStatus(newValue: .refreshing)
         let refresh = authorisationWorker.refreshAccessToken ?? authorisationWorker.requestInitialAccessToken
         return refresh
-            .take(1)
+            .takeLast(1)
             .do(onNext: { _ in
                 self.oAuthTokenRefreshWatcher.updateRefreshingStatus(newValue: .valid)
             }, onError: { _ in
