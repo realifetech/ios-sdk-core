@@ -37,9 +37,9 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
         let scheduler = TestScheduler(initialClock: 0)
         let disposeBag = DisposeBag()
         let refreshCompleteStream = scheduler.createColdObservable([
-            Recorded.next(100, true),
-            Recorded.next(300, true),
-            Recorded.completed(500)])
+            Recorded.next(10, true),
+            Recorded.next(30, true),
+            Recorded.completed(30)])
         let watcher = MockWatcher()
         watcher.ongoingTokenRefresh = refreshCompleteStream.asObservable()
         let store = MockStore()
@@ -58,20 +58,20 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
         scheduler.start()
 
         let expectedEvents = [
-            Recorded.next(500, true),
-            Recorded.completed(500)
+            Recorded.next(30, true),
+            Recorded.completed(30)
         ]
         XCTAssertEqual(expectedEvents, observer.events)
     }
 
     func test_refreshOrWaitAction_getToken_success() throws {
         let inputEvents = [
-            Recorded.next(100, emptyToken),
-            Recorded.next(300, emptyToken),
-            Recorded.completed(500)]
+            Recorded.next(10, emptyToken),
+            Recorded.next(30, emptyToken),
+            Recorded.completed(30)]
         let refreshEvents = [
-            Recorded.next(500, true),
-            Recorded.completed(500)]
+            Recorded.next(30, true),
+            Recorded.completed(30)]
         let tokenStatuses = [
             OAuthTokenStatus.refreshing,
             OAuthTokenStatus.valid]
@@ -83,10 +83,10 @@ final class OAuthRefreshOrWaitActionGeneratorTests: XCTestCase {
 
     func test_refreshOrWaitAction_getToken_failure() throws {
         let inputEvents: [Recorded<Event<OAuthToken>>] = [
-            Recorded.error(100, MockError())]
+            Recorded.error(10, MockError())]
         let refreshEvents = [
-            Recorded.next(100, true),
-            Recorded.completed(100)]
+            Recorded.next(10, true),
+            Recorded.completed(10)]
         let tokenStatuses = [
             OAuthTokenStatus.refreshing,
             OAuthTokenStatus.invalid]

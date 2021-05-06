@@ -37,7 +37,7 @@ struct OAuthRefreshOrWaitActionGenerator: OAuthRefreshOrWaitActionGenerating {
             return nil
         }
         if let ongoingTokenRefresh = oAuthTokenRefreshWatcher.ongoingTokenRefresh {
-            // We take 1 because we only care about the current refresh.
+            // We take the last one because we only care about the current refresh.
             return ongoingTokenRefresh.takeLast(1).map { _ in return () }
         }
         oAuthTokenRefreshWatcher.updateRefreshingStatus(newValue: .refreshing)
