@@ -45,7 +45,7 @@ public class GraphNetwork {
 
     private lazy var store: ApolloStore = {
         let documentsPath = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory,
+            .libraryDirectory,
             .userDomainMask,
             true).first ?? ""
         let documentsUrl = URL(fileURLWithPath: documentsPath)
